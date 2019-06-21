@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2019/06/21/#%E6%88%91%E7%88%B1%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2019/06/21/#%E6%88%91%E7%88%B1%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><p><u>这是下划线</u>   ctrl+u</p><p><del>这是删除线</del>  shift+alt+5</p><p><strong>字体加粗</strong>  ctrl+b</p><p><em>字体倾斜</em>  ctrl+i</p><ul><li>牛奶</li><li>面包</li><li>无序列表  -+space<ul><li>嵌套列表</li></ul></li></ul><ol><li><p>你好</p></li><li><p>我好</p></li><li><p>他也好</p><ol><li>电脑</li><li>鼠标</li></ol><blockquote><p>这里是引用</p></blockquote></li></ol><blockquote><p>这也是引用    &gt;+space 或ctrl+shift+q</p></blockquote><p><a href="http://scit.bjtu.edu.cn/cms/item/?cat=2" target="_blank" rel="noopener">这里一个地址ctrl+k</a></p><table><thead><tr><th>这是一个表格</th><th></th><th></th></tr></thead><tbody><tr><td>ctrl+t</td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table><p>[TOC]</p><p>[TOC]+enter</p><p>ctrl+l 选择一整行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">while(int i&gt;0)&#123;</span><br><span class="line">    Console.WriteLine(&quot;快捷键是：ctrl+alt+b&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">public static void main(string[]args)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>hello family ctrl+d选择单词</p><p>搜索 ctrl+f</p><p>替换 ctrl+h</p><p>Typora</p><hr><p>分隔线 ***+enter或者—+enter</p><hr><ul><li><input disabled type="checkbox"> 备忘录</li><li><input disabled type="checkbox"> space+ - +space+[space]+space</li></ul><p>:happy: :+表情的英文</p><p><code>这是重点</code>  Ctrl+shift+~</p><p>❤  ctrl+shift+d</p><p>新建 ctrl+n  关闭 ctrl+w</p><p>显示隐藏 ctrl+shift+l</p><hr><p>==高亮==</p><p>三级标题 标题变普通 ctrl+0</p><p>脚注 movie<a href="疯狂动物城">^1</a></p><p>​    </p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>my first blog</title>
       <link href="/2019/06/21/my-first-blog/"/>
       <url>/2019/06/21/my-first-blog/</url>
