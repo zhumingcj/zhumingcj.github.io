@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="6fea7fc7276fc383ec5b2080c662f076">
+  <!--
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  -->
+  
+  <title>shejimoshi | ZhuMing&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="设计模式之观察者模式">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shejimoshi">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/06/26/Observer Pattern/index.html">
+<meta property="og:site_name" content="ZhuMing&#39;blog">
+<meta property="og:description" content="设计模式之观察者模式">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190627/Pwc2H0fM3pGs.png?imageslim">
+<meta property="og:updated_time" content="2019-06-26T16:35:24.990Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shejimoshi">
+<meta name="twitter:description" content="设计模式之观察者模式">
+<meta name="twitter:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190627/Pwc2H0fM3pGs.png?imageslim">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+  <script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.8.1.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+  <script src="/js/search.js"></script>
+  <script src="/js/ug-theme-default.js"></script>
+  <script src="/js/unitegallery.js"></script>
+  <script src="/js/av.min.js"></script>
+  <script src="/js/valine.min.js"></script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/assets/head.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/" class="alluraregular">ZhuMing</a></h1>
+		</hgroup>
+        <!--
+		
+		<p class="header-subtitle">LearningGround</p>
+		
+        -->
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="../../../../archives/index.html">归档</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhumingcj" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="mailto:2075433321@qq.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="../../../../tags/文本编辑/" style="font-size: 10px;">文本编辑</a> <a href="../../../../tags/设计模式/" style="font-size: 10px;">设计模式</a>
+					</div>
+				</section>
+				
+
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">乐于分享，喜欢环境音乐，爱看动漫，偶尔写写技术博客的小程一枚...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">ZhuMing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/assets/head.jpg" class="js-avatar">
+				<hgroup>
+				  <h1 class="header-author">ZhuMing</h1>
+				</hgroup>
+			</div>
+			
+			<p class="header-subtitle">LearningGround</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="../../../../archives/index.html">归档</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhumingcj" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="mailto:2075433321@qq.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+	  <div class="page-header" style="">
+	<!--是否开启站内搜索-->
+	
+	<span class="local-search local-search-google local-search-plugin" style="float:right;">
+  <input type="search" placeholder="Search..." id="local-search-input" class="local-search-input-cls" style="">
+  <!--<i class="icon" aria-hidden="true" title="Search"></i>-->
+  <div id="local-search-result" class="local-search-result-cls"></div>
+</span>
+
+<script>
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+	
+	
+	if(isMobile.any()){
+	    //手机端取消搜索功能
+		$('.local-search').css("display","none");
+	}
+	
+	$(".local-search").on('input porpertychange',function(){
+		
+		//searchFunc("/search.xml", 'local-search-input', 'local-search-result');
+		
+	});
+    
+    if ($('.local-search').size() && !isMobile.any()) {
+        searchFunc("/search.xml", 'local-search-input', 'local-search-result');
+    }
+	
+</script>
+
+	
+	<!--是否开启最近通知-->
+	
+	🍁向前一步，海阔天空。
+
+
+	
+</div>
+
+      <div class="body-wrap"><article id="post-Observer Pattern" class="article article-type-post" itemscope itemprop="blogPost">
+    <script>
+        $("html").niceScroll({
+            cursorcolor: "#2a2929",
+            cursoropacitymax: 1,
+            touchbehavior: false,
+            cursorwidth: "6px",
+            cursorborder: "5",
+            cursorborderradius: "0px",
+            autohidemode: true
+        });
+    </script>
+    
+    <div class="article-meta">
+        <a href="" class="article-date">
+  	<time datetime="2019-06-26T14:22:15.000Z" itemprop="datePublished">2019-06-26</time>
+</a>
+
+    </div>
+    
+    <div class="article-inner">
+        
+        <input type="hidden" class="isFancy" />
+        
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      shejimoshi
+    </h1>
+  
+
+
+        </header>
+        
+        <div class="article-info article-info-post">
+            
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/设计模式/">设计模式</a></li></ul>
+	</div>
+
+
+            
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="../../../../categories/C/">C#</a>
+	</div>
+
+
+            <div class="clearfix"></div>
+        </div>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+
+            
+
+            <p class="toc-button" id="toc-button">目录</p>
+<div id="toc" class="toc-article" style="display:none;">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计模式之观察者模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式之观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是观察者模式"><span class="toc-number">1.1.</span> <span class="toc-text">什么是观察者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的作用"><span class="toc-number">1.2.</span> <span class="toc-text">观察者模式的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的缺点"><span class="toc-number">1.3.</span> <span class="toc-text">观察者模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的实现要点"><span class="toc-number">1.4.</span> <span class="toc-text">观察者模式的实现要点</span></a></li></ol></li></ol>
+</div>
+<script>
+    $(function(){
+
+        var width = document.body.scrollWidth;
+        if (width <=550) {
+             $(".toc-button").css("display","none");
+        }
+        $(".toc-button").hover(function(){
+            var top = $(this).get(0).offsetTop-$(".toc-article").height()/2;
+            $(".toc-article").css({
+                top:top +"px"
+            });
+            $("#toc").show(1000,function(){});
+           // $("#toc").animate({width:500;},3000);
+        },function(){
+
+        });
+        $(".toc-article").hover(function(){
+
+        },function(){
+            $("#toc").hide(1000,function(){});
+        });
+    })
+</script>
+
+            
+            
+
+            
+            <h1 id="设计模式之观察者模式"><a href="#设计模式之观察者模式" class="headerlink" title="设计模式之观察者模式"></a>设计模式之观察者模式</h1><a id="more"></a>
+
+<h2 id="什么是观察者模式"><a href="#什么是观察者模式" class="headerlink" title="什么是观察者模式"></a>什么是观察者模式</h2><p>形象的来说，观察者模式包含一个被观察者（subject）以及若干观察者（observer），observer观察subject，当subject发出一个动作时，observer观察到后作出相应反应。在程序中则是某个类（subject）达到某种触发条件后向其他类发送通知（通常是执行某些方法的信息），然后这些类执行相应的方法。</p>
+<h2 id="观察者模式的作用"><a href="#观察者模式的作用" class="headerlink" title="观察者模式的作用"></a>观察者模式的作用</h2><ol>
+<li><p>用于程序的解耦。观察者模式通过依赖于抽象的接口来减少类与类之间的直接依赖。</p>
+</li>
+<li><p>可以作为一种通知的机制，将更新通知给其它的对象。</p>
+</li>
+</ol>
+<h2 id="观察者模式的缺点"><a href="#观察者模式的缺点" class="headerlink" title="观察者模式的缺点"></a>观察者模式的缺点</h2><ul>
+<li>当一个被观察者有很多的直接或间接的观察者时，要通知到所有的观察者需要耗费很多的时间。</li>
+<li>当被观察者之间循环依赖时（比如：A通知B改变C，C的改变引起A的改变，继而又触发了A通知B），程序会进入循环调用，导致系统崩溃。</li>
+</ul>
+<h2 id="观察者模式的实现要点"><a href="#观察者模式的实现要点" class="headerlink" title="观察者模式的实现要点"></a>观察者模式的实现要点</h2><ol>
+<li>要创建一个接口用以约束所有被观察者，提供消息传递的通道</li>
+<li>被观察者需要有一个存放消息的容器，一般是接口的一个列表；同时被观察者要具有订阅观察者和取消订阅的方法，用以动态的增加减少观察者的数量。</li>
+<li>实现消息的传递——通过调用接口列表中的各个方法。</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"> class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Cat cat = new Cat();</span><br><span class="line">            cat.Add(new Dog());</span><br><span class="line">            cat.Add(new Duck());</span><br><span class="line">            cat.Add(new mouse());           </span><br><span class="line">            cat.Add(new people());</span><br><span class="line">            cat.Miao();</span><br><span class="line">            Console.Read();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">interface Ioberver</span><br><span class="line">&#123;</span><br><span class="line">        void Action();</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">class Chicken:Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Woo();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Woo()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;&#123;0&#125; Woo&quot;, this.GetType().Name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">class Dog : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Wang();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Wang()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 汪汪汪&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">class Duck : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Gaga();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Gaga()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 嘎嘎嘎&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> class mouse : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Zhi();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Zhi()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 吱吱吱&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Cat</span><br><span class="line">&#123;</span><br><span class="line">        public void Miao()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;&#123;0&#125; miao&quot;,this.GetType().Name);</span><br><span class="line">            if(this._ObserverList!=null &amp;&amp; this._ObserverList.Count &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                foreach (var observer in _ObserverList)</span><br><span class="line">                &#123;</span><br><span class="line">                    observer.Action();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public List&lt;Ioberver&gt; _ObserverList = new List&lt;Ioberver&gt;();</span><br><span class="line">        public void Add(Ioberver observer)</span><br><span class="line">        &#123;</span><br><span class="line">            this._ObserverList.Add(observer);</span><br><span class="line">        &#125;</span><br><span class="line">        public void Remove(Ioberver observer)</span><br><span class="line">        &#123;</span><br><span class="line">            this._ObserverList.Remove(observer);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190627/Pwc2H0fM3pGs.png?imageslim" alt="mark"></p>
+
+            
+            </br>
+            <p>本文链接：
+                <a href="http://zhumingcj.github.io/2019/06/26/Observer Pattern/">
+                    http://zhumingcj.github.io/2019/06/26/Observer Pattern/
+                </a>
+            </p>
+            
+            <p>-- <acronym title="End of File">EOF</acronym> --</p>
+
+            <div class="post-info">
+
+                <p>转载请注明出处 署名-非商业性使用-禁止演绎 3.0 国际（CC BY-NC-ND 3.0）</p>
+            </div>
+            
+        </div>
+
+        
+    </div>
+    
+        <div id="socialShare" style="margin-left:40px;display:none;">
+</div>
+<script>
+    $(function () {
+        var width = document.body.scrollWidth;
+        if (width > 550) {
+            $("#socialShare").css("display", "block");
+            $("#socialShare").socialShare({
+                content: 'Nice!不错的资源...',
+                url: window.location.href,
+                titile: ''
+            });
+        }
+    });
+</script>
+    
+    
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../../21/Tips for Typora/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ShortCut Key for Typora</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+        
+            
+                <div id="vcomments" style="margin: auto 30px auto 30px;"></div>
+<script>
+    new Valine({
+        av: AV,
+        el: '#vcomments',
+        appId: 'lxxWlIzQxwQ6sYeozabbQN2e-gzGzoHsz',
+        appKey: 'PQ3KTORxjUaJf9oRo5dfXmUr',
+        placeholder: '快来说点什么吧!',
+        emoticon_url: 'https://cloud.panjunwen.com/alu',
+        emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+        notify: false,
+        verify: false
+    })
+</script>
+            
+        
+    
+
+</article>
+
+
+<script>
+    var isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function () {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function () {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function () {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function () {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() ||
+                isMobile.Windows());
+        }
+    };
+    if (isMobile.any()) {
+        //移动端不显示目录和评论
+        $("#toc-button").css("display", "none");
+        $("#commentDiv").css("display", "none");
+    }
+</script>
+</div>
+      <!--
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 ZhuMing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/kiritor/hexo-theme-yilia-l" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','m5RW4BUQrJ_r-CYKAksH','2.0.0');
+</script>
+  </div>
+</footer>
+-->
+    </div>
+    
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+  <script src="../../../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../../../../js/mobile.js"></script>
+<script src="../../../../js/main.js"></script>
+<script src="../../../../js/prefixfree.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;z-index:9999;opacity: 100%;">
+    <a title="返回顶部" style="opacity: 100%;">
+        <img src="/img/scrollup.png" />
+    </a>
+</div>
+
+<script src="/js/totop.js"></script>
+<script src="/js/share.js"></script>
+
+  </div>
+</body>
+</html>
