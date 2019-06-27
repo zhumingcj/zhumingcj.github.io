@@ -328,7 +328,6 @@
             
             <p>装饰器模式是一个很著名的设计模式，经常被用于有切面需求的场景，比如插入日志、统计等的逻辑。装饰器模式的作用是能为已经存在的对象添加额外的功能。</p>
 <a id="more"></a>
-
 <h1 id="设计模式之装饰器模式"><a href="#设计模式之装饰器模式" class="headerlink" title="设计模式之装饰器模式"></a>设计模式之装饰器模式</h1><h2 id="装饰器模式的作用"><a href="#装饰器模式的作用" class="headerlink" title="装饰器模式的作用"></a>装饰器模式的作用</h2><ul>
 <li>在不改变现有对象结构的基础上为其添加新的功能，且并不通过继承而是通过对象之间的关联来实现，使其更加灵活。</li>
 <li>相比于继承来增加新功能（固定的），装饰器模式可以动态的增加新功能，并且功能之间可以进行组合来产生更多的功能，避免了增加功能时对对象的修改</li>
@@ -338,40 +337,30 @@
 <h2 id="装饰器实现步骤"><a href="#装饰器实现步骤" class="headerlink" title="装饰器实现步骤"></a>装饰器实现步骤</h2><ol>
 <li><p>建立一个继承自对象抽象类的装饰器基类，其中包括缓存字段，构造函数和方法调用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class BaseStudentDecorator : AbstractStudent</span><br><span class="line">    &#123;</span><br><span class="line">        private AbstractStudent _student = null;//用于缓存一个对象</span><br><span class="line">        public BaseStudentDecorator(AbstractStudent student)</span><br><span class="line">        &#123;</span><br><span class="line">            this._student = student;</span><br><span class="line">        &#125;</span><br><span class="line">        public override void Finish()</span><br><span class="line">        &#123;</span><br><span class="line">            this._student.Finish();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li><p>依照单一职责原则创建实现具体功能的装饰器，在其中调用父类的构造函数并复写父类的方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public StudentLearningDecoractor(AbstractStudent student) : base(student)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        public override void Finish()</span><br><span class="line">        &#123;</span><br><span class="line">            &#123;</span><br><span class="line">                //你要实现的逻辑</span><br><span class="line">            &#125;</span><br><span class="line">            base.Finish();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">//创建多个，根据要实现的逻辑</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ol>
-<ol start="3">
+<ol>
 <li><p>对装饰器要实现的功能进行注册并调用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">student = new StudentPreviewDecoractor(student);</span><br><span class="line">          student = new StudentLearningDecoractor(student);//添加了一个功能</span><br><span class="line">          student = new StudentReviewDecorator(student);//添加了一个功能</span><br><span class="line">          student = new StudentPlayDecoractor(student);//添加了一个功能</span><br><span class="line">          student = new StudentSleeepDecorator(student);//添加了一个功能</span><br><span class="line">          student.Finish();//调用</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ol>
 <p>   抽象类和具体类</p>
    <figure class="highlight plain"><figcaption><span>public abstract class AbstractStudent</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AbstractStudent</span><br><span class="line">   &#123;</span><br><span class="line">       public int Id &#123; get; set; &#125;</span><br><span class="line">       public string Name &#123; get; set; &#125;</span><br><span class="line">       public abstract  void Finish();</span><br><span class="line">   &#125;</span><br><span class="line">   public class StudentCommon:AbstractStudent</span><br><span class="line">   &#123;</span><br><span class="line">       public override void Finish()</span><br><span class="line">       &#123;</span><br><span class="line">           Console.WriteLine($&quot;&#123;base.Name&#125; finished learning&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">       public class StudentPreview: StudentCommon</span><br><span class="line">       &#123;</span><br><span class="line">           public override void Finish()</span><br><span class="line">           &#123;</span><br><span class="line">               base.Finish();</span><br><span class="line">               Console.WriteLine(&quot;先进行复习&quot;);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
 <p>   运行结果：</p>
 <p>   <img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190627/5ckTbxL1rvl1.png?imageslim" alt="mark"></p>
 <h2 id="深入分析"><a href="#深入分析" class="headerlink" title="深入分析"></a>深入分析</h2><ul>
-<li><input disabled type="checkbox"> <p>当我们在注册方法时，student（不同类型）对象会被保存在基类中</p>
+<li><p>[ ] 当我们在注册方法时，student（不同类型）对象会被保存在基类中</p>
 </li>
-<li><input disabled type="checkbox"> <p>当我们最后调用finish方法时，会先调用StudentSleeepDecorator的finish方法，finish方法又会调用基类的finish方法，而基类的finish方法会调用之前缓存的student的finish方法…..，从而形成了一系列的调用，相当于一个链表结构。</p>
+<li><p>[ ] 当我们最后调用finish方法时，会先调用StudentSleeepDecorator的finish方法，finish方法又会调用基类的finish方法，而基类的finish方法会调用之前缓存的student的finish方法…..，从而形成了一系列的调用，相当于一个链表结构。</p>
 </li>
-<li><input disabled type="checkbox"> <p>在我们实现具体的装饰器时，==base.Finish()和你要实现的逻辑的顺序直接影响到这些逻辑调用的顺序==。当你要实现的逻辑放在前面时，相当于堆栈，遵从先进后出的原则，因此先注册的方法会最后执行（1）；当base.Finish()放在前面时，相当于队列，遵从先进先出，因此先注册的方法最先执行（2）。</p>
+<li><p>[ ] 在我们实现具体的装饰器时，==base.Finish()和你要实现的逻辑的顺序直接影响到这些逻辑调用的顺序==。当你要实现的逻辑放在前面时，相当于堆栈，遵从先进后出的原则，因此先注册的方法会最后执行（1）；当base.Finish()放在前面时，相当于队列，遵从先进先出，因此先注册的方法最先执行（2）。</p>
 </li>
-<li><input disabled type="checkbox"> <p>所以当我们要实现在主逻辑（这里为Console.WriteLine($”{base.Name} finished learning”)，即已有对象的方法）前增加若干方法，在主逻辑后也增加若干方法时：</p>
+<li><p>[ ] 所以当我们要实现在主逻辑（这里为Console.WriteLine($”{base.Name} finished learning”)，即已有对象的方法）前增加若干方法，在主逻辑后也增加若干方法时：</p>
 <ul>
 <li><p>在编写装饰器时时，对于主逻辑之前要执行的方法应按上述（1）来编写装饰器；而对于主逻辑之后要执行的方法应按上述（2）来编写装饰器。</p>
 </li>

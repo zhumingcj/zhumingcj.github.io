@@ -9,18 +9,18 @@
   
   <title>Matrix | ZhuMing&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="求解矩阵的高斯消元法消元过程对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解$$\begin{cases}a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&amp;amp;b_1\\vdots\a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&amp;amp;b_n&amp;amp;\end">
+  <meta name="description" content="求解矩阵的高斯消元法消元过程对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解  \begin{cases} a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&amp;b_1 \\\vdots\\ a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&amp;b_n&amp; \end{case">
 <meta name="keywords" content="Matrix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matrix">
 <meta property="og:url" content="http://zhumingcj.github.io/2019/06/27/Matrix/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="求解矩阵的高斯消元法消元过程对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解$$\begin{cases}a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&amp;amp;b_1\\vdots\a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&amp;amp;b_n&amp;amp;\end">
+<meta property="og:description" content="求解矩阵的高斯消元法消元过程对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解  \begin{cases} a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&amp;b_1 \\\vdots\\ a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&amp;b_n&amp; \end{case">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-27T15:45:33.206Z">
+<meta property="og:updated_time" content="2019-06-27T15:59:09.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matrix">
-<meta name="twitter:description" content="求解矩阵的高斯消元法消元过程对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解$$\begin{cases}a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&amp;amp;b_1\\vdots\a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&amp;amp;b_n&amp;amp;\end">
+<meta name="twitter:description" content="求解矩阵的高斯消元法消元过程对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解  \begin{cases} a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&amp;b_1 \\\vdots\\ a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&amp;b_n&amp; \end{case">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -324,28 +324,71 @@
             
 
             
-            <h1 id="求解矩阵的高斯消元法"><a href="#求解矩阵的高斯消元法" class="headerlink" title="求解矩阵的高斯消元法"></a>求解矩阵的高斯消元法</h1><h2 id="消元过程"><a href="#消元过程" class="headerlink" title="消元过程"></a>消元过程</h2><p>对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解<br>$$<br>\begin{cases}<br>a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&amp;b_1<br>\\vdots\<br>a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&amp;b_n&amp;<br>\end{cases}<br>\<br>\begin{pmatrix}<br>a_{11}&amp;a_{12}&amp;a_{13}&amp;\dots&amp;a_{1n}\<br>a_{21}&amp;a_{22}&amp;a_{23}&amp;\dots&amp;a_{2n}\<br>\vdots&amp;&amp;&amp;&amp;\vdots\<br>a_{n1}&amp;a_{n2}&amp;a_{n3}&amp;\dots&amp;a_{nn}</p>
-<p>\end{pmatrix}<br>\begin{pmatrix}<br>x_1\<br>x_2\<br>\vdots\<br>x_n<br>\end{pmatrix}=<br>\begin{pmatrix}<br>b_1\<br>b_2\<br>\vdots\<br>b_n<br>\end{pmatrix}<br>$$</p>
-<ol>
+            <a id="more"></a>
+<h1 id="求解矩阵的高斯消元法"><a href="#求解矩阵的高斯消元法" class="headerlink" title="求解矩阵的高斯消元法"></a>求解矩阵的高斯消元法</h1><h2 id="消元过程"><a href="#消元过程" class="headerlink" title="消元过程"></a>消元过程</h2><p>对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&b_1
+\\\vdots\\
+a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&b_n&
+\end{cases}
+\\
+\begin{pmatrix}
+a_{11}&a_{12}&a_{13}&\dots&a_{1n}\\
+a_{21}&a_{22}&a_{23}&\dots&a_{2n}\\
+\vdots&&&&\vdots\\
+a_{n1}&a_{n2}&a_{n3}&\dots&a_{nn}
+
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n
+\end{pmatrix}=
+\begin{pmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_n
+\end{pmatrix}</script><ol>
 <li><p>矩阵的消元过程(在矩阵有解的情况下)</p>
 <ul>
 <li>第一步消元</li>
 </ul>
-<p>$a_{ij}^{(1)}=a_{ij}^{(0)}-\frac{a_{i1}^{(0)}}  {a_{11}^{(0)}}a_{1j}^{(0)}=a_{ij}^{(0)}-l_{i1}^{(0)}a_{1j}^{(0)} ,\quad i=2,3,\dots,n;j=2,3,\dots,n$</p>
-<p>$b_{i}^{(1)}=b_{i}^{(0)}-\frac{a_{i1}^{(0)}}  {a_{11}^{(0)}}b_{1}^{(0)}=b_{i}^{(0)}-l_{i1}^{(0)}b_{1}^{(0)} ,\quad i=2,3,\dots,n$</p>
-<p>$l_{i1}\triangleq \frac {a_{i1}^{(0)}} {a_{11}^{(0)}},\quad i=2,3,\dots,n$</p>
+<p>$a<em>{ij}^{(1)}=a</em>{ij}^{(0)}-\frac{a<em>{i1}^{(0)}}  {a</em>{11}^{(0)}}a<em>{1j}^{(0)}=a</em>{ij}^{(0)}-l<em>{i1}^{(0)}a</em>{1j}^{(0)} ,\quad i=2,3,\dots,n;j=2,3,\dots,n$</p>
+<p>$b<em>{i}^{(1)}=b</em>{i}^{(0)}-\frac{a<em>{i1}^{(0)}}  {a</em>{11}^{(0)}}b<em>{1}^{(0)}=b</em>{i}^{(0)}-l<em>{i1}^{(0)}b</em>{1}^{(0)} ,\quad i=2,3,\dots,n$</p>
+<p>$l<em>{i1}\triangleq \frac {a</em>{i1}^{(0)}} {a_{11}^{(0)}},\quad i=2,3,\dots,n$</p>
 <ul>
 <li><p>第k步消元</p>
-<p>$a_{ij}^{(k)}=a_{ij}^{(0)}-\frac{a_{ik}^{(0)}}  {a_{kk}^{(0)}}a_{kj}^{(k)}=a_{ij}^{(k)}-l_{ik}^{(k)}a_{kj}^{(k)} ,\quad i=k+1,k+2,\dots,n;j=k=1,k+2,\dots,n$</p>
-<p>$b_{i}^{(k)}=b_{i}^{(k)}-\frac{a_{ik}^{(k)}}  {a_{kk}^{(k)}}b_{k}^{(k)}=b_{i}^{(k)}-l_{ik}^{(k)}b_{k}^{(k)} ,\quad i=k+1,k+2,\dots,n$</p>
-<p>$l_{ik}\triangleq \frac {a_{ik}^{(k)}} {a_{kk}^{(k)}},\quad i=k+1,k+2,\dots,n$</p>
+<p>$a<em>{ij}^{(k)}=a</em>{ij}^{(0)}-\frac{a<em>{ik}^{(0)}}  {a</em>{kk}^{(0)}}a<em>{kj}^{(k)}=a</em>{ij}^{(k)}-l<em>{ik}^{(k)}a</em>{kj}^{(k)} ,\quad i=k+1,k+2,\dots,n;j=k=1,k+2,\dots,n$</p>
+<p>$b<em>{i}^{(k)}=b</em>{i}^{(k)}-\frac{a<em>{ik}^{(k)}}  {a</em>{kk}^{(k)}}b<em>{k}^{(k)}=b</em>{i}^{(k)}-l<em>{ik}^{(k)}b</em>{k}^{(k)} ,\quad i=k+1,k+2,\dots,n$</p>
+<p>$l<em>{ik}\triangleq \frac {a</em>{ik}^{(k)}} {a_{kk}^{(k)}},\quad i=k+1,k+2,\dots,n$</p>
 </li>
-<li><p>消元完成后<br>$$<br>A^{(n-1)}=<br>\begin{pmatrix}<br>a_{11}^{(0)}&amp;a_{12}^{(0)}&amp;a_{13}^{(0)}&amp;\cdots&amp;\cdots&amp;a_{1n}^{(0)}\<br>&amp;a_{22}^{(1)}&amp;a_{23}^{(1)}&amp;\cdots&amp;\cdots&amp;a_{2n}^{(1)}\<br>&amp;&amp;\ddots\<br>&amp;&amp;&amp;a_{kk}^{(k-1)}&amp;\cdots&amp;a_{kn}^{(k-1)}\<br>&amp;&amp;&amp;&amp;\ddots&amp;\vdots\<br>&amp;&amp;&amp;&amp;&amp;a_{nn}^{(n-1)}<br>\end{pmatrix},\quad<br>b^{(n-1)}=<br>\begin{pmatrix}<br>b_{1}^{(0)}\<br>b_{2}^{(1)}\<br>\vdots\<br>b_{k}^{(k-1)}\<br>\vdots\<br>b_{n}^{(n-1)}<br>\end{pmatrix}<br>$$</p>
-</li>
+<li><p>消元完成后</p>
+<script type="math/tex; mode=display">
+A^{(n-1)}=
+\begin{pmatrix}
+a_{11}^{(0)}&a_{12}^{(0)}&a_{13}^{(0)}&\cdots&\cdots&a_{1n}^{(0)}\\
+&a_{22}^{(1)}&a_{23}^{(1)}&\cdots&\cdots&a_{2n}^{(1)}\\
+&&\ddots\\
+&&&a_{kk}^{(k-1)}&\cdots&a_{kn}^{(k-1)}\\
+&&&&\ddots&\vdots\\
+&&&&&a_{nn}^{(n-1)}
+\end{pmatrix},\quad
+b^{(n-1)}=
+\begin{pmatrix}
+b_{1}^{(0)}\\
+b_{2}^{(1)}\\
+\vdots\\
+b_{k}^{(k-1)}\\
+\vdots\\
+b_{n}^{(n-1)}
+\end{pmatrix}</script></li>
 </ul>
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li>回代的过程</li>
 </ol>
 
