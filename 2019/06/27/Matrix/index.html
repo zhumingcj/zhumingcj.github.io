@@ -9,18 +9,18 @@
   
   <title>Matrix | ZhuMing&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="求解矩阵的高斯消元法">
+  <meta name="description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
 <meta name="keywords" content="Matrix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matrix">
 <meta property="og:url" content="http://zhumingcj.github.io/2019/06/27/Matrix/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="求解矩阵的高斯消元法">
+<meta property="og:description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-27T16:09:39.696Z">
+<meta property="og:updated_time" content="2019-06-27T16:56:06.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matrix">
-<meta name="twitter:description" content="求解矩阵的高斯消元法">
+<meta name="twitter:description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -293,7 +293,7 @@
 
             <p class="toc-button" id="toc-button">目录</p>
 <div id="toc" class="toc-article" style="display:none;">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#求解矩阵的高斯消元法"><span class="toc-number">1.</span> <span class="toc-text">求解矩阵的高斯消元法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#消元过程"><span class="toc-number">1.1.</span> <span class="toc-text">消元过程</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#求解矩阵的高斯消元法"><span class="toc-number">1.</span> <span class="toc-text">求解矩阵的高斯消元法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#消元过程"><span class="toc-number">1.1.</span> <span class="toc-text">消元过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法的分析"><span class="toc-number">1.2.</span> <span class="toc-text">算法的分析</span></a></li></ol></li></ol>
 </div>
 <script>
     $(function(){
@@ -324,7 +324,8 @@
             
 
             
-            <h1 id="求解矩阵的高斯消元法"><a href="#求解矩阵的高斯消元法" class="headerlink" title="求解矩阵的高斯消元法"></a>求解矩阵的高斯消元法</h1><a id="more"></a>
+            <h1 id="求解矩阵的高斯消元法"><a href="#求解矩阵的高斯消元法" class="headerlink" title="求解矩阵的高斯消元法"></a>求解矩阵的高斯消元法</h1><p>高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。</p>
+<a id="more"></a>
 <h2 id="消元过程"><a href="#消元过程" class="headerlink" title="消元过程"></a>消元过程</h2><p>对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解</p>
 <script type="math/tex; mode=display">
 \begin{cases}
@@ -361,9 +362,9 @@ b_n
 <p>$l_{i1}\triangleq \frac {a_{i1}^{(0)}} {a_{11}^{(0)}},\quad i=2,3,\dots,n$</p>
 <ul>
 <li><p>第k步消元</p>
-<p>$a_{ij}^{(k)}=a_{ij}^{(0)}-\frac{a_{ik}^{(0)}}  {a_{kk}^{(0)}}a_{kj}^{(k)}=a_{ij}^{(k)}-l_{ik}^{(k)}a_{kj}^{(k)} ,\quad i=k+1,k+2,\dots,n;j=k=1,k+2,\dots,n$</p>
-<p>$b_{i}^{(k)}=b_{i}^{(k)}-\frac{a_{ik}^{(k)}}  {a_{kk}^{(k)}}b_{k}^{(k)}=b_{i}^{(k)}-l_{ik}^{(k)}b_{k}^{(k)} ,\quad i=k+1,k+2,\dots,n$</p>
-<p>$l_{ik}\triangleq \frac {a_{ik}^{(k)}} {a_{kk}^{(k)}},\quad i=k+1,k+2,\dots,n$</p>
+<p>$a_{ij}^{(k)}=a_{ij}^{(k-1)}-\frac{a_{ik}^{(k-1)}}  {a_{kk}^{(k-1)}}a_{kj}^{(k-1)}=a_{ij}^{(k-1)}-l_{ik}^{(k-1)}a_{kj}^{(k-1)} ,\quad i=k+1,k+2,\dots,n;j=k=1,k+2,\dots,n$</p>
+<p>$b_{i}^{(k)}=b_{i}^{(k-1)}-\frac{a_{ik}^{(k-1)}}  {a_{kk}^{(k-1)}}b_{k}^{(k-1)}=b_{i}^{(k-1)}-l_{ik}^{(k-1)}b_{k}^{(k-1)} ,\quad i=k+1,k+2,\dots,n$</p>
+<p>$l_{ik}\triangleq \frac {a_{ik}^{(k-1)}} {a_{kk}^{(k-1)}},\quad i=k+1,k+2,\dots,n$</p>
 </li>
 <li><p>消元完成后</p>
 <script type="math/tex; mode=display">
@@ -389,8 +390,30 @@ b_{n}^{(n-1)}
 </li>
 </ol>
 <ol>
-<li>回代的过程</li>
+<li>回代的过程<script type="math/tex; mode=display">
+\left\{
+\begin{array}{c}
+x_n=\frac{b_n^{n-1}}{a_{nn}^{(n-1)}}\\
+x_k=\frac{ {b_k}^{(k-1)-\sum_{j=k+1}^n(a_{kj}^{(k-1)}x_j)} } {a_{kk}^{(k-1)} },\quad k=n-1,n-2,\dots,2,1.
+\end{array}
+\right.</script></li>
 </ol>
+<h2 id="算法的分析"><a href="#算法的分析" class="headerlink" title="算法的分析"></a>算法的分析</h2><ul>
+<li><p>[ ] 在消元的过程中，计算$l_{ik}\triangleq \frac {a_{ik}^{(k-1)}} {a_{kk}^{(k-1)}},\quad i=k+1,k+2,\dots,n$时共有n-k个除法，而计算$a_{ij}^{(k)}=a_{ij}^{(k-1)}-l_{ik}^{(k-1)}a_{kj}^{(k-1)} ,\quad i=k+1,k+2,\dots,n;j=k=1,k+2,\dots,n$时有$(n-k)^2$个乘法，计算$b_{i}^{(k)}=b_{i}^{(k-1)}-l_{ik}^{(k-1)}b_{k}^{(k-1)} ,\quad i=k+1,k+2,\dots,n$时也有n-k个乘法，消元共进行了n-1步，即$k=1,2,\dots,n-1$.</p>
+</li>
+<li><p>[ ] ==所以在消元过程中乘除法的运算量为==</p>
+<script type="math/tex; mode=display">
+N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
+</ul>
+<ul>
+<li>[ ] ==回代过程中乘除法的运算量为==<script type="math/tex; mode=display">
+N_2=\sum_{k=1}^{n-1}(n-k)+n=n^2/2+n/2.</script></li>
+</ul>
+<ul>
+<li><p>[ ] ==所以高斯消元法解n阶矩阵的总乘除法运算量为==</p>
+<p>$N=N_1+N_2=n^3/3+n^2-n/3$</p>
+</li>
+</ul>
 
             
             </br>
