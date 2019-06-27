@@ -113,7 +113,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="tags/文本编辑/" style="font-size: 10px;">文本编辑</a> <a href="tags/设计模式/" style="font-size: 20px;">设计模式</a>
+						<a href="tags/Matrix/" style="font-size: 10px;">Matrix</a> <a href="tags/文本编辑/" style="font-size: 10px;">文本编辑</a> <a href="tags/设计模式/" style="font-size: 20px;">设计模式</a>
 					</div>
 				</section>
 				
@@ -237,6 +237,178 @@
 
 -->
 
+  
+    <article id="post-Matrix" class="article article-type-post" itemscope itemprop="blogPost">
+    <script>
+        $("html").niceScroll({
+            cursorcolor: "#2a2929",
+            cursoropacitymax: 1,
+            touchbehavior: false,
+            cursorwidth: "6px",
+            cursorborder: "5",
+            cursorborderradius: "0px",
+            autohidemode: true
+        });
+    </script>
+    
+    <div class="article-meta">
+        <a href="2019/06/27/Matrix/" class="article-date">
+  	<time datetime="2019-06-27T12:06:11.000Z" itemprop="datePublished">2019-06-27</time>
+</a>
+
+    </div>
+    
+    <div class="article-inner">
+        
+        <input type="hidden" class="isFancy" />
+        
+        
+        <header class="article-header">
+            
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2019/06/27/Matrix/">Matrix</a>
+    </h1>
+  
+
+
+        </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+
+            
+
+            <p class="toc-button" id="toc-button">目录</p>
+<div id="toc" class="toc-article" style="display:none;">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#求解矩阵的高斯消元法"><span class="toc-number">1.</span> <span class="toc-text">求解矩阵的高斯消元法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#消元过程"><span class="toc-number">1.1.</span> <span class="toc-text">消元过程</span></a></li></ol></li></ol>
+</div>
+<script>
+    $(function(){
+
+        var width = document.body.scrollWidth;
+        if (width <=550) {
+             $(".toc-button").css("display","none");
+        }
+        $(".toc-button").hover(function(){
+            var top = $(this).get(0).offsetTop-$(".toc-article").height()/2;
+            $(".toc-article").css({
+                top:top +"px"
+            });
+            $("#toc").show(1000,function(){});
+           // $("#toc").animate({width:500;},3000);
+        },function(){
+
+        });
+        $(".toc-article").hover(function(){
+
+        },function(){
+            $("#toc").hide(1000,function(){});
+        });
+    })
+</script>
+
+            
+            
+
+            
+            <h1 id="求解矩阵的高斯消元法"><a href="#求解矩阵的高斯消元法" class="headerlink" title="求解矩阵的高斯消元法"></a>求解矩阵的高斯消元法</h1><h2 id="消元过程"><a href="#消元过程" class="headerlink" title="消元过程"></a>消元过程</h2><p>对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解<br>$$<br>\begin{cases}<br>a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&amp;b_1<br>\\vdots\<br>a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&amp;b_n&amp;<br>\end{cases}<br>\<br>\begin{pmatrix}<br>a_{11}&amp;a_{12}&amp;a_{13}&amp;\dots&amp;a_{1n}\<br>a_{21}&amp;a_{22}&amp;a_{23}&amp;\dots&amp;a_{2n}\<br>\vdots&amp;&amp;&amp;&amp;\vdots\<br>a_{n1}&amp;a_{n2}&amp;a_{n3}&amp;\dots&amp;a_{nn}</p>
+<p>\end{pmatrix}<br>\begin{pmatrix}<br>x_1\<br>x_2\<br>\vdots\<br>x_n<br>\end{pmatrix}=<br>\begin{pmatrix}<br>b_1\<br>b_2\<br>\vdots\<br>b_n<br>\end{pmatrix}<br>$$</p>
+<ol>
+<li><p>矩阵的消元过程(在矩阵有解的情况下)</p>
+<ul>
+<li>第一步消元</li>
+</ul>
+<p>$a_{ij}^{(1)}=a_{ij}^{(0)}-\frac{a_{i1}^{(0)}}  {a_{11}^{(0)}}a_{1j}^{(0)}=a_{ij}^{(0)}-l_{i1}^{(0)}a_{1j}^{(0)} ,\quad i=2,3,\dots,n;j=2,3,\dots,n$</p>
+<p>$b_{i}^{(1)}=b_{i}^{(0)}-\frac{a_{i1}^{(0)}}  {a_{11}^{(0)}}b_{1}^{(0)}=b_{i}^{(0)}-l_{i1}^{(0)}b_{1}^{(0)} ,\quad i=2,3,\dots,n$</p>
+<p>$l_{i1}\triangleq \frac {a_{i1}^{(0)}} {a_{11}^{(0)}},\quad i=2,3,\dots,n$</p>
+<ul>
+<li><p>第k步消元</p>
+<p>$a_{ij}^{(k)}=a_{ij}^{(0)}-\frac{a_{ik}^{(0)}}  {a_{kk}^{(0)}}a_{kj}^{(k)}=a_{ij}^{(k)}-l_{ik}^{(k)}a_{kj}^{(k)} ,\quad i=k+1,k+2,\dots,n;j=k=1,k+2,\dots,n$</p>
+<p>$b_{i}^{(k)}=b_{i}^{(k)}-\frac{a_{ik}^{(k)}}  {a_{kk}^{(k)}}b_{k}^{(k)}=b_{i}^{(k)}-l_{ik}^{(k)}b_{k}^{(k)} ,\quad i=k+1,k+2,\dots,n$</p>
+<p>$l_{ik}\triangleq \frac {a_{ik}^{(k)}} {a_{kk}^{(k)}},\quad i=k+1,k+2,\dots,n$</p>
+</li>
+<li><p>消元完成后<br>$$<br>A^{(n-1)}=<br>\begin{pmatrix}<br>a_{11}^{(0)}&amp;a_{12}^{(0)}&amp;a_{13}^{(0)}&amp;\cdots&amp;\cdots&amp;a_{1n}^{(0)}\<br>&amp;a_{22}^{(1)}&amp;a_{23}^{(1)}&amp;\cdots&amp;\cdots&amp;a_{2n}^{(1)}\<br>&amp;&amp;\ddots\<br>&amp;&amp;&amp;a_{kk}^{(k-1)}&amp;\cdots&amp;a_{kn}^{(k-1)}\<br>&amp;&amp;&amp;&amp;\ddots&amp;\vdots\<br>&amp;&amp;&amp;&amp;&amp;a_{nn}^{(n-1)}<br>\end{pmatrix},\quad<br>b^{(n-1)}=<br>\begin{pmatrix}<br>b_{1}^{(0)}\<br>b_{2}^{(1)}\<br>\vdots\<br>b_{k}^{(k-1)}\<br>\vdots\<br>b_{n}^{(n-1)}<br>\end{pmatrix}<br>$$</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li>回代的过程</li>
+</ol>
+
+            
+            </br>
+            <p>本文链接：
+                <a href="http://zhumingcj.github.io/2019/06/27/Matrix/">
+                    http://zhumingcj.github.io/2019/06/27/Matrix/
+                </a>
+            </p>
+            
+            <p>-- <acronym title="End of File">EOF</acronym> --</p>
+
+            <div class="post-info">
+
+                <p>转载请注明出处 署名-非商业性使用-禁止演绎 3.0 国际（CC BY-NC-ND 3.0）</p>
+            </div>
+            
+        </div>
+
+        
+        <div class="article-info article-info-index">
+            
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Matrix/">Matrix</a></li></ul>
+	</div>
+
+
+            
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="categories/Numeric-Analysis/">Numeric Analysis</a>
+	</div>
+
+
+            
+            <div class="clearfix"></div>
+        </div>
+        
+    </div>
+    
+    
+    
+
+</article>
+
+
+<script>
+    var isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function () {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function () {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function () {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function () {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() ||
+                isMobile.Windows());
+        }
+    };
+    if (isMobile.any()) {
+        //移动端不显示目录和评论
+        $("#toc-button").css("display", "none");
+        $("#commentDiv").css("display", "none");
+    }
+</script>
   
     <article id="post-Decoractor-Pattern" class="article article-type-post" itemscope itemprop="blogPost">
     <script>
