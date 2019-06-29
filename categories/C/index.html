@@ -2,12 +2,7 @@
 <html lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
 
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
-
-<meta charset="utf-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="format-detection" content="telephone=no">
@@ -26,14 +21,14 @@
 <meta name="twitter:title" content="ZhuMing&#39;blog">
 <meta name="twitter:description" content="��¼ѧϰ�ĵ��ε�">
 
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="//apple-touch-icon.png">
 
 
     <link rel="alternate" href="/atom.xml" title="ZhuMing&#39;blog" type="application/atom+xml">
 
 
 
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="//favicon.png">
 
 
 
@@ -77,11 +72,13 @@
 </script>
 
 
-    <script> yiliaConfig.jquery_ui = [false]; </script>
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
 
 
 
-    <script> yiliaConfig.rootUrl = "\/";</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script> yiliaConfig.rootUrl = /; </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -96,7 +93,7 @@
 <div class="intrude-less">
     <header id="header" class="inner">
         <a href="/" class="profilepic">
-            <img src="/img/avatar.png" class="animated zoomIn">
+            <img src="//assets/head.jpg" class="animated zoomIn">
         </a>
         <hgroup>
           <h1 class="header-author"><a href="/">ZhuMing</a></h1>
@@ -157,24 +154,28 @@
                     <nav class="header-menu">
                         <ul>
                         
-                            <li><a href="../../index.html">主页</a></li>
+                            <li><a href="/../../index.html">主页</a></li>
                         
-                            <li><a href="../../archives/">所有文章</a></li>
+                            <li><a href="/../../archives/">所有文章</a></li>
                         
-                            <li><a href="../../tags/">标签云</a></li>
+                            <li><a href="/../../tags/">标签云</a></li>
                         
-                            <li><a href="../../about/">关于我</a></li>
+                            <li><a href="/../../about/">关于我</a></li>
                         
                         </ul>
                     </nav>
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                                <a class="fa Email" href="../../2075433321@qq.com" title="Email"></a>
                             
-                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                                <a class="fa GitHub" href="https://github.com/zhumingcj" title="GitHub"></a>
                             
-                                <a class="fa RSS" href="../../atom.xml" title="RSS"></a>
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
+                            
+                                <a class="fa QQ" href="../../2075433321" title="QQ"></a>
+                            
+                                <a class="fa 微信" href="../../zmjzsqka123" title="微信"></a>
                             
                         </ul>
                     </nav>
@@ -206,7 +207,7 @@
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">专注于前端</div>
+                    <div id="js-aboutme">乐于分享，喜欢环境音乐，爱看动漫，偶尔写写技术博客的小程一枚...</div>
                 </section>
                 
             </div>
@@ -223,7 +224,7 @@
     <div class="intrude-less">
         <header id="header" class="inner">
             <a href="/" class="profilepic">
-                <img src="/img/avatar.png" class="animated zoomIn">
+                <img src="//assets/head.jpg" class="animated zoomIn">
             </a>
             <hgroup>
               <h1 class="header-author"><a href="/" title="回到主页">ZhuMing</a></h1>
@@ -248,11 +249,15 @@
             <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                                <a class="fa Email" target="_blank" href="../../2075433321@qq.com" title="Email"></a>
                             
-                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zhumingcj" title="GitHub"></a>
                             
-                                <a class="fa RSS" target="_blank" href="../../atom.xml" title="RSS"></a>
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="../../2075433321" title="QQ"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="../../zmjzsqka123" title="微信"></a>
                             
                         </ul>
             </nav>
@@ -357,7 +362,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2019 ZhuMing
+                2019 ZhuMing
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
@@ -398,7 +403,7 @@
             }
             else {
                 var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                var backgroundimg = "url(//background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
                 $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
             }
         })
@@ -440,14 +445,14 @@ MathJax.Hub.Queue(function() {
         var oOpenInNew = {
             
             
-            
-            
-            
+             post: ".article-entry a[href], .copyright a[href]", 
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
             
              archives: ".archive-article-title", 
              miniArchives: "a.post-list-link", 
+             menu: ".header-menu a", 
             
-             friends: "#js-friends a", 
              socail: ".social a" 
         }
         for (var x in oOpenInNew) {
@@ -455,6 +460,23 @@ MathJax.Hub.Queue(function() {
         }
     
 </script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
