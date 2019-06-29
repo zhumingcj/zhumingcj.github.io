@@ -26,14 +26,14 @@
 <meta name="twitter:title" content="ZhuMing&#39;blog">
 <meta name="twitter:description" content="��¼ѧϰ�ĵ��ε�">
 
-<link rel="apple-touch-icon" href="//apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 
     <link rel="alternate" href="/atom.xml" title="ZhuMing&#39;blog" type="application/atom+xml">
 
 
 
-    <link rel="shortcut icon" href="//favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
 
 
 
@@ -72,16 +72,18 @@
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: 
+        search: true
     }
 </script>
 
 
-    <script> yiliaConfig.jquery_ui = [false]; </script>
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
 
 
 
-    <script> yiliaConfig.rootUrl = /; </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script> yiliaConfig.rootUrl = "\/";</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -96,7 +98,7 @@
 <div class="intrude-less">
     <header id="header" class="inner">
         <a href="/" class="profilepic">
-            <img src="//head.jpg" class="animated zoomIn">
+            <img src="/img/head.jpg" class="animated zoomIn">
         </a>
         <hgroup>
           <h1 class="header-author"><a href="/">ZhuMing</a></h1>
@@ -106,6 +108,13 @@
         <p class="header-subtitle">LearningGround</p>
         
 
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
         
 
 
@@ -157,13 +166,13 @@
                     <nav class="header-menu">
                         <ul>
                         
-                            <li><a href="/../index.html">主页</a></li>
+                            <li><a href="../index.html">主页</a></li>
                         
-                            <li><a href="/../archives/">所有文章</a></li>
+                            <li><a href="../archives/">所有文章</a></li>
                         
-                            <li><a href="/../tags/">标签云</a></li>
+                            <li><a href="../tags/">标签云</a></li>
                         
-                            <li><a href="/../about/">关于我</a></li>
+                            <li><a href="../about/">关于我</a></li>
                         
                         </ul>
                     </nav>
@@ -171,6 +180,8 @@
                         <ul class="social">
                             
                                 <a class="fa Email" href="../2075433321@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/zhumingcj" title="GitHub"></a>
                             
                                 <a class="fa 知乎" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
                             
@@ -225,7 +236,7 @@
     <div class="intrude-less">
         <header id="header" class="inner">
             <a href="/" class="profilepic">
-                <img src="//head.jpg" class="animated zoomIn">
+                <img src="/img/head.jpg" class="animated zoomIn">
             </a>
             <hgroup>
               <h1 class="header-author"><a href="/" title="回到主页">ZhuMing</a></h1>
@@ -251,6 +262,8 @@
                         <ul class="social">
                             
                                 <a class="fa Email" target="_blank" href="../2075433321@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zhumingcj" title="GitHub"></a>
                             
                                 <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
                             
@@ -505,7 +518,7 @@
             }
             else {
                 var backgroundnum = 5;
-                var backgroundimg = "url(//background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
                 $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
             }
         })
@@ -544,22 +557,7 @@ MathJax.Hub.Queue(function() {
 <script>
     // Open in New Window
     
-        var oOpenInNew = {
-            
-             title: "a.article-title, .article-more-link a", 
-            
-             tags: ".article-tag a", 
-             categories: ".article-category a, a.tag-list-link", 
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-             menu: ".header-menu a", 
-            
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
+        $("a[target=_blank]").removeAttr("target");
     
 </script>
 
