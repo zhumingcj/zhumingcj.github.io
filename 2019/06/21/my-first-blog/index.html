@@ -2,7 +2,12 @@
 <html lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="format-detection" content="telephone=no">
@@ -73,9 +78,7 @@
 </script>
 
 
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
+    <script> yiliaConfig.jquery_ui = [false]; </script>
 
 
 
@@ -94,7 +97,7 @@
 <div class="intrude-less">
     <header id="header" class="inner">
         <a href="/" class="profilepic">
-            <img src="//assets/head.jpg" class="animated zoomIn">
+            <img src="//head.jpg" class="animated zoomIn">
         </a>
         <hgroup>
           <h1 class="header-author"><a href="/">ZhuMing</a></h1>
@@ -170,8 +173,6 @@
                             
                                 <a class="fa Email" href="../../../../2075433321@qq.com" title="Email"></a>
                             
-                                <a class="fa GitHub" href="https://github.com/zhumingcj" title="GitHub"></a>
-                            
                                 <a class="fa 知乎" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
                             
                                 <a class="fa QQ" href="../../../../2075433321" title="QQ"></a>
@@ -225,7 +226,7 @@
     <div class="intrude-less">
         <header id="header" class="inner">
             <a href="/" class="profilepic">
-                <img src="//assets/head.jpg" class="animated zoomIn">
+                <img src="//head.jpg" class="animated zoomIn">
             </a>
             <hgroup>
               <h1 class="header-author"><a href="/" title="回到主页">ZhuMing</a></h1>
@@ -251,8 +252,6 @@
                         <ul class="social">
                             
                                 <a class="fa Email" target="_blank" href="../../../../2075433321@qq.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="https://github.com/zhumingcj" title="GitHub"></a>
                             
                                 <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
                             
@@ -509,8 +508,8 @@ MathJax.Hub.Queue(function() {
     
         var oOpenInNew = {
             
+             title: "a.article-title, .article-more-link a", 
             
-             post: ".article-entry a[href], .copyright a[href]", 
              tags: ".article-tag a", 
              categories: ".article-category a, a.tag-list-link", 
             
@@ -525,23 +524,6 @@ MathJax.Hub.Queue(function() {
         }
     
 </script>
-
-    <script>
-        var originTitle = document.title;
-        var titleTime;
-        document.addEventListener("visibilitychange", function() {
-            if (document.hidden) {
-                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
-                clearTimeout(titleTime);
-            }
-            else {
-                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
-                titleTime = setTimeout(function() {
-                    document.title = originTitle;
-                }, 2000);
-            }
-        })
-    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
