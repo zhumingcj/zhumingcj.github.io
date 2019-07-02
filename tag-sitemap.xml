@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://zhumingcj.github.io/tags/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91/</loc>
+        <lastmod>2019-07-02T11:19:10.118Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
         <lastmod>2019-07-01T11:57:06.658Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -12,13 +19,6 @@
     <url>
         <loc>http://zhumingcj.github.io/tags/matrix/</loc>
         <lastmod>2019-06-28T13:46:42.440Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91/</loc>
-        <lastmod>2019-06-22T03:03:38.082Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
