@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="矩阵的分解在矩阵的研究中有着极其重要的地位，而LU分解则是矩阵分析中一种常见而又重要的分解.">
+<meta name="description" content="矩阵的LU分解矩阵的分解在矩阵的研究中有着极其重要的地位，而LU分解则是矩阵分析中一种常见而又重要的分解.">
 <meta name="keywords" content="Matrix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZhuMing&#39;blog">
 <meta property="og:url" content="http://zhumingcj.github.io/2019/07/02/triangular-decomposition/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="矩阵的分解在矩阵的研究中有着极其重要的地位，而LU分解则是矩阵分析中一种常见而又重要的分解.">
+<meta property="og:description" content="矩阵的LU分解矩阵的分解在矩阵的研究中有着极其重要的地位，而LU分解则是矩阵分析中一种常见而又重要的分解.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-02T14:54:55.577Z">
+<meta property="og:updated_time" content="2019-07-02T15:00:03.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZhuMing&#39;blog">
-<meta name="twitter:description" content="矩阵的分解在矩阵的研究中有着极其重要的地位，而LU分解则是矩阵分析中一种常见而又重要的分解.">
+<meta name="twitter:description" content="矩阵的LU分解矩阵的分解在矩阵的研究中有着极其重要的地位，而LU分解则是矩阵分析中一种常见而又重要的分解.">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -306,7 +306,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><code>矩阵的分解在矩阵的研究中有着极其重要的地位，而LU分解则是矩阵分析中一种常见而又重要的分解.</code></p>
+        <h1 id="矩阵的LU分解"><a href="#矩阵的LU分解" class="headerlink" title="矩阵的LU分解"></a>矩阵的LU分解</h1><p><code>矩阵的分解在矩阵的研究中有着极其重要的地位，而LU分解则是矩阵分析中一种常见而又重要的分解.</code></p>
 <a id="more"></a>
 <h2 id="LU分解——从高斯消元法说起"><a href="#LU分解——从高斯消元法说起" class="headerlink" title="LU分解——从高斯消元法说起"></a>LU分解——从高斯消元法说起</h2><h4 id="LU分解的来龙去脉"><a href="#LU分解的来龙去脉" class="headerlink" title="LU分解的来龙去脉"></a>LU分解的来龙去脉</h4><p>在高斯消元法中，我们使用了多次倍加把主对角元以外的元素变为零，这个过程可以看成是用一系列的初等矩阵来左乘系数矩阵。</p>
 <script type="math/tex; mode=display">
@@ -317,7 +317,8 @@ a_{11}^{(0)}&a_{12}^{(0)}&\dots&a_{1n}^{(0)}\\
 0&a_{22}^{(1)}&\dots&a_{2n}^{(1)}\\
 \vdots&\vdots&&\vdots\\
 0&a_{n2}^{(1)}&\dots&a_{nn}^{(1)}
-\end{pmatrix}\quad\quad\quad
+\end{pmatrix}\quad\quad\quad\\
+\quad\\
 L_{1}\triangleq
 \begin{pmatrix}
 1&&&&\\
@@ -334,7 +335,9 @@ a_{11}^{(0)}&a_{12}^{(0)}&a_{}13^{(0)}&\dots&a_{1n}^{(0)}\\
 0&0&a_{33}^{(2)}&\cdots&a_{3n}^{(2)}\\
 \vdots&\vdots&\vdots&&\vdots\\
 0&0&a_{n3}^{(2)}&\dots&a_{nn}^{(1)}
-\end{pmatrix}\quad\quad\quad
+\end{pmatrix}\quad\quad\quad\\
+\quad\\
+\quad\\
 L_{2}\triangleq
 \begin{pmatrix}
 1&&&&\\
@@ -354,7 +357,9 @@ a_{11}^{(0)}&a_{12}^{(0)}&&\dots &\dots&a_{1n}^{(0)}\\
 &&&a_{kk}^{(k-1)}&\dots&a_{kn}^{(k-1)}\\
 &&&\vdots&\dots&\vdots\\
 &&&a_{nk}^{(k-1)}&\dots&a_{nn}^{(k-1)}
-\end{pmatrix}\quad\quad\quad
+\end{pmatrix}\quad\quad\quad\\
+\quad\\
+\quad\\
 L_{2}\triangleq
 \begin{pmatrix}
 1&&&&\\
@@ -365,6 +370,7 @@ L_{2}\triangleq
 &&\vdots&&&\ddots\\
 &&-l_{nk}&&&&1
 \end{pmatrix}\\
+\quad\\
 \quad\\
 \quad\\
 A^{(k)}\triangleq
@@ -450,7 +456,7 @@ l_{ij}=\frac{a_{ij}-\sum_{k=1}^{j-1}l_{ik}u_{kj}}{u_{jj}},\quad\quad j=2,3,\dots
         <p><span>本文标题:</span><a href=""></a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
         <p><span>发布时间:</span>2019-07-02, 20:26:18</p>
-        <p><span>最后更新:</span>2019-07-02, 22:54:55</p>
+        <p><span>最后更新:</span>2019-07-02, 23:00:03</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="" title="">http://zhumingcj.github.io/2019/07/02/triangular-decomposition/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/07/02/triangular-decomposition/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -480,7 +486,7 @@ l_{ij}=\frac{a_{ij}-\sum_{k=1}^{j-1}l_{ik}u_{kj}}{u_{jj}},\quad\quad j=2,3,\dots
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LU分解——从高斯消元法说起"><span class="toc-number">1.</span> <span class="toc-text">LU分解——从高斯消元法说起</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LU分解的来龙去脉"><span class="toc-number">1.0.1.</span> <span class="toc-text">LU分解的来龙去脉</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LU分解的公式推导"><span class="toc-number">1.0.2.</span> <span class="toc-text">LU分解的公式推导</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#矩阵的LU分解"><span class="toc-number">1.</span> <span class="toc-text">矩阵的LU分解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LU分解——从高斯消元法说起"><span class="toc-number">1.1.</span> <span class="toc-text">LU分解——从高斯消元法说起</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LU分解的来龙去脉"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">LU分解的来龙去脉</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LU分解的公式推导"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">LU分解的公式推导</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
     <style>
@@ -723,21 +729,6 @@ MathJax.Hub.Queue(function() {
 
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
