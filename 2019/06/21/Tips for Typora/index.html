@@ -286,15 +286,6 @@
       <time datetime="2019-06-21T05:36:41.000Z" itemprop="datePublished">2019-06-21</time>
 </a>
 
- 
-    <a href="#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/06/21/Tips for Typora/"></span>
-        
-    </a>
 
     </div>
   
@@ -491,8 +482,8 @@ a+b+c^5=2ab</script></li>
         .left-col .switch-area {
             display: none;
         }
-        .toc-level-5 i,
-        .toc-level-5 ol {
+        .toc-level-3 i,
+        .toc-level-3 ol {
             display: none !important;
         }
     </style>
@@ -500,7 +491,7 @@ a+b+c^5=2ab</script></li>
     <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
     <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"true"];
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
     </script>
 
 
@@ -549,48 +540,10 @@ a+b+c^5=2ab</script></li>
         }
     </script>
     
-    <aside class="comment-bar">
-        <a href="javascript:void(0);">
-            <i class="fa fa-commenting-o animated infinite pulse"></i>
-            <i class="fa fa-spinner fa-pulse"></i>
-            <span class="count-comment"></span>
-        </a>
-    </aside>
-    <script>
-        var $commentBar = $("#comments aside.comment-bar");
-        var load$hide = function(){
-            $commentBar.find("a > i").toggle();
-            loadComment();
-            $commentBar.fadeOut(800);
-        }
-        $commentBar.click(function(){
-            load$hide();
-        })
-        $commentBar.children("a").hover(function(){
-            load$hide();
-        })
-        if (window.location.hash === "#comments") {
-            load$hide();
-        }
-    </script>
+    <script> loadComment(); </script>
 
 </section>
 
-
-    // Add comment count
-    <script id="dsq-count-scr" src="//zhumingcj.disqus.com/count.js" async></script>
-    <span class="disqus-comment-count" data-disqus-identifier="2019/06/21/Tips for Typora/"></span>
-    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/06/21/Tips for Typora/"></span>
-    <script>
-        $(".disqus-comment-count").hide();
-        var $disqusCount = $(".disqus-comment-count");
-        $disqusCount.bind("DOMNodeInserted", function(e) {
-            $(".count-comment").text(
-                $(this).text().replace(/[^0-9]/ig,"")
-            )
-            DISQUSWIDGETS.getCount({reset: true});
-        })
-    </script>
 
     
 
@@ -707,7 +660,22 @@ MathJax.Hub.Queue(function() {
 <script>
     // Open in New Window
     
-        $("a[target=_blank]").removeAttr("target");
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+             post: ".article-entry a[href], .copyright a[href]", 
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+             menu: ".header-menu a", 
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
     
 </script>
 
