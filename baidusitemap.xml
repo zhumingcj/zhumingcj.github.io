@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://zhumingcj.github.io/2019/07/02/triangular-decomposition/</loc>
+    <lastmod>2019-07-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/06/27/Matrix/</loc>
+    <lastmod>2019-07-02</lastmod>
+  </url>  <url>
     <loc>http://zhumingcj.github.io/2019/06/21/Tips%20for%20Typora/</loc>
     <lastmod>2019-07-02</lastmod>
   </url>  <url>
     <loc>http://zhumingcj.github.io/2019/07/01/singleton-pattern/</loc>
     <lastmod>2019-07-01</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/06/27/Matrix/</loc>
-    <lastmod>2019-06-28</lastmod>
   </url>  <url>
     <loc>http://zhumingcj.github.io/2019/06/27/Decoractor-Pattern/</loc>
     <lastmod>2019-06-27</lastmod>
