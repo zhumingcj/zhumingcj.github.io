@@ -18,15 +18,15 @@
 <meta name="description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
 <meta name="keywords" content="Matrix">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Matrix">
+<meta property="og:title" content="Gaussian elimination method">
 <meta property="og:url" content="http://zhumingcj.github.io/2019/06/27/Matrix/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
 <meta property="og:description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190628/vVp4oxA9X7eB.png?imageslim">
-<meta property="og:updated_time" content="2019-07-02T15:01:59.196Z">
+<meta property="og:updated_time" content="2019-07-03T12:24:49.188Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Matrix">
+<meta name="twitter:title" content="Gaussian elimination method">
 <meta name="twitter:description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
 <meta name="twitter:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190628/vVp4oxA9X7eB.png?imageslim">
 
@@ -60,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Matrix | ZhuMing&#39;blog</title>
+<title>Gaussian elimination method | ZhuMing&#39;blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -309,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Matrix
+      Gaussian elimination method
     </h1>
   
 
@@ -425,7 +425,7 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
 </ul>
 </li>
 </ul>
-<h2 id="高斯消元法的程序实现"><a href="#高斯消元法的程序实现" class="headerlink" title="高斯消元法的程序实现"></a>高斯消元法的程序实现</h2><h6 id="我们可以封装一个Matrix类如下"><a href="#我们可以封装一个Matrix类如下" class="headerlink" title="我们可以封装一个Matrix类如下"></a>我们可以封装一个Matrix类如下</h6><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Matrix</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> row = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> column = <span class="number">0</span>;           </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span>[,] matrix;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Matrix</span>(<span class="params"><span class="keyword">int</span> row, <span class="keyword">int</span> column</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.row = row;</span><br><span class="line">        <span class="keyword">this</span>.column = column;</span><br><span class="line">        matrix = <span class="keyword">new</span> <span class="keyword">float</span>[row, column];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; column; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">string</span> mid = Console.ReadLine();</span><br><span class="line">                <span class="keyword">var</span> rows = mid.Split(<span class="string">' '</span>);</span><br><span class="line">                <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> rows)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[i, j++] = <span class="keyword">float</span>.Parse(item);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DisPlay</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;                                         </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.row; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.column; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.Write(matrix[i, j] + <span class="string">" "</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                Console.WriteLine(<span class="string">"\r"</span>);</span><br><span class="line">            &#125;                </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Simplize</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.row ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[i, i] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = i + <span class="number">1</span>; k &lt; row ; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[k, i] = matrix[k, i] / matrix[i, i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="comment">//这里将消元的中间量存在被消元的位置，因为运算后，这些位置的值为零</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; row; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = i + <span class="number">1</span>; k &lt; column; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[j, k] = matrix[j, k] - matrix[j, i] * matrix[i, k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="高斯消元法的程序实现"><a href="#高斯消元法的程序实现" class="headerlink" title="高斯消元法的程序实现"></a>高斯消元法的程序实现</h2><h6 id="我们可以封装一个Matrix类如下"><a href="#我们可以封装一个Matrix类如下" class="headerlink" title="我们可以封装一个Matrix类如下"></a>我们可以封装一个Matrix类如下</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Matrix</span><br><span class="line">&#123;</span><br><span class="line">    public int row = 0;</span><br><span class="line">    public int column = 0;           </span><br><span class="line">    private float[,] matrix;</span><br><span class="line">    public Matrix(int row, int column)</span><br><span class="line">    &#123;</span><br><span class="line">        this.row = row;</span><br><span class="line">        this.column = column;</span><br><span class="line">        matrix = new float[row, column];</span><br><span class="line">        for (int i = 0; i &lt; row; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 0; j &lt; column; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                string mid = Console.ReadLine();</span><br><span class="line">                var rows = mid.Split(&apos; &apos;);</span><br><span class="line">                foreach (var item in rows)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[i, j++] = float.Parse(item);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void DisPlay()</span><br><span class="line">    &#123;                                         </span><br><span class="line">            for (int i = 0; i &lt; this.row; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int j = 0; j &lt; this.column; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.Write(matrix[i, j] + &quot; &quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                Console.WriteLine(&quot;\r&quot;);</span><br><span class="line">            &#125;                </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Simplize()</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i = 0; i &lt; this.row ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (matrix[i, i] != 0)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int k = i + 1; k &lt; row ; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[k, i] = matrix[k, i] / matrix[i, i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;//这里将消元的中间量存在被消元的位置，因为运算后，这些位置的值为零</span><br><span class="line">            for (int j = i + 1; j &lt; row; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int k = i + 1; k &lt; column; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[j, k] = matrix[j, k] - matrix[j, i] * matrix[i, k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当我们输入</p>
 <script type="math/tex; mode=display">
 \begin{pmatrix}
@@ -447,12 +447,12 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="">Matrix</a></p>
+        <p><span>本文标题:</span><a href="">Gaussian elimination method</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
         <p><span>发布时间:</span>2019-06-27, 20:06:11</p>
-        <p><span>最后更新:</span>2019-07-02, 23:01:59</p>
+        <p><span>最后更新:</span>2019-07-03, 20:24:49</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="" title="Matrix">http://zhumingcj.github.io/2019/06/27/Matrix/</a>
+            <span>原始链接:</span><a class="post-url" href="" title="Gaussian elimination method">http://zhumingcj.github.io/2019/06/27/Matrix/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/06/27/Matrix/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -522,7 +522,7 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Matrix　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Gaussian elimination method　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -616,7 +616,7 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">triangular-decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="">Matrix</a></li><li class="post-list-item"><a class="post-list-link" href="../Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/my-first-blog/">my first blog</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">triangular-decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/my-first-blog/">my first blog</a></li></ul>
 
 
 
@@ -710,42 +710,12 @@ MathJax.Hub.Queue(function() {
 <script>
     // Open in New Window
     
-        var oOpenInNew = {
-            
-             title: "a.article-title, .article-more-link a", 
-             post: ".article-entry a[href], .copyright a[href]", 
-             tags: ".article-tag a", 
-             categories: ".article-category a, a.tag-list-link", 
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-             menu: ".header-menu a", 
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
+        $("a[target=_blank]").removeAttr("target");
     
 </script>
 
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

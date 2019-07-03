@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://zhumingcj.github.io/2019/06/27/Matrix/</loc>
+        <lastmod>2019-07-03T12:24:49.188Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/2019/07/03/usage-of-trigonometric-decomposition/</loc>
         <lastmod>2019-07-03T12:19:38.237Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -26,14 +34,6 @@
     <url>
         <loc>http://zhumingcj.github.io/2019/07/02/triangular-decomposition/</loc>
         <lastmod>2019-07-03T01:22:27.084Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/2019/06/27/Matrix/</loc>
-        <lastmod>2019-07-02T15:01:59.196Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
