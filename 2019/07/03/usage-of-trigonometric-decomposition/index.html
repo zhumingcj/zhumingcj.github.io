@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="ZhuMing">
+
+
+
+<meta name="description" content="三角分解解线性方程组相比于高斯消元法，应用三角分解来解线性方程组在某些情况下能提高计算的效率。">
+<meta name="keywords" content="Matrix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Usage of Trigonometric Decomposition">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/07/03/usage-of-trigonometric-decomposition/index.html">
+<meta property="og:site_name" content="ZhuMing&#39;blog">
+<meta property="og:description" content="三角分解解线性方程组相比于高斯消元法，应用三角分解来解线性方程组在某些情况下能提高计算的效率。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190703/Vn9k4APAIbny.png?imageslim">
+<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190703/1k03XAqLqCjq.png?imageslim">
+<meta property="og:updated_time" content="2019-07-03T12:19:38.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Usage of Trigonometric Decomposition">
+<meta name="twitter:description" content="三角分解解线性方程组相比于高斯消元法，应用三角分解来解线性方程组在某些情况下能提高计算的效率。">
+<meta name="twitter:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190703/Vn9k4APAIbny.png?imageslim">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="ZhuMing&#39;blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../../../css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Usage of Trigonometric Decomposition | ZhuMing&#39;blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+</head></html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">ZhuMing</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">LearningGround</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="../../../../index.html">主页</a></li>
+                        
+                            <li><a href="../../../../archives/">所有文章</a></li>
+                        
+                            <li><a href="../../../../tags/">标签云</a></li>
+                        
+                            <li><a href="../../../../about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:2075433321@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/zhumingcj" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
+                            
+                                <a class="fa QQ" href="tencent://message/?uin=2075433321" title="QQ"></a>
+                            
+                                <a class="fa 微信" href="weixin://zmjzsqka123" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/matrix/">Matrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/文本编辑/">文本编辑</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/设计模式/">设计模式</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">乐于分享，喜欢环境音乐，爱看动漫，偶尔写写技术博客的小程一枚...</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">ZhuMing</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">ZhuMing</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">LearningGround</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="../../../../index.html">主页</a></li>
+                
+                    <li><a href="../../../../archives/">所有文章</a></li>
+                
+                    <li><a href="../../../../tags/">标签云</a></li>
+                
+                    <li><a href="../../../../about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:2075433321@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zhumingcj" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="tencent://message/?uin=2075433321" title="QQ"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="weixin://zmjzsqka123" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-usage-of-trigonometric-decomposition" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="" class="article-date">
+      <time datetime="2019-07-03T00:38:07.000Z" itemprop="datePublished">2019-07-03</time>
+</a>
+
+ 
+    <a href="#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/07/03/usage-of-trigonometric-decomposition/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Usage of Trigonometric Decomposition
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="../../../../categories/numerical-analysis/">Numerical Analysis</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/matrix/">Matrix</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="三角分解解线性方程组"><a href="#三角分解解线性方程组" class="headerlink" title="三角分解解线性方程组"></a>三角分解解线性方程组</h1><p>相比于高斯消元法，应用三角分解来解线性方程组在某些情况下能提高计算的效率。</p>
+<a id="more"></a>
+<h3 id="三角分解解线性方程的公式推导"><a href="#三角分解解线性方程的公式推导" class="headerlink" title="三角分解解线性方程的公式推导"></a>三角分解解线性方程的公式推导</h3><p>即，我们要解 LUx=b, 我们把这个方程拆为两个方程来解</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}\
+Ly=b\\
+Ux=y
+\end{array}
+\right.</script><p>解方程组Ly=b的第一个方程为$y_{1}=b_{1}$，而第i个方程为</p>
+<script type="math/tex; mode=display">
+\sum_{j=1}^{i-1}(l_{ij}y_{ij}+y_{i}=b_{i})\Longrightarrow\\
+\left\{
+\begin{array}\
+y_{1}=b_{1},\\
+y_{i}=b_{i}-\sum_{j=1}^{i-1}l_{ij}y_{j},\quad i=1,2,3,\dots,n
+\end{array}
+\right.</script><p>将解得的y代入Ux=y，由高斯消元法回代公式可得</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}\
+x_{n}=\frac{y_{n}}{u_{nn}},\\
+x_{i}=\frac{y_{i}-\sum_{j=i+1}^{n}u_{ij}x_{j}}{u_{ii}},\quad i=n-1,n-2,\dots,2,1
+\end{array}
+\right.</script><hr>
+<h3 id="一个LU分解的例子"><a href="#一个LU分解的例子" class="headerlink" title="一个LU分解的例子"></a>一个LU分解的例子</h3><script type="math/tex; mode=display">
+A=
+\begin{pmatrix}
+9&18&9&-27\\
+18&45&0&-45\\
+9&0&126&9\\
+-27&-45&9&135
+\end{pmatrix}
+\quad\quad\quad\quad\quad\quad b=
+\begin{pmatrix}
+1\\
+2\\
+16\\
+8
+\end{pmatrix}</script><p>现在对A进行分解</p>
+<p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190703/Vn9k4APAIbny.png?imageslim" alt="mark"></p>
+<p>即可得</p>
+<script type="math/tex; mode=display">
+L=
+\begin{pmatrix}
+1&\\
+2&1&\\
+1&-2&1\\
+-3&1&\frac{2}{3}&1
+\end{pmatrix}
+\quad\quad 
+U=
+\begin{pmatrix}
+9&18&9&-27\\
+0&9&-18&9\\
+0&0&81&54\\
+0&0&0&9
+\end{pmatrix}\\
+\quad\\
+\quad\\
+y=
+\begin{pmatrix}
+1\\0\\15\\1
+\end{pmatrix}</script><h3 id="LU分解解线性方程组的算法分析"><a href="#LU分解解线性方程组的算法分析" class="headerlink" title="LU分解解线性方程组的算法分析"></a>LU分解解线性方程组的算法分析</h3><p>由矩阵LU分解公式可知，计算$u_{ij}$和$l_{ij}$各有</p>
+<p>​                                                              $\sum_{j=2}^{n-1}(j(n-j)+n-1=\sum_{1}^{n-1}j(n-j)=1/6n^{3}-1/6n$</p>
+<p>个乘除法，所以矩阵分解共有$1/3n^3-1/3n$个乘除法，而求解下三角方程Ly=b有$1/2n(n-1)$个乘除法，求解上三角方程Ux=y有$1/2n(n-1)+n$个乘除法，综上，用LU分解来解线性方程组共有$\frac{1}{3}n^{2}+n^{2}-\frac{1}{3}n$个乘除法，与高斯消元法的运算次数一样。</p>
+<p>但是从LU分解的形式上看，不难发现如果我们要解一系列系数矩阵相同但右端不同的方程组时，LU分解可以大大减少计算量。</p>
+<h3 id="编程实现LU分解"><a href="#编程实现LU分解" class="headerlink" title="编程实现LU分解"></a>编程实现LU分解</h3><ol>
+<li>程序如下</li>
+</ol>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Trigonometric_Decomposition</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">           Matrix m= <span class="keyword">new</span> Matrix(<span class="number">6</span>, <span class="number">6</span>);</span><br><span class="line">            m.LuDecomposition();</span><br><span class="line">            m.DisPlay();</span><br><span class="line">            Console.Read();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">class</span> <span class="title">Matrix</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">int</span> row = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">int</span> column = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">float</span>[,] matrix;</span><br><span class="line">            \\矩阵的输入</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="title">Matrix</span>(<span class="params"><span class="keyword">int</span> row, <span class="keyword">int</span> column</span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">                <span class="keyword">this</span>.row = row;</span><br><span class="line">                <span class="keyword">this</span>.column = column;</span><br><span class="line">                Console.WriteLine(<span class="string">$"Please enter a matrix with <span class="subst">&#123;<span class="keyword">this</span>.row&#125;</span>rows,<span class="subst">&#123;<span class="keyword">this</span>.column&#125;</span>colums"</span>);</span><br><span class="line">                matrix = <span class="keyword">new</span> <span class="keyword">float</span>[row, column];</span><br><span class="line">                <span class="keyword">try</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; column; j++)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">string</span> mid = Console.ReadLine();</span><br><span class="line">                            <span class="keyword">var</span> rows = mid.Split(<span class="string">' '</span>);</span><br><span class="line">                            <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> rows)</span><br><span class="line">                            &#123;</span><br><span class="line">                                matrix[i, j++] = <span class="keyword">float</span>.Parse(item);</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    Console.WriteLine(<span class="string">"\r\n"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">catch</span> (Exception e)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(<span class="string">$"something wrong!\n<span class="subst">&#123;e.Message&#125;</span>"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            \\输出矩阵</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DisPlay</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.row; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.column; j++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Console.Write(matrix[i, j] + <span class="string">"   "</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    Console.WriteLine(<span class="string">"\r"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            \\矩阵的LU分解</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LuDecomposition</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">            <span class="comment">//初始化第一行、第一列</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.column; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[i, <span class="number">0</span>] = matrix[i,<span class="number">0</span>] / matrix[<span class="number">0</span>, <span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.row; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                <span class="comment">//先计算对角元，避免重复计算（放在第二个循环内会计算两次）</span></span><br><span class="line">                    matrix[i, i] = matrix[i, i] - FigureTemp(i, i, i );</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; <span class="keyword">this</span>.column; j++)</span><br><span class="line">                    &#123;</span><br><span class="line">                    <span class="comment">//第i行i列的更新</span></span><br><span class="line">                        matrix[i, j] = matrix[i, j] - FigureTemp(i, j, i);</span><br><span class="line">                        matrix[j, i] = (matrix[j, i] - FigureTemp(i, j, i))/matrix[i,i];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">private</span> <span class="keyword">float</span> <span class="title">FigureTemp</span>(<span class="params"><span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k</span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">            <span class="comment">//用于计算求和中间量</span></span><br><span class="line">                <span class="keyword">float</span> result = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> s = <span class="number">0</span>; s &lt; k; s++)</span><br><span class="line">                &#123;</span><br><span class="line">                    result += matrix[i, s] * matrix[s, j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>程序的验证</li>
+</ol>
+<p>当我们输入矩阵</p>
+<script type="math/tex; mode=display">
+A=
+\begin{pmatrix}
+9&18&9&-27\\
+18&45&0&-45\\
+9&0&126&9\\
+-27&-45&9&135
+\end{pmatrix}</script><p>将得到输出如下</p>
+<p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190703/1k03XAqLqCjq.png?imageslim" alt="mark"></p>
+<p>经对比，与上面计算的一致，程序无误。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="">Usage of Trigonometric Decomposition</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
+        <p><span>发布时间:</span>2019-07-03, 08:38:07</p>
+        <p><span>最后更新:</span>2019-07-03, 20:19:38</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="" title="Usage of Trigonometric Decomposition">http://zhumingcj.github.io/2019/07/03/usage-of-trigonometric-decomposition/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/07/03/usage-of-trigonometric-decomposition/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="../../02/triangular-decomposition/">
+                    
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#三角分解解线性方程组"><span class="toc-number">1.</span> <span class="toc-text">三角分解解线性方程组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三角分解解线性方程的公式推导"><span class="toc-number">1.0.1.</span> <span class="toc-text">三角分解解线性方程的公式推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个LU分解的例子"><span class="toc-number">1.0.2.</span> <span class="toc-text">一个LU分解的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LU分解解线性方程组的算法分析"><span class="toc-number">1.0.3.</span> <span class="toc-text">LU分解解线性方程组的算法分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编程实现LU分解"><span class="toc-number">1.0.4.</span> <span class="toc-text">编程实现LU分解</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Usage of Trigonometric Decomposition　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://zhumingcj.github.io/2019/07/03/usage-of-trigonometric-decomposition/';
+            this.page.identifier = '2019/07/03/usage-of-trigonometric-decomposition/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//zhumingcj.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
+
+</section>
+
+
+    // Add comment count
+    <script id="dsq-count-scr" src="//zhumingcj.disqus.com/count.js" async></script>
+    <span class="disqus-comment-count" data-disqus-identifier="2019/07/03/usage-of-trigonometric-decomposition/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/07/03/usage-of-trigonometric-decomposition/"></span>
+    <script>
+        $(".disqus-comment-count").hide();
+        var $disqusCount = $(".disqus-comment-count");
+        $disqusCount.bind("DOMNodeInserted", function(e) {
+            $(".count-comment").text(
+                $(this).text().replace(/[^0-9]/ig,"")
+            )
+            DISQUSWIDGETS.getCount({reset: true});
+        })
+    </script>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="../../02/triangular-decomposition/" title="下一篇: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../02/triangular-decomposition/">triangular-decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Matrix/">Matrix</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 ZhuMing
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+             post: ".article-entry a[href], .copyright a[href]", 
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+             menu: ".header-menu a", 
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
