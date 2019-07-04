@@ -15,20 +15,23 @@
 
 
 
-<meta name="description" content="设计模式之观察者模式">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="https协议详析当我们使用浏览器时可能会发现我们输入的网站有以http和以https开头的，它们的区别在于哪里呢？实际上，可以说https是http的升级版，是对其安全性的加强。">
+<meta name="keywords" content="网络协议">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式-观察者模式">
-<meta property="og:url" content="http://zhumingcj.github.io/2019/06/27/Observer Pattern/index.html">
+<meta property="og:title" content="https protocol">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/07/04/https-protocol/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="设计模式之观察者模式">
+<meta property="og:description" content="https协议详析当我们使用浏览器时可能会发现我们输入的网站有以http和以https开头的，它们的区别在于哪里呢？实际上，可以说https是http的升级版，是对其安全性的加强。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190627/Pwc2H0fM3pGs.png?imageslim">
-<meta property="og:updated_time" content="2019-06-26T17:12:29.000Z">
+<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/GfV08GYBcmg2.png?imageslim">
+<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/Hh41MJiuhBnS.png?imageslim">
+<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/czpzDig9RaME.png?imageslim">
+<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/lcNKdrDAa8WQ.png?imageslim">
+<meta property="og:updated_time" content="2019-07-04T15:36:46.925Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式-观察者模式">
-<meta name="twitter:description" content="设计模式之观察者模式">
-<meta name="twitter:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190627/Pwc2H0fM3pGs.png?imageslim">
+<meta name="twitter:title" content="https protocol">
+<meta name="twitter:description" content="https协议详析当我们使用浏览器时可能会发现我们输入的网站有以http和以https开头的，它们的区别在于哪里呢？实际上，可以说https是http的升级版，是对其安全性的加强。">
+<meta name="twitter:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/GfV08GYBcmg2.png?imageslim">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +63,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>设计模式-观察者模式 | ZhuMing&#39;blog</title>
+<title>https protocol | ZhuMing&#39;blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -281,11 +284,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Observer Pattern" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-https-protocol" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-      <time datetime="2019-06-26T16:52:38.000Z" itemprop="datePublished">2019-06-27</time>
+      <time datetime="2019-07-04T12:35:04.000Z" itemprop="datePublished">2019-07-04</time>
 </a>
 
  
@@ -294,7 +297,7 @@
         <span class="count-comment"></span>
         
         
-            <span class="disqus-comment-count" data-disqus-identifier="2019/06/27/Observer Pattern/"></span>
+            <span class="disqus-comment-count" data-disqus-identifier="2019/07/04/https-protocol/"></span>
         
     </a>
 
@@ -309,7 +312,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式-观察者模式
+      https protocol
     </h1>
   
 
@@ -318,13 +321,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="../../../../categories/c/">C#</a>
+    <a class="article-category-link" href="../../../../categories/网络/">网络</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/设计模式/">设计模式</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/网络协议/">网络协议</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -334,25 +337,76 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="设计模式之观察者模式"><a href="#设计模式之观察者模式" class="headerlink" title="设计模式之观察者模式"></a>设计模式之观察者模式</h1><a id="more"></a>
-<h2 id="什么是观察者模式"><a href="#什么是观察者模式" class="headerlink" title="什么是观察者模式"></a><strong>什么是观察者模式</strong></h2><p>形象的来说，观察者模式包含一个被观察者（subject）以及若干观察者（observer），observer观察subject，当subject发出一个动作时，observer观察到后作出相应反应。在程序中则是某个类（subject）达到某种触发条件后向其他类发送通知（通常是执行某些方法的信息），然后这些类执行相应的方法。</p>
-<h2 id="观察者模式的作用"><a href="#观察者模式的作用" class="headerlink" title="观察者模式的作用"></a><strong>观察者模式的作用</strong></h2><ol>
-<li>用于程序的解耦。观察者模式通过依赖于抽象的接口来减少类与类之间的直接依赖。</li>
-<li>可以作为一种通知的机制，将更新通知给其它的对象。</li>
+        <h1 id="https协议详析"><a href="#https协议详析" class="headerlink" title="https协议详析"></a>https协议详析</h1><p>当我们使用浏览器时可能会发现我们输入的网站有以http和以https开头的，它们的区别在于哪里呢？实际上，可以说https是http的升级版，是对其安全性的加强。</p>
+<a id="more"></a>
+<h2 id="浏览器的一般工作流程"><a href="#浏览器的一般工作流程" class="headerlink" title="浏览器的一般工作流程"></a>浏览器的一般工作流程</h2><ol>
+<li>当用户输入要访问的URL后，浏览器会根据URL解析出其域名</li>
+<li>通过DNS服务器查询出域名映射的IP地址</li>
+<li>根据查询到的IP地址与web服务器建立通讯</li>
 </ol>
-<h2 id="观察者模式的缺点"><a href="#观察者模式的缺点" class="headerlink" title="观察者模式的缺点"></a><strong>观察者模式的缺点</strong></h2><ul>
-<li>当一个被观察者有很多的直接或间接的观察者时，要通知到所有的观察者需要耗费很多的时间。</li>
-<li>当被观察者之间循环依赖时（比如：A通知B改变C，C的改变引起A的改变，继而又触发了A通知B），程序会进入循环调用，导致系统崩溃。</li>
-</ul>
-<h2 id="观察者模式的实现要点"><a href="#观察者模式的实现要点" class="headerlink" title="观察者模式的实现要点"></a><strong>观察者模式的实现要点</strong></h2><ol>
-<li>要创建一个接口用以约束所有被观察者，提供消息传递的通道</li>
-<li>被观察者需要有一个存放消息的容器，一般是接口的一个列表；同时被观察者要具有订阅观察者和取消订阅的方法，用以动态的增加减少观察者的数量。</li>
-<li>实现消息的传递——通过调用接口列表中的各个方法。</li>
+<p>上述过程可以抽象为下图</p>
+<p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/GfV08GYBcmg2.png?imageslim" alt="mark"></p>
+<h2 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h2><p>http协议是构建在TCP/IP协议的基础上的，所以我们有必要了解Tcp/Ip相关的知识。</p>
+<h4 id="TCP-IP协议的分层模型"><a href="#TCP-IP协议的分层模型" class="headerlink" title="TCP/IP协议的分层模型"></a>TCP/IP协议的分层模型</h4><p>TCP/IP协议是由四层协议组成的系统，这四层分别为：应用层、传输层、网络层、链路层，如下图所示</p>
+<p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/Hh41MJiuhBnS.png?imageslim" alt="mark"></p>
+<ol>
+<li><p>应用层</p>
+<p>应用层是我们编写的应用程序，它决定了向用户提供的应用服务。应用层可通过系统调用与传输层通讯。</p>
+<p>处于应用层的协议非常多，比如：FTP(File Transfer Protocol，文件传输协议)、DNS(Domain Name System,域名系统)以及HTTP(HyperText Transfer Protocol,超文本传输协议)等。</p>
+</li>
+<li><p>传输层</p>
+<p>传输层通过系统调用向应用层提供两台计算机之间的数据传输功能。</p>
+<p>在传输层有两个性质不同的协议：TCP(Transmission Control Protocol,传输控制协议)和UDP(User Data Protocol,用户数据协议)。其中TCP在数据传输的安全性上高于UDP，但是其传输速度比较慢，所以一般快速下载软件都是用UDP,比如迅雷。</p>
+</li>
+<li><p>网络层</p>
+<p>网络层用来处理网络上流动的数据包，归顶数据包的传输路径。</p>
+</li>
+<li><p>链路层</p>
+<p>链路层是用来处理连接网络的硬件部分，包括操作系统、硬件设备驱动、NIC(Network Interface Card,网络适配器)以及光纤等硬件。</p>
+<h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP协议是全双工的字节流传输，具有可靠性高的特点，为了确保其可靠性，TCP协议采用了”三次握手“的策略，如下图</p>
+<p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/czpzDig9RaME.png?imageslim" alt="mark"></p>
+</li>
 </ol>
-<p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"> class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Cat cat = new Cat();</span><br><span class="line">            cat.Add(new Dog());</span><br><span class="line">            cat.Add(new Duck());</span><br><span class="line">            cat.Add(new mouse());           </span><br><span class="line">            cat.Add(new people());</span><br><span class="line">            cat.Miao();</span><br><span class="line">            Console.Read();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">interface Ioberver</span><br><span class="line">&#123;</span><br><span class="line">        void Action();</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">class Chicken:Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Woo();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Woo()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;&#123;0&#125; Woo&quot;, this.GetType().Name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">class Dog : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Wang();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Wang()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 汪汪汪&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">class Duck : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Gaga();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Gaga()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 嘎嘎嘎&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> class mouse : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Zhi();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Zhi()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 吱吱吱&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Cat</span><br><span class="line">&#123;</span><br><span class="line">        public void Miao()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;&#123;0&#125; miao&quot;,this.GetType().Name);</span><br><span class="line">            if(this._ObserverList!=null &amp;&amp; this._ObserverList.Count &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                foreach (var observer in _ObserverList)</span><br><span class="line">                &#123;</span><br><span class="line">                    observer.Action();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public List&lt;Ioberver&gt; _ObserverList = new List&lt;Ioberver&gt;();</span><br><span class="line">        public void Add(Ioberver observer)</span><br><span class="line">        &#123;</span><br><span class="line">            this._ObserverList.Add(observer);</span><br><span class="line">        &#125;</span><br><span class="line">        public void Remove(Ioberver observer)</span><br><span class="line">        &#123;</span><br><span class="line">            this._ObserverList.Remove(observer);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<p><a href="http://pte2s6ppx.bkt.clouddn.com/blog/20190627/Pwc2H0fM3pGs.png?imageslim" target="_blank" rel="noopener"><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190627/Pwc2H0fM3pGs.png?imageslim" alt="mark"></a></p>
+<p>在图中，我们可以看到：</p>
+<ol>
+<li>首先客户端会向服务器发送一个带有SYN标志的连接请求</li>
+<li>服务器接收到请求会作出应答，如果能接受连接，这服务器发送ACK进行确认，并且还会发送自己的SYN请求</li>
+<li>客户端接受到SYN和ACK后，在向服务器发送ACK确认接受连接</li>
+<li>三次握手完毕后会在客户端和服务器之间建立双向通信</li>
+<li>为了维持TCP协议，在数据传输的过程中，接收端在接收端数据后都要给发送端发送ACK进行确认。若发送端在一定时间内没有接受到ACK确认，则会重发丢失的数据包</li>
+</ol>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>HTTP协议（Hyper Text Transfer Protocol，超文本传输协议）,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。</p>
+<p>HTTP基于TCP/IP通信协议来传递数据。</p>
+<p>HTTP基于客户端/服务端（C/S）架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求/响应协议。</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>（1）HTTP是无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</p>
+<p>（2）HTTP是媒体独立的：只要客户端和服务器知道如何处理的数据内容，任何类型的数据都可以通过HTTP发送。客户端以及服务器指定使用适合的MIME-type内容类型。</p>
+<p>（3）HTTP是无状态：无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</p>
+<h2 id="HTTP协议的不足"><a href="#HTTP协议的不足" class="headerlink" title="HTTP协议的不足"></a>HTTP协议的不足</h2><ol>
+<li>HTTP协议采用明文通讯，内容很有可能被窃听</li>
+<li>无法验证对方身份，任何第三方可以通过伪装与服务器通讯</li>
+<li>无法确定数据的可靠性，在传输中可能会被篡改</li>
+</ol>
+<h2 id="HTTPs协议"><a href="#HTTPs协议" class="headerlink" title="HTTPs协议"></a>HTTPs协议</h2><p>为了解决HTTP存在的问题，HTTPs应运而生，HTTPs采用SSL/TLS协议对传输的数据进行加密，保证了传输不被窃听；同时通过CA(由第三方权威机构颁发)证书验证通信双方的身份。</p>
+<h4 id="有关CA证书"><a href="#有关CA证书" class="headerlink" title="有关CA证书"></a>有关CA证书</h4><p>CA证书是公司向权威机构申请，由权威机构颁发的。CA证书会被安装到服务器上，其中内容包括：</p>
+<ol>
+<li>持有者姓名</li>
+<li>发证机关</li>
+<li>有效日期</li>
+<li>证件持有人的公钥</li>
+<li>扩展信息</li>
+<li>发证机关对该证书的数字签名（=前5点信息的MD5摘要，然后用CA的私钥加密）</li>
+</ol>
+<h4 id="HTTPs的通信原理"><a href="#HTTPs的通信原理" class="headerlink" title="HTTPs的通信原理"></a>HTTPs的通信原理</h4><ol>
+<li><p>客户端信任发证机关的证书，一般用户不需要操作。因为CA（权威）[下面简称为CAA]证书存储在浏览器中，而浏览器一般自动信任了大多数的权威机构证书。</p>
+</li>
+<li><p>在请求建立的过程中，首先客户端会向服务器发送一次请求，服务器向客户端返回一个CA（公司服务器）证书[后简称CAS]</p>
+</li>
+<li>客户端根据得到的CAS证书读得发证机关的信息，找到内置的对于机关的CAA证书，从证书中找到机关的加密公钥，用公钥（解密钥）对得到的CAS证书的第六点信息进行解密，如果解得的信息与CAS证书前五点摘要的MD5相同，则说明服务器的CAS证书确为该机构颁布的，进而证明了服务器的身份</li>
+<li>客户端再用CAS中得到的服务器的公钥（加密钥）加密一个信息比如“123”发送给服务器，服务器则根据其持有的私钥（解密钥）对信息进行解密，然后服务器把解密结果返回给客户端，若解密得到的信息与发送信息一致，则可证明该服务器就是客户端要访问的服务器。这样可防止因域名写错而造成的错误访问。</li>
+<li>然后客户端会向服务器发送一条信息用以约定通信过程中的对称加密钥，然后即可在双方之间建立通信，以后的通信中发送端会用该对称加密钥对传输数据进行加密，而接收端也用该对称秘钥进行解密。这样就可以防止信息被窃听。</li>
+</ol>
+<p>通信流程图如下</p>
+<p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190704/lcNKdrDAa8WQ.png?imageslim" alt="mark"></p>
 
       
     </div>
@@ -361,13 +415,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="">设计模式-观察者模式</a></p>
+        <p><span>本文标题:</span><a href="">https protocol</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
-        <p><span>发布时间:</span>2019-06-27, 00:52:38</p>
-        <p><span>最后更新:</span>2019-06-27, 01:12:29</p>
+        <p><span>发布时间:</span>2019-07-04, 20:35:04</p>
+        <p><span>最后更新:</span>2019-07-04, 23:36:46</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="" title="设计模式-观察者模式">http://zhumingcj.github.io/2019/06/27/Observer Pattern/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/06/27/Observer Pattern/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="" title="https protocol">http://zhumingcj.github.io/2019/07/04/https-protocol/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/07/04/https-protocol/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -379,16 +433,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="../Decoractor-Pattern/">
-                    Decoractor Pattern
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="../../21/Tips for Typora/">
-                    ShortCut Key for Typora
+                <a href="../../03/usage-of-trigonometric-decomposition/">
+                    Usage of Trigonometric Decomposition
                 </a>
             </div>
         
@@ -400,7 +448,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计模式之观察者模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式之观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是观察者模式"><span class="toc-number">1.1.</span> <span class="toc-text">什么是观察者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的作用"><span class="toc-number">1.2.</span> <span class="toc-text">观察者模式的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的缺点"><span class="toc-number">1.3.</span> <span class="toc-text">观察者模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的实现要点"><span class="toc-number">1.4.</span> <span class="toc-text">观察者模式的实现要点</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#https协议详析"><span class="toc-number">1.</span> <span class="toc-text">https协议详析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器的一般工作流程"><span class="toc-number">1.1.</span> <span class="toc-text">浏览器的一般工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP协议"><span class="toc-number">1.2.</span> <span class="toc-text">TCP/IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP协议的分层模型"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">TCP/IP协议的分层模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP协议"><span class="toc-number">1.3.</span> <span class="toc-text">TCP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议"><span class="toc-number">1.4.</span> <span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介"><span class="toc-number">1.4.0.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">1.4.0.2.</span> <span class="toc-text">特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议的不足"><span class="toc-number">1.5.</span> <span class="toc-text">HTTP协议的不足</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPs协议"><span class="toc-number">1.6.</span> <span class="toc-text">HTTPs协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#有关CA证书"><span class="toc-number">1.6.0.1.</span> <span class="toc-text">有关CA证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPs的通信原理"><span class="toc-number">1.6.0.2.</span> <span class="toc-text">HTTPs的通信原理</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
     <style>
@@ -436,7 +484,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"设计模式-观察者模式　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"https protocol　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -455,8 +503,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://zhumingcj.github.io/2019/06/27/Observer Pattern/';
-            this.page.identifier = '2019/06/27/Observer Pattern/';
+            this.page.url = 'http://zhumingcj.github.io/2019/07/04/https-protocol/';
+            this.page.identifier = '2019/07/04/https-protocol/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -496,8 +544,8 @@
 
     // Add comment count
     <script id="dsq-count-scr" src="//zhumingcj.disqus.com/count.js" async></script>
-    <span class="disqus-comment-count" data-disqus-identifier="2019/06/27/Observer Pattern/"></span>
-    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/06/27/Observer Pattern/"></span>
+    <span class="disqus-comment-count" data-disqus-identifier="2019/07/04/https-protocol/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/07/04/https-protocol/"></span>
     <script>
         $(".disqus-comment-count").hide();
         var $disqusCount = $(".disqus-comment-count");
@@ -516,21 +564,19 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="../Decoractor-Pattern/" title="上一篇: Decoractor Pattern">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="../../21/Tips for Typora/" title="下一篇: ShortCut Key for Typora">
+            <a href="../../03/usage-of-trigonometric-decomposition/" title="下一篇: Usage of Trigonometric Decomposition">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../07/04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">triangular-decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/my-first-blog/">my first blog</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../02/triangular-decomposition/">triangular-decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
 
 
 
