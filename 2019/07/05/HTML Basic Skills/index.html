@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="ZhuMing&#39;blog">
 <meta property="og:description" content="HTML(HyperText Markup Language)、CSS和Javascript​    对于一个网页而言，主要由    HTML、CSS和Javascript组成。其中HTML主要负责网页框架的搭建，CSS主要负责网页的样式而JavaScript主要负责网页的行为。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-05T13:38:44.186Z">
+<meta property="og:updated_time" content="2019-07-05T15:07:56.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web Basic Skills">
 <meta name="twitter:description" content="HTML(HyperText Markup Language)、CSS和Javascript​    对于一个网页而言，主要由    HTML、CSS和Javascript组成。其中HTML主要负责网页框架的搭建，CSS主要负责网页的样式而JavaScript主要负责网页的行为。">
@@ -335,37 +335,34 @@
         <h1 id="HTML-HyperText-Markup-Language-、CSS和Javascript"><a href="#HTML-HyperText-Markup-Language-、CSS和Javascript" class="headerlink" title="HTML(HyperText Markup Language)、CSS和Javascript"></a>HTML(HyperText Markup Language)、CSS和Javascript</h1><p>​    对于一个网页而言，主要由    HTML、CSS和Javascript组成。其中HTML主要负责网页框架的搭建，CSS主要负责网页的样式而JavaScript主要负责网页的行为。</p>
 <a id="more"></a>
 <h2 id="常用的HTML标签"><a href="#常用的HTML标签" class="headerlink" title="常用的HTML标签"></a>常用的HTML标签</h2><ol>
-<li><html></html>
-
+<li><p><code>&lt;html&gt;&lt;/html&gt;</code></p>
 <p> 这个标签没什么用，但是所有HTML标签都需要写在这个标签内部</p>
 </li>
-<li><p><head></head><br>head标签是用来写一些给浏览器看的内容，包括网站名，网站描述等</p>
+<li><p><code>&lt;head&gt;&lt;/head&gt;</code></p>
+<p>head标签是用来写一些给浏览器看的内容，包括网站名，网站描述等</p>
 <h4 id="head内部常用的标签"><a href="#head内部常用的标签" class="headerlink" title="head内部常用的标签"></a>head内部常用的标签</h4><ul>
 <li><p>meta标签</p>
-<p><meta charset="utf-8">  <!--申明网页的编码格式--><br><meta name="keywords" content="xx"><!--描述网页的类别，给网络爬虫看的信息--><br><meta name="description" content="xx"><!--对网页的描述，也是给爬虫看的信息--></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset="utf-8"&gt;  &lt;!--申明网页的编码格式--&gt;</span><br><span class="line">&lt;!<span class="selector-tag">--utf-8</span>为编码字符集<span class="selector-tag">--</span>&gt;</span><br><span class="line">&lt;meta name="keywords" content="xx"&gt;&lt;!--描述网页的类别，给网络爬虫看的信息--&gt;</span><br><span class="line">&lt;meta name="description" content="xx"&gt;&lt;!--对网页的描述，也是给爬虫看的信息--&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
-<pre><code> utf-8为编码字符集，常用的编码字符集有
+<pre><code> 常用的字符编码有：
 
- - utf-8(最常用，Unicode升级版)
+ - gb2312(包括亚裔字符集)
+ - gbk(在gb2312基础上增加了繁体中文)
+ - unicode(万国码)title标签
 </code></pre><ul>
-<li>gb2312(包括亚裔字符集)<ul>
-<li>gbk(在gb2312基础上增加了繁体中文)</li>
-</ul>
-</li>
-<li>unicode(万国码)</li>
-</ul>
-<ul>
 <li><p>title标签</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>    这里可以写标题（浏览器上方显示的）<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;    这里可以写标题（浏览器上方显示的）&lt;/title&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ol>
 <li><p>body标签</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	这里是网页的主体</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="body内常用的标签"><a href="#body内常用的标签" class="headerlink" title="body内常用的标签"></a>body内常用的标签</h4><ul>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">body</span>&gt; </span><br><span class="line">这里是网页的主体</span><br><span class="line">&lt;/<span class="keyword">body</span>&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="body内常用的标签"><a href="#body内常用的标签" class="headerlink" title="body内常用的标签"></a>body内常用的标签</h4></li>
+</ol>
+<ul>
 <li><p>p标签</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">这是一个段落，常用来换行</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -382,7 +379,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">del</span>&gt;</span>中划线，效果参考打折的价格<span class="tag">&lt;/<span class="name">del</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>div标签</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>只是一个容器，无具体功能，有利于模块化和绑定操作<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span>&gt;只是一个容器，无具体功能，有利于模块化和绑定操作&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>sapn标签</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>这也是一个容器<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -410,8 +407,6 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"get/post"</span> <span class="attr">action</span>=<span class="string">"发送信息的地址"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span><span class="comment">&lt;!--这文本输入框--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span><span class="comment">&lt;!--这密码框--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span><span class="comment">&lt;!--这是提交按钮--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xx"</span>&gt;</span><span class="comment">&lt;!--这是当选框,只有当数个单选框的name值相同时，才会发挥单选的功能--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xx"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xx"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"xxx"</span>&gt;</span><span class="comment">&lt;!--这是复选框,只有当数个复选框的name值相同时，才会正常发挥复选的功能--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"xxx"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"xxx"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span><span class="comment">&lt;!--这是一个下拉框--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span>&gt;</span>天津<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span>&gt;</span>广州<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--想要正确提交信息，必须要有name和value--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span>复</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-</li>
-</ol>
 <h2 id="标签的归类"><a href="#标签的归类" class="headerlink" title="标签的归类"></a>标签的归类</h2><ol>
 <li><p>行级元素</p>
 <p>feature：</p>
@@ -623,7 +618,7 @@
         <p><span>本文标题:</span><a href="">Web Basic Skills</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
         <p><span>发布时间:</span>2019-07-05, 16:15:57</p>
-        <p><span>最后更新:</span>2019-07-05, 21:38:44</p>
+        <p><span>最后更新:</span>2019-07-05, 23:07:56</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="" title="Web Basic Skills">http://zhumingcj.github.io/2019/07/05/HTML Basic Skills/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/07/05/HTML Basic Skills/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
