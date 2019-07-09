@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Improved Square Method</title>
+      <link href="/2019/07/08/improved-square-method/"/>
+      <url>/2019/07/08/improved-square-method/</url>
+      
+        <content type="html"><![CDATA[<h1 id="改进平方根法和追赶法"><a href="#改进平方根法和追赶法" class="headerlink" title="改进平方根法和追赶法"></a>改进平方根法和追赶法</h1><p>虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。</p><p>追赶法则是求解严格对角占优矩阵效率最高的算法之一。</p><a id="more"></a><h2 id="改进平方根法公式推导"><a href="#改进平方根法公式推导" class="headerlink" title="改进平方根法公式推导"></a>改进平方根法公式推导</h2><p>为了避免开方运算，我们使用$A=LDL^{T}$导出分解公式</p><script type="math/tex; mode=display">由\\A=LU=LDD^{-1}U=LDL^{T}\\可知L^{T}=D^{-1}U,因此\\l_{i,j}=\frac{u_{ij}}{d_{i}}=\frac{u_{ij}}{u_{ii}},\quad i=1,2,\dots,n-1;j=i+1,i+2,\dots,n\\由杜立特尔分解可知\\u_{ij}=a_{ij}-\sum_{k=1}^{i-1}l_{ik}u_{kj},\quad i=1,2,\dots,n;j=i,i+1,\dots,n\\\Rightarrow l_{ij}=\frac{a_{ij}-\sum_{k=1}^{i-1}l_{ik}u_{kj}}{u_{ii}},\quad i=1,2,\dots,n-1;j=i+1,i+2,\dots,n</script><p>用$A=LDL^{T}$分解求解方程组Ax=b就是改进平方根法，下面导出计算公式</p><script type="math/tex; mode=display">Ax=b \Rightarrow LDL^{T}\Rightarrow \left\{\begin{array}\Ly=b\\Dz=y\\L^{T}x=z\end{array}\right.\\由Ly=b可得\\y_{1}=b_{1}\\y_{i}=b_{i}-\sum_{k=1}^{i-1}l_{ik}y_{k},\quad i=2,3,\dots,n\\由Dz=y可得\\z_{i}=\frac{y_{i}}{u_{ii}},\quad i=1,2,\dots,n\\由L^{T}x=z可得\\\left\{\begin{array}\x_{n}=z_{n}\\x_{i}=z_{i}-\sum_{i+1}^{n}l_{ki}x_{k},\quad i=n-1,n-2,\dots,1\end{array}\right.\\将z_{i}和l_{ki}=\frac{u_{ik}}{u_{ii}}代入x_{i}的表达式，可得\\\left\{\begin{array}\x_{n}=\frac{y_{n}}{u_{nn}}\\x_{i}=\frac{y_{i}-\sum_{k=i+1}^{n}u_{ik}x_{k}}{u_{ii}},\quad i=n-1,n-2,\dots,2,1\end{array}\right.</script><h2 id="改进平方根法的算法分析"><a href="#改进平方根法的算法分析" class="headerlink" title="改进平方根法的算法分析"></a>改进平方根法的算法分析</h2><p>采用改进平方根法求解Ax=b共用了乘除法$\frac{1}{6}n^{3}+\frac{3}{2}n^{2}-\frac{2}{3}n$个，它比平方根法多了$\frac{1}{2}n^{2}-\frac{1}{2}n$个乘除法，但是少了n个开方运算，而相比于高斯消元法和杜立特尔分解几乎少了一半的乘除法，因此改进平方根法为求解对称正定方程组最有效的方法之一。实际上改进平方根法的分解公式和lU分解的分解公式是相同的，但是LU分解还要计算U矩阵，因此效率比较低，而改进平方根法则利用正定对称矩阵的特点，使得只需要计算L矩阵，大大减少了计算量，提高了效率。</p><h2 id="追赶法的分解公式"><a href="#追赶法的分解公式" class="headerlink" title="追赶法的分解公式"></a>追赶法的分解公式</h2><p>在样条插值、常微分方程边值问题和热传导方程的有限差分法等问题中，常遇到求解三对角方程组Ax=b,即</p><script type="math/tex; mode=display">\begin{pmatrix}b_{1}&c_{1}&\\a_{2}&b_{2}&c_{2}\\&\ddots&\ddots&\ddots\\&&a_{n-1}&b_{n-1}&c_{n-1}\\&&&a_{n}&b_{n}\end{pmatrix}\begin{pmatrix}x_{1}\\x_{2}\\\vdots\\x_{n-1}\\x_{n}\end{pmatrix}=\begin{pmatrix}d_{1}\\d_{2}\\\vdots\\d_{n-1}\\d_{n}\end{pmatrix}</script><p>通常A是严格对角占优矩阵，严格对角占优矩阵存在唯一 的杜立特分解，形式如下</p><script type="math/tex; mode=display">A=LU=\begin{pmatrix}1\\l_{2}&1\\&\ddots&\ddots\\&&l_{n-1}&1\\&&&l_{n}&1\end{pmatrix}\begin{pmatrix}u_{1}&c_{1}\\&u_{2}&c_{2}\\&&\ddots&\ddots\\&&&u_{n-1}&c_{n-1}\\&&&&u_{n}\end{pmatrix}</script><p>根据矩阵乘法，我们可以导出分解公式如下</p><script type="math/tex; mode=display">\left\{\begin{array}\u_{1}=b_{1}\\l_{i}=\frac{a_{i}}{u_{i-1}},\quad i=2,3,\dots,n\\u_{i}=b_{i}-l_{i}c_{i-1},\quad i=2,3,\dots,n\end{array}\right.</script><h2 id="追赶法求解Ax-d的计算公式"><a href="#追赶法求解Ax-d的计算公式" class="headerlink" title="追赶法求解Ax=d的计算公式"></a>追赶法求解Ax=d的计算公式</h2><script type="math/tex; mode=display">Ax=d \Rightarrow LUx=d\Rightarrow \\\left\{\begin{array}\Ly=d\\Ux=y\end{array}\right.\quad\\由Ly=d可得\\\left\{\begin{array}\y_{1}=d_{1}\\y_{i}=d_{i}-l_{i}y_{i-1},\quad i=2,3,\dots,n\end{array}\right.\quad\\由Ux=y可得\\\left\{\begin{array}\x_{n}=\frac{y_{n}}{u_{n}}\\x_{i}=\frac{y_{i}-c_{i}x_{i+1}}{u_{i}},\quad i=n-1,n-2,\dots,1\end{array}\right.</script><h2 id="追赶法的一个分解示例"><a href="#追赶法的一个分解示例" class="headerlink" title="追赶法的一个分解示例"></a>追赶法的一个分解示例</h2><script type="math/tex; mode=display">A=\begin{pmatrix}1&2&0&0&0\\2&3&1&0&0\\0&-3&4&2&0\\0&0&4&7&1\\0&0&0&-5&6\end{pmatrix}\\\quad\\</script><p>分解结果如下</p><p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190709/vK2m6n98uhN6.png?imageslim" alt="mark"></p><h2 id="追赶法的算法分析"><a href="#追赶法的算法分析" class="headerlink" title="追赶法的算法分析"></a>追赶法的算法分析</h2><p>用追赶法来解线性方程的乘除法运算次数仅为5n-4,比高斯消元法的运算次数少得多。并且由于方程组的系数矩阵是严格对角占优的，因此能保证追赶法顺利进行，并且计算过程稳定。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Math </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Numerical Analysis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Square Root Method</title>
       <link href="/2019/07/06/square-root-method-and-improved-square-root-method/"/>
       <url>/2019/07/06/square-root-method-and-improved-square-root-method/</url>
