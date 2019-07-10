@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>http://zhumingcj.github.io/tags/%E6%9D%82%E6%96%87/</loc>
+        <lastmod>2019-07-10T14:06:06.267Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/tags/algorithm/</loc>
+        <lastmod>2019-07-09T08:56:29.933Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/tags/matrix/</loc>
         <lastmod>2019-07-09T06:10:32.744Z</lastmod>
         <changefreq>weekly</changefreq>
