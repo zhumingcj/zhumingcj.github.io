@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190710/MVW0sPAjAKDW.png?imageslim">
 <meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190710/iA6oC7wgULbc.png?imageslim">
 <meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190710/UWll8sT8J6z0.png?imageslim">
-<meta property="og:updated_time" content="2019-07-12T13:47:28.092Z">
+<meta property="og:updated_time" content="2019-07-12T14:07:07.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rotation、Grad and Divergence">
 <meta name="twitter:description" content="梯度、散度、旋度梯度、散度、旋度是研究向量场的几个重要的量，它们表征着向量场的性质，在理论研究中有着重要的地位。梯度表示标量函数增加或减少的方向；散度表示向量场远离源的程度；旋度则表示向量场围绕某个中心旋转的程度。">
@@ -345,37 +345,36 @@
 \nabla A=(\frac{\partial A}{\partial x},\frac{\partial A}{\partial y},\frac{\partial A}{\partial z})\\
 \nabla\bullet A=(\frac{\partial A_{x}}{\partial x}+\frac{\partial A_{y}}{\partial y}+\frac{\partial A_{z}}{\partial z})\\
 \nabla \times A=(\frac{\partial A_{y}}{\partial z}-\frac{\partial A_{z}}{\partial y},\frac{\partial A_{z}}{\partial x}-\frac{\partial A_{x}}{\partial z},\frac{\partial A_{x}}{\partial y}-\frac{\partial A_{y}}{\partial x})</script><h2 id="梯度、散度、旋度的嵌套运算"><a href="#梯度、散度、旋度的嵌套运算" class="headerlink" title="梯度、散度、旋度的嵌套运算"></a>梯度、散度、旋度的嵌套运算</h2><ol>
-<li>证明旋度的散度=0（$\nabla\bullet (\nabla\times A)=0$）</li>
-</ol>
-<script type="math/tex; mode=display">
+<li>证明旋度的散度=0（$\nabla\bullet (\nabla\times A)=0$）<script type="math/tex; mode=display">
 \begin{align}
 \nabla\bullet (\nabla\times A)=\nabla\bullet(\frac{\partial A_{y}}{\partial z}-\frac{\partial A_{z}}{\partial y},\frac{\partial A_{z}}{\partial x}-\frac{\partial A_{x}}{\partial z},\frac{\partial A_{x}}{\partial y}-\frac{\partial A_{y}}{\partial x})\\
 =\frac{\partial^{2} A_{y}}{\partial z \partial x}-\frac{\partial^{2} A_{z}}{\partial y \partial x}+\frac{\partial^{2} A_{z}}{\partial x \partial y}-\frac{\partial^{2} A_{x}}{\partial z \partial y}+\frac{\partial^{2} A_{}x}{\partial y \partial z}-\frac{\partial^{2} A_{y}}{\partial x \partial z}\\
 =0
-\end{align}</script><ol>
-<li>旋度的梯度（$\nabla (\nabla\times A)$）</li>
+\end{align}</script></li>
 </ol>
-<script type="math/tex; mode=display">
+<ol>
+<li>旋度的梯度（$\nabla (\nabla\times A)$）<script type="math/tex; mode=display">
 \nabla (\nabla\times A)=\nabla(\frac{\partial A_{y}}{\partial z}-\frac{\partial A_{z}}{\partial y},\frac{\partial A_{z}}{\partial x}-\frac{\partial A_{x}}{\partial z},\frac{\partial A_{x}}{\partial y}-\frac{\partial A_{y}}{\partial x})
-\\=(\frac{\partial^{2} A_{y}}{\partial z \partial x}-\frac{\partial^{2} A_{z}}{\partial y \partial x},\frac{\partial^{2} A_{z}}{\partial x \partial y}-\frac{\partial^{2} A_{x}}{\partial z \partial y},\frac{\partial^{2} A_{}x}{\partial y \partial z}-\frac{\partial^{2} A_{y}}{\partial x \partial z})\\</script><ol>
-<li>旋度的旋度（$\nabla\times (\nabla\times A)$）</li>
+\\=(\frac{\partial^{2} A_{y}}{\partial z \partial x}-\frac{\partial^{2} A_{z}}{\partial y \partial x},\frac{\partial^{2} A_{z}}{\partial x \partial y}-\frac{\partial^{2} A_{x}}{\partial z \partial y},\frac{\partial^{2} A_{}x}{\partial y \partial z}-\frac{\partial^{2} A_{y}}{\partial x \partial z})\\</script></li>
 </ol>
+<ol>
+<li><p>旋度的旋度（$\nabla\times (\nabla\times A)$）</p>
 <script type="math/tex; mode=display">
 \nabla\times (\nabla\times A)=\nabla\times(\frac{\partial A_{y}}{\partial z}-\frac{\partial A_{z}}{\partial y},\frac{\partial A_{z}}{\partial x}-\frac{\partial A_{x}}{\partial z},\frac{\partial A_{x}}{\partial y}-\frac{\partial A_{y}}{\partial x})\\
-=(\frac{\partial^{2} A_{z}}{\partial x \partial z}-\frac{\partial^{2} A_{x}}{\partial z^{2}}-\frac{\partial^{2} A_{x}}{\partial y^{2}}+\frac{\partial^{2} A_{y}}{\partial x \partial y},\frac{\partial^{2} A_{x}}{\partial y \partial z}-\frac{\partial^{2} A_{y}}{\partial x^{2}}-\frac{\partial^{2} A_{y}}{\partial z^{2}}+\frac{\partial^{2} A_{z}}{\partial z \partial x},\frac{\partial^{2} A_{y}}{\partial z \partial y}-\frac{\partial^{2} A_{z}}{\partial y^{2}}-\frac{\partial^{2} A_{z}}{\partial x^{2}}+\frac{\partial^{2} A_{x}}{\partial z \partial x})</script><ol>
-<li>梯度的旋度=$\overrightarrow{0}$（$\nabla\times(\nabla A)=0$）</li>
-</ol>
+=(\frac{\partial^{2} A_{z}}{\partial x \partial z}-\frac{\partial^{2} A_{x}}{\partial z^{2}}-\frac{\partial^{2} A_{x}}{\partial y^{2}}+\frac{\partial^{2} A_{y}}{\partial x \partial y},\frac{\partial^{2} A_{x}}{\partial y \partial z}-\frac{\partial^{2} A_{y}}{\partial x^{2}}-\frac{\partial^{2} A_{y}}{\partial z^{2}}+\frac{\partial^{2} A_{z}}{\partial z \partial x},\frac{\partial^{2} A_{y}}{\partial z \partial y}-\frac{\partial^{2} A_{z}}{\partial y^{2}}-\frac{\partial^{2} A_{z}}{\partial x^{2}}+\frac{\partial^{2} A_{x}}{\partial z \partial x})</script></li>
+<li><p>梯度的旋度=$\overrightarrow{0}$（$\nabla\times(\nabla A)=0$）</p>
 <script type="math/tex; mode=display">
 \nabla\times(\nabla A)=\nabla\times(\frac{\partial A}{\partial x},\frac{\partial A}{\partial y},\frac{\partial A}{\partial z})\\
 =(\frac{\partial^{2}A}{\partial y \partial x}-\frac{\partial^{2}A}{\partial x \partial y},\frac{\partial^{2}A}{\partial x \partial z}-\frac{\partial^{2}A}{\partial z \partial x},\frac{\partial^{2}A}{\partial x \partial y}-\frac{\partial^{2}A}{\partial y \partial x})\\
-=(0,0,0)</script><ol>
+=(0,0,0)梯度的梯度（略）</script></li>
 <li><p>梯度的梯度（略）</p>
 </li>
 <li><p>梯度的散度（$\nabla\times(\nabla A)$）</p>
 <script type="math/tex; mode=display">
 \nabla\times(\nabla A)=\frac{\partial^{2}A}{\partial x^{2}}+\frac{\partial^{2}A}{\partial y^{2}}+\frac{\partial^{2}A}{\partial z^{2}}</script></li>
-<li><p>散度的梯度（$\nabla(\nabla\bullet A)$）</p>
-<script type="math/tex; mode=display">
+</ol>
+<ol>
+<li>散度的梯度（$\nabla(\nabla\bullet A)$）<script type="math/tex; mode=display">
 \nabla(\nabla\bullet A)=\nabla(\frac{\partial A_{x}}{\partial x}+\frac{\partial A_{y}}{\partial y}+\frac{\partial A_{z}}{\partial z})</script></li>
 </ol>
 <h2 id="有关场："><a href="#有关场：" class="headerlink" title="有关场："></a><strong>有关场：</strong></h2><ol>
@@ -424,7 +423,7 @@
         <p><span>本文标题:</span><a href="">Rotation、Grad and Divergence</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
         <p><span>发布时间:</span>2019-07-09, 16:54:32</p>
-        <p><span>最后更新:</span>2019-07-12, 21:47:28</p>
+        <p><span>最后更新:</span>2019-07-12, 22:07:07</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="" title="Rotation、Grad and Divergence">http://zhumingcj.github.io/2019/07/09/rotation、grad-and-divergence/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/07/09/rotation、grad-and-divergence/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
