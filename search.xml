@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Linear Regression</title>
+      <link href="/2019/07/19/linear-regression/"/>
+      <url>/2019/07/19/linear-regression/</url>
+      
+        <content type="html"><![CDATA[<h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p>线性回归是机器学习中最基本但也十分重要的一个概念，线性回归可以解决简单的最优解和二分类问题，并且有些复杂的学习模型是在线性回归的基础上延伸出来的。</p><a id="more"></a><h2 id="什么是线性回归"><a href="#什么是线性回归" class="headerlink" title="什么是线性回归"></a>什么是线性回归</h2><p>在实验中，我们希望找到某个量与其他量之间的关系，在很多情况下这种函数关系是线性的。一般的，把实验所得到的数据点绘制在坐标图中，如果这些点大致在一条直线上，那么我们可以假设我们所要求的函数关系是线性的。</p><p>假设我们要找n个自变量(x1,x2,…，xn)和因变量y之间的线性关系，即$y=a_{1}x_{1}+a_{2}x_{2}+\dots+a_{n}x_{n}+b$，在这个函数中有n+1个未知量，因此我们需要n+1组数据来求解这n+1个未知量。但是实际中我们得到的数据是不精确的并且往往多于n+1组数据，由线性代数我们可以知道超定方程是无解的。这种情况下如果我们选取其中的n+1组数据来求解未知数将产生很大的误差，而且我们希望充分的利用得到的数据。当我们把这些数据点绘制在坐标纸上，我们会发现我们面临的问题是找到一条直线尽可能地表现这些点所显示的趋势。确定这样一条直线的过程就叫做线性回归。</p><h4 id="线性回归的公式"><a href="#线性回归的公式" class="headerlink" title="线性回归的公式"></a>线性回归的公式</h4><p>为了精确的描述，我们用均方差来刻画直线的接近程度，均方差越小，所对应的直线越接近这些点所想表达的趋势。当函数是一元函数f(x)=wx+b时，均方误差（MSE）的计算式如下：</p><script type="math/tex; mode=display">MSE=E_{(w,b)}=\sum_{i=1}^{m}(f(x_{i})-y_{i})^{2}</script><p>当均方误差最小的时候所确定的函数关系就是我们要求的最接近数据点所展现的趋势，在这种情况下有下列关系式成立</p><script type="math/tex; mode=display">\frac{\partial E_{(w,b)}}{\partial w}=2(w\sum_{i=1}^{m}x_{i}^{2}-\sum_{i=1}^{m}(y_{i}-b)x_{i})=0\\\quad\\\frac{\partial E_{(w,b)}}{\partial b}=2(mb-\sum_{i=1}^{m}(y_{i}-wx_{i}))=0\\整理后我们可以得到方程组：\\\left\{\begin{array}\w\sum_{i=1}^{m}x_{i}^{2}-\sum_{i=1}^{m}x_{i}{y_{i}}+b\sum_{i=1}^{m}x_{i}=0\\mb-\sum_{i=1}^{m}y_{i}+w\sum_{i=1}^{m}x_{i}=0\\解得\\w=\frac{\sum_{i=1}^{m}y_{i}(x_{i}-\overline x)}{\sum_{i=1}^{m}x_{i}^{2}-\frac{1}{m}(\sum_{i=1}^{m}x_{i})^{2}}\\b=\frac{1}{m}\sum_{i=1}^{m}(y_{i}-wx_{i})\end{array}\right.</script><p>更一般的，当函数为多元线性函数$f(x)=w_{1}x_{1}+w_{2}x_{2}+\dots+w_{m}x_{m}+b$时，函数关系为</p><script type="math/tex; mode=display">f(x)=w^{T}x+b</script><p>为方便讨论，我们把数据集D记为</p><script type="math/tex; mode=display">D=\begin{pmatrix}x_{11}&x_{12}&\dots&x_{1n}&1\\x_{21}&x_{22}&\dots&x_{2n}&1\\\vdots&\vdots&\ddots&\vdots&\vdots\\x_{n1}&x_{n2}&\dots&x_{mn}&1\end{pmatrix}=\begin{pmatrix}x_{1}^{T}&1\\x_{2}^{T}&1\\\vdots&\vdots\\x_{m}^{T}&1\\\end{pmatrix}</script><p>把$\hat w$向量记为</p><script type="math/tex; mode=display">\hat w=\begin{pmatrix}w\\b\end{pmatrix}</script><p>把y记为$(y_{1},y_{2},\dots,y_{m})^{T}$，则类似于一元函数有</p><script type="math/tex; mode=display">MSE=E_{(\hat w)}=(y-D\hat w)^{T}(y-D\hat w)\\对其求导可得\\\frac{\partial E_{\hat w}}{\partial\hat w}=2D^{T}(D\hat w-y)=0</script><p>下面进行分类讨论：</p><ol><li><p>当$D^{T}D$为满秩矩阵或正定矩阵时，可得</p><script type="math/tex; mode=display">\hat w=(D^{T}D)^{-1}D^{T}y</script></li><li><p>当$D^{T}D$为非满秩矩阵时（实际中经常参数的数量多于数据量，此时$D^{T}D$一定是非满秩），我们会解得多个$\hat w$，它们都能使均方误差最小化，这时选择哪个解作为输出取决于算法的偏好。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Machine Learnning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Important Concepts for Html</title>
       <link href="/2019/07/18/important-concepts-for-html/"/>
       <url>/2019/07/18/important-concepts-for-html/</url>
