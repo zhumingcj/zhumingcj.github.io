@@ -15,20 +15,18 @@
 
 
 
-<meta name="description" content="改进平方根法和追赶法虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。 追赶法则是求解严格对角占优矩阵效率最高的算法之一。">
-<meta name="keywords" content="Numerical Analysis">
+<meta name="description" content="线性回归的变形顾名思义，线性回归只能处理线性关系的情况，这样难免有很大的局限性，所以我们通常对线性回归模型进行改造来获得拟合曲线的能力。">
+<meta name="keywords" content="Machine Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Improved Square Method">
-<meta property="og:url" content="http://zhumingcj.github.io/2019/07/08/improved-square-method/index.html">
+<meta property="og:title" content="Changed Linear Regression">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/07/20/changed-linear-regression/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="改进平方根法和追赶法虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。 追赶法则是求解严格对角占优矩阵效率最高的算法之一。">
+<meta property="og:description" content="线性回归的变形顾名思义，线性回归只能处理线性关系的情况，这样难免有很大的局限性，所以我们通常对线性回归模型进行改造来获得拟合曲线的能力。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190709/vK2m6n98uhN6.png?imageslim">
-<meta property="og:updated_time" content="2019-07-09T05:59:56.873Z">
+<meta property="og:updated_time" content="2019-07-22T16:35:22.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Improved Square Method">
-<meta name="twitter:description" content="改进平方根法和追赶法虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。 追赶法则是求解严格对角占优矩阵效率最高的算法之一。">
-<meta name="twitter:image" content="http://pte2s6ppx.bkt.clouddn.com/blog/20190709/vK2m6n98uhN6.png?imageslim">
+<meta name="twitter:title" content="Changed Linear Regression">
+<meta name="twitter:description" content="线性回归的变形顾名思义，线性回归只能处理线性关系的情况，这样难免有很大的局限性，所以我们通常对线性回归模型进行改造来获得拟合曲线的能力。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Improved Square Method | ZhuMing&#39;blog</title>
+<title>Changed Linear Regression | ZhuMing&#39;blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -281,11 +279,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-improved-square-method" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-changed-linear-regression" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-      <time datetime="2019-07-08T13:56:00.000Z" itemprop="datePublished">2019-07-08</time>
+      <time datetime="2019-07-20T15:02:05.000Z" itemprop="datePublished">2019-07-20</time>
 </a>
 
  
@@ -294,7 +292,7 @@
         <span class="count-comment"></span>
         
         
-            <span class="disqus-comment-count" data-disqus-identifier="2019/07/08/improved-square-method/"></span>
+            <span class="disqus-comment-count" data-disqus-identifier="2019/07/20/changed-linear-regression/"></span>
         
     </a>
 
@@ -309,7 +307,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Improved Square Method
+      Changed Linear Regression
     </h1>
   
 
@@ -318,13 +316,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="../../../../categories/math/">Math</a>
+    <a class="article-category-link" href="../../../../categories/ai/">AI</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/numerical-analysis/">Numerical Analysis</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/machine-learning/">Machine Learning</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -334,129 +332,46 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="改进平方根法和追赶法"><a href="#改进平方根法和追赶法" class="headerlink" title="改进平方根法和追赶法"></a>改进平方根法和追赶法</h1><p>虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。</p>
-<p>追赶法则是求解严格对角占优矩阵效率最高的算法之一。</p>
+        <h1 id="线性回归的变形"><a href="#线性回归的变形" class="headerlink" title="线性回归的变形"></a>线性回归的变形</h1><p>顾名思义，线性回归只能处理线性关系的情况，这样难免有很大的局限性，所以我们通常对线性回归模型进行改造来获得拟合曲线的能力。</p>
 <a id="more"></a>
-<h2 id="改进平方根法公式推导"><a href="#改进平方根法公式推导" class="headerlink" title="改进平方根法公式推导"></a>改进平方根法公式推导</h2><p>为了避免开方运算，我们使用$A=LDL^{T}$导出分解公式</p>
+<h2 id="对数线性回归"><a href="#对数线性回归" class="headerlink" title="对数线性回归"></a>对数线性回归</h2><p>当点集所表现出了的趋势大致为对数函数时，显然线性回归会有很大的偏差，此时在原有的基础上对y取对数即可转化为x到ln y的线性回归。我们得到下面的模型：</p>
 <script type="math/tex; mode=display">
-由\\
-A=LU=LDD^{-1}U=LDL^{T}\\
-可知L^{T}=D^{-1}U,因此\\
-l_{i,j}=\frac{u_{ij}}{d_{i}}=\frac{u_{ij}}{u_{ii}},\quad i=1,2,\dots,n-1;j=i+1,i+2,\dots,n\\
-由杜立特尔分解可知\\
-u_{ij}=a_{ij}-\sum_{k=1}^{i-1}l_{ik}u_{kj},\quad i=1,2,\dots,n;j=i,i+1,\dots,n\\
-\Rightarrow l_{ij}=\frac{a_{ij}-\sum_{k=1}^{i-1}l_{ik}u_{kj}}{u_{ii}},\quad i=1,2,\dots,n-1;j=i+1,i+2,\dots,n</script><p>用$A=LDL^{T}$分解求解方程组Ax=b就是改进平方根法，下面导出计算公式</p>
+ln y=w^{T}\overrightarrow x+b</script><p>在式中对数函数起到了将线性关系映射到曲线关系的作用，因此对于不同的映射函数，我们可以得到许多的非线性模型，即</p>
 <script type="math/tex; mode=display">
-Ax=b \Rightarrow LDL^{T}\Rightarrow 
-\left\{
-\begin{array}\
-Ly=b\\
-Dz=y\\
-L^{T}x=z
-\end{array}
-\right.\\
-由Ly=b可得\\
-y_{1}=b_{1}\\
-y_{i}=b_{i}-\sum_{k=1}^{i-1}l_{ik}y_{k},\quad i=2,3,\dots,n\\
-由Dz=y可得\\
-z_{i}=\frac{y_{i}}{u_{ii}},\quad i=1,2,\dots,n\\
-由L^{T}x=z可得\\
-\left\{
-\begin{array}\
-x_{n}=z_{n}\\
-x_{i}=z_{i}-\sum_{i+1}^{n}l_{ki}x_{k},\quad i=n-1,n-2,\dots,1
-\end{array}
-\right.\\
-将z_{i}和l_{ki}=\frac{u_{ik}}{u_{ii}}代入x_{i}的表达式，可得\\
-\left\{
-\begin{array}\
-x_{n}=\frac{y_{n}}{u_{nn}}\\
-x_{i}=\frac{y_{i}-\sum_{k=i+1}^{n}u_{ik}x_{k}}{u_{ii}},\quad i=n-1,n-2,\dots,2,1
-\end{array}
-\right.</script><h2 id="改进平方根法的算法分析"><a href="#改进平方根法的算法分析" class="headerlink" title="改进平方根法的算法分析"></a>改进平方根法的算法分析</h2><p>采用改进平方根法求解Ax=b共用了乘除法$\frac{1}{6}n^{3}+\frac{3}{2}n^{2}-\frac{2}{3}n$个，它比平方根法多了$\frac{1}{2}n^{2}-\frac{1}{2}n$个乘除法，但是少了n个开方运算，而相比于高斯消元法和杜立特尔分解几乎少了一半的乘除法，因此改进平方根法为求解对称正定方程组最有效的方法之一。实际上改进平方根法的分解公式和lU分解的分解公式是相同的，但是LU分解还要计算U矩阵，因此效率比较低，而改进平方根法则利用正定对称矩阵的特点，使得只需要计算L矩阵，大大减少了计算量，提高了效率。</p>
-<h2 id="追赶法的分解公式"><a href="#追赶法的分解公式" class="headerlink" title="追赶法的分解公式"></a>追赶法的分解公式</h2><p>在样条插值、常微分方程边值问题和热传导方程的有限差分法等问题中，常遇到求解三对角方程组Ax=b,即</p>
+y=g^{-1}(w^{T}\overrightarrow x+b)</script><p>这些非线性模型的核心还是线性回归，因此这些非线性回归都是广义上的线性回归，是它的一种变形。</p>
+<h2 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h2><p>如果我们想用线性回归来解决二分类问题，我们可以使用单位阶跃函数把y映射到（0,1），单位阶跃函数形式如下</p>
 <script type="math/tex; mode=display">
-\begin{pmatrix}
-b_{1}&c_{1}&\\
-a_{2}&b_{2}&c_{2}\\
-&\ddots&\ddots&\ddots\\
-&&a_{n-1}&b_{n-1}&c_{n-1}\\
-&&&a_{n}&b_{n}
-\end{pmatrix}
-\begin{pmatrix}
-x_{1}\\
-x_{2}\\
-\vdots\\
-x_{n-1}\\
-x_{n}
-\end{pmatrix}
-=
-\begin{pmatrix}
-d_{1}\\
-d_{2}\\
-\vdots\\
-d_{n-1}\\
-d_{n}
-\end{pmatrix}</script><p>通常A是严格对角占优矩阵，严格对角占优矩阵存在唯一 的杜立特分解，形式如下</p>
+y'=
+\left\{
+\begin{array}\
+0,\quad y<0\\
+0.5,\quad y=0\\
+1,\quad y>0
+\end{array}
+\right.</script><p>当单位阶跃函数作用于y后，若y大于零则为正例，小于零则为反例，y为临界值则可任意判别。但是由单位阶跃函数的表达式我们可以知道它是不连续的。实际中，不连续的函数存在应用困难，我们希望能找到可以近似代替单位阶跃函数的连续函数，对数几率函数就是我们要找的函数：</p>
 <script type="math/tex; mode=display">
-A=LU=
-\begin{pmatrix}
-1\\
-l_{2}&1\\
-&\ddots&\ddots\\
-&&l_{n-1}&1\\
-&&&l_{n}&1
-\end{pmatrix}
-\begin{pmatrix}
-u_{1}&c_{1}\\
-&u_{2}&c_{2}\\
-&&\ddots&\ddots\\
-&&&u_{n-1}&c_{n-1}\\
-&&&&u_{n}
-\end{pmatrix}</script><p>根据矩阵乘法，我们可以导出分解公式如下</p>
+y'=\frac{1}{1+e^{-y}}=\frac{1}{1+e^{-(w^{T}x+b)}}\Rightarrow\\
+ln{\frac{y}{1-y}}=w^{T}x+b</script><p> 如果y表示x是正例的可能性，那么1-y就是其为反例的可能性，两者都比值$\frac{y}{1-y}$称为几率，反应x为正例的相对可能性，对几率取对数则得到对数几率$ln{\frac{y}{1-y}}$。</p>
+<p>由此可以看出式（4）是在用线性回归的模型来预测对数几率</p>
+<h4 id="对数几率回归参数的求解"><a href="#对数几率回归参数的求解" class="headerlink" title="对数几率回归参数的求解"></a>对数几率回归参数的求解</h4><p>要确定对数几率回归模型，就必须求解参数w和b，若将式（4）中的y’视为类后验概率估计p(y’=1|x)，则式（4）可重写为</p>
 <script type="math/tex; mode=display">
-\left\{
-\begin{array}\
-u_{1}=b_{1}\\
-l_{i}=\frac{a_{i}}{u_{i-1}},\quad i=2,3,\dots,n\\
-u_{i}=b_{i}-l_{i}c_{i-1},\quad i=2,3,\dots,n
-\end{array}
-\right.</script><h2 id="追赶法求解Ax-d的计算公式"><a href="#追赶法求解Ax-d的计算公式" class="headerlink" title="追赶法求解Ax=d的计算公式"></a>追赶法求解Ax=d的计算公式</h2><script type="math/tex; mode=display">
-Ax=d \Rightarrow LUx=d\Rightarrow \\
-\left\{
-\begin{array}\
-Ly=d\\
-Ux=y
-\end{array}
-\right.
-\quad\\
-由Ly=d可得\\
-\left\{
-\begin{array}\
-y_{1}=d_{1}\\
-y_{i}=d_{i}-l_{i}y_{i-1},\quad i=2,3,\dots,n
-\end{array}
-\right.
-\quad\\
-由Ux=y可得\\
-\left\{
-\begin{array}\
-x_{n}=\frac{y_{n}}{u_{n}}\\
-x_{i}=\frac{y_{i}-c_{i}x_{i+1}}{u_{i}},\quad i=n-1,n-2,\dots,1
-\end{array}
-\right.</script><h2 id="追赶法的一个分解示例"><a href="#追赶法的一个分解示例" class="headerlink" title="追赶法的一个分解示例"></a>追赶法的一个分解示例</h2><script type="math/tex; mode=display">
-A=
-\begin{pmatrix}
-1&2&0&0&0\\
-2&3&1&0&0\\
-0&-3&4&2&0\\
-0&0&4&7&1\\
-0&0&0&-5&6
-\end{pmatrix}\\
-\quad\\</script><p>分解结果如下</p>
-<p><img src="http://pte2s6ppx.bkt.clouddn.com/blog/20190709/vK2m6n98uhN6.png?imageslim" alt="mark"></p>
-<h2 id="追赶法的算法分析"><a href="#追赶法的算法分析" class="headerlink" title="追赶法的算法分析"></a>追赶法的算法分析</h2><p>用追赶法来解线性方程的乘除法运算次数仅为5n-4,比高斯消元法的运算次数少得多。并且由于方程组的系数矩阵是严格对角占优的，因此能保证追赶法顺利进行，并且计算过程稳定。</p>
-
+ln
+\frac{p(y'=1|x)}{p(y'=0|x)}=
+w^{T}x+b</script><p>显然有</p>
+<script type="math/tex; mode=display">
+p(y'=1|x)=\frac{e^{w^{T}x+b}}{1+e^{w^{T}x+b}}\\
+p(y'=0|x)=\frac{1}{1+e^{w^{T}x+b}}</script><p>于是，我们可通过”极大似然法”来估计w和b。对给定的数集${(x_{i},y_{i})}_{i=1}^{m}$，对数概率回归模型最大”对数似然”为</p>
+<script type="math/tex; mode=display">
+l(w,b)=\sum_{i=1}^{m}lnp(y_{i}|x_{i};w,b)</script><p>即令每个样本属于其真实标记的概率越大越好。为方便讨论</p>
+<script type="math/tex; mode=display">
+令\beta=(w;b),\hat x=(x;1),则w^{T}x+b可简写为\beta^{T}\hat x\\
+再令p_{1}(\hat x;\beta)=p(y=1|\hat x;\beta)，p_{0}(\hat x;\beta)=p(y=0|\hat x;\beta)=1-p_{1}(\hat x;\beta)</script><p>则式（7）可重写为</p>
+<script type="math/tex; mode=display">
+p(y_{i}|x_{i};w,b)=y_{i}p_{1}(\hat x;\beta)+(1-y_{i})p_{0}(\hat x;\beta)</script><p>把式（9）代入（6）可得最大化式（7）等于最小化下式</p>
+<script type="math/tex; mode=display">
+l(\beta)=\sum_{i=1}^{m}(-y_{i}\beta^{T}\hat x+ln(1+e^{\beta^{T}\hat x}))</script><p>式（10）是关于$\beta$的告诫可导连续函数，根据凸优化理论，经典的数值优化算法如梯度下降法、牛顿法等都可以求得其最优解如下</p>
+<script type="math/tex; mode=display">
+\beta^{*}=argmin\quad{l(\beta)}</script>
       
     </div>
     
@@ -464,13 +379,13 @@ A=
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="">Improved Square Method</a></p>
+        <p><span>本文标题:</span><a href="">Changed Linear Regression</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
-        <p><span>发布时间:</span>2019-07-08, 21:56:00</p>
-        <p><span>最后更新:</span>2019-07-09, 13:59:56</p>
+        <p><span>发布时间:</span>2019-07-20, 23:02:05</p>
+        <p><span>最后更新:</span>2019-07-23, 00:35:22</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="" title="Improved Square Method">http://zhumingcj.github.io/2019/07/08/improved-square-method/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/07/08/improved-square-method/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="" title="Changed Linear Regression">http://zhumingcj.github.io/2019/07/20/changed-linear-regression/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/07/20/changed-linear-regression/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -482,16 +397,10 @@ A=
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="../../09/kmp-algorithm/">
-                    KMP Algorithm
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="../../06/square-root-method-and-improved-square-root-method/">
-                    Square Root Method
+                <a href="../../19/linear-regression/">
+                    Linear Regression
                 </a>
             </div>
         
@@ -503,7 +412,7 @@ A=
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#改进平方根法和追赶法"><span class="toc-number">1.</span> <span class="toc-text">改进平方根法和追赶法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#改进平方根法公式推导"><span class="toc-number">1.1.</span> <span class="toc-text">改进平方根法公式推导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进平方根法的算法分析"><span class="toc-number">1.2.</span> <span class="toc-text">改进平方根法的算法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追赶法的分解公式"><span class="toc-number">1.3.</span> <span class="toc-text">追赶法的分解公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追赶法求解Ax-d的计算公式"><span class="toc-number">1.4.</span> <span class="toc-text">追赶法求解Ax=d的计算公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追赶法的一个分解示例"><span class="toc-number">1.5.</span> <span class="toc-text">追赶法的一个分解示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追赶法的算法分析"><span class="toc-number">1.6.</span> <span class="toc-text">追赶法的算法分析</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#线性回归的变形"><span class="toc-number">1.</span> <span class="toc-text">线性回归的变形</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对数线性回归"><span class="toc-number">1.1.</span> <span class="toc-text">对数线性回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对数几率回归"><span class="toc-number">1.2.</span> <span class="toc-text">对数几率回归</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对数几率回归参数的求解"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">对数几率回归参数的求解</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
     <style>
@@ -539,7 +448,7 @@ A=
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Improved Square Method　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Changed Linear Regression　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -558,8 +467,8 @@ A=
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://zhumingcj.github.io/2019/07/08/improved-square-method/';
-            this.page.identifier = '2019/07/08/improved-square-method/';
+            this.page.url = 'http://zhumingcj.github.io/2019/07/20/changed-linear-regression/';
+            this.page.identifier = '2019/07/20/changed-linear-regression/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -599,8 +508,8 @@ A=
 
     // Add comment count
     <script id="dsq-count-scr" src="//zhumingcj.disqus.com/count.js" async></script>
-    <span class="disqus-comment-count" data-disqus-identifier="2019/07/08/improved-square-method/"></span>
-    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/07/08/improved-square-method/"></span>
+    <span class="disqus-comment-count" data-disqus-identifier="2019/07/20/changed-linear-regression/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/07/20/changed-linear-regression/"></span>
     <script>
         $(".disqus-comment-count").hide();
         var $disqusCount = $(".disqus-comment-count");
@@ -619,21 +528,19 @@ A=
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="../../09/kmp-algorithm/" title="上一篇: KMP Algorithm">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="../../06/square-root-method-and-improved-square-root-method/" title="下一篇: Square Root Method">
+            <a href="../../19/linear-regression/" title="下一篇: Linear Regression">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="../../08/improved-square-method/">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
 
 
 
