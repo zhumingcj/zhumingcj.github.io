@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://zhumingcj.github.io/tags/machine-learining/</loc>
+        <lastmod>2019-07-24T15:25:59.554Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/tags/machine-learning/</loc>
         <lastmod>2019-07-22T16:35:22.997Z</lastmod>
         <changefreq>weekly</changefreq>
