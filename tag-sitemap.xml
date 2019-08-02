@@ -3,6 +3,55 @@
 
 
     <url>
+        <loc>http://zhumingcj.github.io/tags/matrix/</loc>
+        <lastmod>2019-08-02T14:59:28.548Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+        <lastmod>2019-08-02T14:57:57.270Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/tags/%E6%9D%82%E6%96%87/</loc>
+        <lastmod>2019-08-02T14:56:58.958Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/tags/algorithm/</loc>
+        <lastmod>2019-08-02T14:54:27.427Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/tags/numerical-analysis/</loc>
+        <lastmod>2019-08-02T14:51:55.985Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/tags/html/</loc>
+        <lastmod>2019-08-02T14:51:31.502Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</loc>
+        <lastmod>2019-08-02T14:51:03.073Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/tags/machine-learining/</loc>
         <lastmod>2019-07-24T15:25:59.554Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -24,57 +73,8 @@
     </url>
 
     <url>
-        <loc>http://zhumingcj.github.io/tags/html/</loc>
-        <lastmod>2019-07-19T07:08:47.032Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/matrix/</loc>
-        <lastmod>2019-07-18T12:13:58.876Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/%E6%9D%82%E6%96%87/</loc>
-        <lastmod>2019-07-12T14:25:45.424Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/algorithm/</loc>
-        <lastmod>2019-07-12T13:43:07.222Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/numerical-analysis/</loc>
-        <lastmod>2019-07-09T05:59:56.873Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</loc>
-        <lastmod>2019-07-04T15:36:46.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://zhumingcj.github.io/tags/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91/</loc>
         <lastmod>2019-07-03T09:07:11.323Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-        <lastmod>2019-07-01T11:57:06.658Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

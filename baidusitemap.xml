@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://zhumingcj.github.io/2019/07/03/usage-of-trigonometric-decomposition/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/06/square-root-method-and-improved-square-root-method/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/01/singleton-pattern/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/09/rotation%E3%80%81grad-and-divergence/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/06/27/Observer%20Pattern/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/09/kmp-algorithm/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/08/improved-square-method/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/18/important-concepts-for-html/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/04/https-protocol/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/06/27/Gaussian%20elimination%20method/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/06/27/Decoractor-Pattern/</loc>
+    <lastmod>2019-08-02</lastmod>
+  </url>  <url>
     <loc>http://zhumingcj.github.io/2019/07/23/simple-classification/</loc>
     <lastmod>2019-07-24</lastmod>
   </url>  <url>
@@ -10,47 +43,14 @@
     <loc>http://zhumingcj.github.io/2019/07/19/linear-regression/</loc>
     <lastmod>2019-07-20</lastmod>
   </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/18/important-concepts-for-html/</loc>
-    <lastmod>2019-07-19</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/06/square-root-method-and-improved-square-root-method/</loc>
-    <lastmod>2019-07-18</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/09/rotation%E3%80%81grad-and-divergence/</loc>
-    <lastmod>2019-07-12</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/09/kmp-algorithm/</loc>
-    <lastmod>2019-07-12</lastmod>
-  </url>  <url>
     <loc>http://zhumingcj.github.io/2019/07/02/triangular-decomposition/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/08/improved-square-method/</loc>
     <lastmod>2019-07-09</lastmod>
   </url>  <url>
     <loc>http://zhumingcj.github.io/2019/07/05/HTML%20Basic%20Skills/</loc>
     <lastmod>2019-07-05</lastmod>
   </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/04/https-protocol/</loc>
-    <lastmod>2019-07-04</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/06/27/Gaussian%20elimination%20method/</loc>
-    <lastmod>2019-07-03</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/03/usage-of-trigonometric-decomposition/</loc>
-    <lastmod>2019-07-03</lastmod>
-  </url>  <url>
     <loc>http://zhumingcj.github.io/2019/06/21/Tips%20for%20Typora/</loc>
     <lastmod>2019-07-03</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/01/singleton-pattern/</loc>
-    <lastmod>2019-07-01</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/06/27/Decoractor-Pattern/</loc>
-    <lastmod>2019-06-27</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/06/27/Observer%20Pattern/</loc>
-    <lastmod>2019-06-26</lastmod>
   </url>  <url>
     <loc>http://zhumingcj.github.io/2019/06/21/my-first-blog/</loc>
     <lastmod>2019-06-21</lastmod>

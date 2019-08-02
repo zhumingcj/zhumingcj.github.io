@@ -8,6 +8,34 @@
     </url>
 
     <url>
+        <loc>http://zhumingcj.github.io/categories/numerical-analysis/</loc>
+        <lastmod>2019-08-02T14:59:28.548Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/categories/c/</loc>
+        <lastmod>2019-08-02T14:57:57.270Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/categories/math/</loc>
+        <lastmod>2019-08-02T14:56:58.958Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/categories/%E7%BD%91%E7%BB%9C/</loc>
+        <lastmod>2019-08-02T14:51:31.502Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/categories/ai/</loc>
         <lastmod>2019-07-24T15:25:59.554Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -15,36 +43,8 @@
     </url>
 
     <url>
-        <loc>http://zhumingcj.github.io/categories/%E7%BD%91%E7%BB%9C/</loc>
-        <lastmod>2019-07-19T07:08:47.032Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/categories/numerical-analysis/</loc>
-        <lastmod>2019-07-18T12:13:58.876Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/categories/math/</loc>
-        <lastmod>2019-07-12T14:25:45.424Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://zhumingcj.github.io/categories/%E6%9D%82%E6%96%87/</loc>
         <lastmod>2019-07-03T09:07:11.323Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/categories/c/</loc>
-        <lastmod>2019-07-01T11:57:06.658Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
