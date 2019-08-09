@@ -15,20 +15,18 @@
 
 
 
-<meta name="description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
+<meta name="description" content="QR分解(1)QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。">
 <meta name="keywords" content="Matrix">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gaussian elimination method">
-<meta property="og:url" content="http://zhumingcj.github.io/2019/06/27/Gaussian elimination method/index.html">
+<meta property="og:title" content="QR decomposition">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/08/08/qr-decomposition/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
+<meta property="og:description" content="QR分解(1)QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://src.zhumingcj.cn/blog/20190628/vVp4oxA9X7eB.png?imageslim">
-<meta property="og:updated_time" content="2019-08-02T14:49:54.132Z">
+<meta property="og:updated_time" content="2019-08-09T14:38:28.477Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gaussian elimination method">
-<meta name="twitter:description" content="求解矩阵的高斯消元法高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。">
-<meta name="twitter:image" content="http://src.zhumingcj.cn/blog/20190628/vVp4oxA9X7eB.png?imageslim">
+<meta name="twitter:title" content="QR decomposition">
+<meta name="twitter:description" content="QR分解(1)QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Gaussian elimination method | ZhuMing&#39;blog</title>
+<title>QR decomposition | ZhuMing&#39;blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -281,11 +279,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Gaussian elimination method" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-qr-decomposition" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-      <time datetime="2019-06-27T12:06:11.000Z" itemprop="datePublished">2019-06-27</time>
+      <time datetime="2019-08-08T08:22:38.000Z" itemprop="datePublished">2019-08-08</time>
 </a>
 
  
@@ -294,7 +292,7 @@
         <span class="count-comment"></span>
         
         
-            <span class="disqus-comment-count" data-disqus-identifier="2019/06/27/Gaussian elimination method/"></span>
+            <span class="disqus-comment-count" data-disqus-identifier="2019/08/08/qr-decomposition/"></span>
         
     </a>
 
@@ -309,7 +307,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Gaussian elimination method
+      QR decomposition
     </h1>
   
 
@@ -334,111 +332,181 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="求解矩阵的高斯消元法"><a href="#求解矩阵的高斯消元法" class="headerlink" title="求解矩阵的高斯消元法"></a>求解矩阵的高斯消元法</h1><p>高斯消元法是求解矩阵最基础的一种算法，具有泛化性强的优点。</p>
+        <h1 id="QR分解-1"><a href="#QR分解-1" class="headerlink" title="QR分解(1)"></a>QR分解(1)</h1><p>QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。</p>
 <a id="more"></a>
-<h2 id="消元过程"><a href="#消元过程" class="headerlink" title="消元过程"></a>消元过程</h2><p>对于方程组$Ax=b$（其中A为n阶方阵）可由n-1个消元过程和n-1个回代过程完成求解</p>
+<h2 id="QR分解的导出"><a href="#QR分解的导出" class="headerlink" title="QR分解的导出"></a>QR分解的导出</h2><p>QR分解可以通过两种基本的正交变换来导出——吉文斯变换和豪斯霍尔德变换，下面将详细地给出两种正交变换推导QR分解的过程。</p>
+<h3 id="吉文斯变换法"><a href="#吉文斯变换法" class="headerlink" title="吉文斯变换法"></a>吉文斯变换法</h3><ol>
+<li><p>吉文斯变换的定义</p>
 <script type="math/tex; mode=display">
-\begin{cases}
-a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=&b_1
-\\\vdots\\
-a_{n1}x_1+a_{n2}x_2+a_{n3}x_3+\cdots+a_{nn}x_n=&b_n&
-\end{cases}
-\\
+对某个\theta，记s=sin\theta,c=cos\theta,设1\leq i \lt j \leq n\\
+P(i,j,\theta)=
 \begin{pmatrix}
-a_{11}&a_{12}&a_{13}&\dots&a_{1n}\\
-a_{21}&a_{22}&a_{23}&\dots&a_{2n}\\
-\vdots&&&&\vdots\\
-a_{n1}&a_{n2}&a_{n3}&\dots&a_{nn}
-
-\end{pmatrix}
-\begin{pmatrix}
-x_1\\
-x_2\\
-\vdots\\
-x_n
-\end{pmatrix}=
-\begin{pmatrix}
-b_1\\
-b_2\\
-\vdots\\
-b_n
-\end{pmatrix}</script><ol>
-<li><p>矩阵的消元过程(在矩阵有解的情况下)</p>
+1&\\
+&\ddots\\
+&&1\\
+&&&c&&&&s\\
+&&&&1\\
+&&&&&\ddots\\
+&&&&&&1\\
+&&&-s&&&&c\\
+&&&&&&&&1\\
+&&&&&&&&&\ddots\\
+&&&&&&&&&&1
+\end{pmatrix}_{n\times  n}</script></li>
+<li><p>吉文斯变换的特性</p>
 <ul>
-<li>第一步消元</li>
-</ul>
-<p>$a_{ij}^{(1)}=a_{ij}^{(0)}-\frac{a_{i1}^{(0)}}  {a_{11}^{(0)}}a_{1j}^{(0)}=a_{ij}^{(0)}-l_{i1}^{(0)}a_{1j}^{(0)} ,\quad i=2,3,\dots,n;j=2,3,\dots,n$</p>
-<p>$b_{i}^{(1)}=b_{i}^{(0)}-\frac{a_{i1}^{(0)}}  {a_{11}^{(0)}}b_{1}^{(0)}=b_{i}^{(0)}-l_{i1}^{(0)}b_{1}^{(0)} ,\quad i=2,3,\dots,n$</p>
-<p>$l_{i1}\triangleq \frac {a_{i1}^{(0)}} {a_{11}^{(0)}},\quad i=2,3,\dots,n$</p>
-<ul>
-<li><p>第k步消元</p>
-<p>$a_{ij}^{(k)}=a_{ij}^{(k-1)}-\frac{a_{ik}^{(k-1)}}  {a_{kk}^{(k-1)}}a_{kj}^{(k-1)}=a_{ij}^{(k-1)}-l_{ik}^{(k-1)}a_{kj}^{(k-1)} ,\quad i=k+1,k+2,\dots,n;j=k=1,k+2,\dots,n$</p>
-<p>$b_{i}^{(k)}=b_{i}^{(k-1)}-\frac{a_{ik}^{(k-1)}}  {a_{kk}^{(k-1)}}b_{k}^{(k-1)}=b_{i}^{(k-1)}-l_{ik}^{(k-1)}b_{k}^{(k-1)} ,\quad i=k+1,k+2,\dots,n$</p>
-<p>$l_{ik}\triangleq \frac {a_{ik}^{(k-1)}} {a_{kk}^{(k-1)}},\quad i=k+1,k+2,\dots,n$</p>
+<li><p>通过计算我们可以得到$P(i,j,\theta)\times P(i,j,\theta)^{T}=I$，因此吉文斯变换矩阵是一个正交矩阵。</p>
 </li>
-<li><p>消元完成后</p>
+<li><p>当吉文斯矩阵左乘一个方阵x时（$P(i,j,\theta)x$），只会改变x的第i个和第j个分量。</p>
 <script type="math/tex; mode=display">
-A^{(n-1)}=
+事实上，设x=(x_{1},x_{2},\dots,x_{n})^{T},y=(y_{1},y_{2},\dots,y_{n})^{T}\\
+则根据y=P_{i,j}x可得\\
+y_{i}=cx_{i}+sx_{j},\quad y_{j}=-sx_{i}+cx_{j}</script></li>
+<li><p>直观的看，吉文斯变换是一个平面旋转矩阵。由上一条性质，我们知道吉文斯矩阵只改变x的i,j分量，这种改变的几何意义是：它会把x在i,j平面的投影顺时针旋转$\theta$度，以二维的吉文斯矩阵为例：</p>
+<script type="math/tex; mode=display">
+P_{(1,2)}=
 \begin{pmatrix}
-a_{11}^{(0)}&a_{12}^{(0)}&a_{13}^{(0)}&\cdots&\cdots&a_{1n}^{(0)}\\
-&a_{22}^{(1)}&a_{23}^{(1)}&\cdots&\cdots&a_{2n}^{(1)}\\
-&&\ddots\\
-&&&a_{kk}^{(k-1)}&\cdots&a_{kn}^{(k-1)}\\
-&&&&\ddots&\vdots\\
-&&&&&a_{nn}^{(n-1)}
-\end{pmatrix},\quad
-b^{(n-1)}=
+cos\theta&sin\theta\\
+-sin\theta&cos\theta
+\end{pmatrix}_{2\times2}
+\quad\\
+当我们取\theta为\frac{\pi}{2}时，我们得到\\
+P=
 \begin{pmatrix}
-b_{1}^{(0)}\\
-b_{2}^{(1)}\\
-\vdots\\
-b_{k}^{(k-1)}\\
-\vdots\\
-b_{n}^{(n-1)}
+0&1\\
+-1&0
+\end{pmatrix}
+用P左乘于x=(1,2)^{T}得到x'=(2,-1)\\我们可以看到x在P的作用下顺时针旋转了90^{\circ}</script></li>
+<li><p>吉文斯矩阵可以将给定向量的某个分量化为零，由第二个特性，我们可以得到以下结论：</p>
+<script type="math/tex; mode=display">
+当x_{i}^{2}+x_{j}^{2}\neq0时，欲使x_{j}'=0,只需要选取\\
+c=\frac{x_{i}}{\sqrt{x_{i}^{2}+x_{j}^{2}}},s=\frac{x_{j}}{\sqrt{x_{i}^{2}+x_{j}^{2}}}</script></li>
+</ul>
+</li>
+</ol>
+<pre><code> 也可以直观的理解为将给定向量在i,j平面的分量旋转至与i坐标轴重合，显然这种旋转存在且旋转角度就是上式所给出的。
+</code></pre><ol>
+<li><p>基于吉文斯变换的QR分解</p>
+<p>思路：由于QR分解的形式是分解为一个上梯形矩阵和一个正交矩阵，因此可以考虑用若干个吉文斯矩阵的乘积将给定矩阵化为上三角矩阵。</p>
+</li>
+</ol>
+<p>   引理：设x是任意给定的非零向量，则存在有限个吉文斯矩阵的乘积P，使得$Px=||x||_{2}\vec e_{1}$，其中$\vec e_{i}=(1,0,\dots,0)$</p>
+<p>   证明：</p>
+<p>   根据吉文斯矩阵的最后一条特性，依次构造</p>
+<script type="math/tex; mode=display">
+   P_{12}:c=\frac{x_{1}}{\sqrt{x_{1}^{2}+x_{2}^{2}}},\quad s=\frac{x_{2}}{\sqrt{x_{1}^{2}+x_{2}^{2}}}\\
+   \quad\\
+   P_{12}x=(\sqrt{x_{1}^{2}+x_{2}^{2}},0,x_{3},\dots,x_{n})^{T};\\
+   \quad\\
+   P_{13}:c=\frac{\sqrt{x_{1}^{2}+x_{2}^{2}}}{\sqrt{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}}},\quad s=\frac{x_{3}}{\sqrt{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}}}\\
+   \quad\\
+   P_{12}x=(\sqrt{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}},0,0,x_{4},\dots,x_{n})^{T};\\
+   \quad\\
+   P_{1n}:c=\frac{\sqrt{x_{1}^{2}+x_{2}^{2}+\dots+x_{n-1}^{2}}}{\sqrt{x_{1}^{2}+x_{2}^{2}+\dots+x_{n}^{2}}},\quad s=\frac{x_{n}}{\sqrt{x_{1}^{2}+x_{2}^{2}+\dots+x_{n}^{2}}}\\
+   \quad\\
+   P_{12}x=(\sqrt{x_{1}^{2}+x_{2}^{2}+\dots+x_{n}^{2}},0,\dots,0)^{T}=||x||\vec e_{1};\\
+   证毕</script><p>   根据引理我们可进行基于吉文斯变换的QR分解：</p>
+<p>   设A是一个$m\times n$的矩阵且它的列向量线性无关，则利用吉文斯变换可以把A逐步化为上梯形矩阵。</p>
+<script type="math/tex; mode=display">
+   设\\
+   \quad\\
+   A=
+   \begin{pmatrix}
+   a_{11}&a_{12}&\dots&a_{1n}\\
+   a_{21}&a_{22}&\dots&a_{2n}\\
+   \vdots&\vdots&&\vdots\\
+   a_{m1}&a_{m2}&\dots&a_{mn}
+   \end{pmatrix}=
+   (a_{1},a_{2},\dots,a_{n})\\
+   \quad\\
+   并记\\
+   A^{(0)}=(a_{1}^{(0)},a_{2}^{(0)},\dots,a_{n}^{(0)})=A\\
+   变换过程如下：\\
+   第一步：\\
+   根据引理可以构造m-1个m阶吉文斯矩阵的乘积P_{1},使得\\
+   P_{1}a_{1}^{(0)}=||a_{1}^{(0)}||_{2}\vec e_{1}\\
+   \quad\\
+   记a_{11}=||a_{1}^{(0)}||_{2},用P_{1}左乘A^{0}得\Rightarrow\\
+   \quad\\
+   A^{(1)}=P_{1}A^{(0)}=
+   \begin{pmatrix}
+   a_{11}^{(1)}&a_{12}^{(1)}&\dots&a_{1n}^{(1)}\\
+   0&a_{22}^{(1)}&\dots&a_{2n}^{(1)}\\
+   \vdots&\vdots&&\vdots\\
+   0&a_{m2}^{(1)}&\dots&a_{mn}^{(1)}
+   \end{pmatrix}\\
+   第二步：\\
+   记a_{2}^{(1)}=(a_{12}^{(1)},a_{22}^{(1)},\dots,a_{m2}^{(1)})^{T}=(a_{12}^{(1)},\widetilde a_{2}^{(1)})\\
+   同理可以构造m-2个m-1阶吉文斯矩阵的乘积\widetilde P_{2}，使得\\
+   \widetilde P_{2}\widetilde a_{2}^{(1)}=||\widetilde a_{2}^{(1)}||_{2}\vec e_{1}\\
+   令\\
+   P_{2}=
+   \begin{pmatrix}
+   1&0\\
+   0&\widetilde P_{2}\\
+   \end{pmatrix},\\
+   用P_{2}左乘A^{(1)}得\\
+   A^{(2)}=P_{2}A^{(1)}=
+   \begin{pmatrix}
+   a_{11}^{(1)}&a_{12}^{(1)}&a_{13}^{(1)}&\dots&a_{1n}^{(1)}\\
+   0&a_{22}^{(2)}&a_{23}^{(2)}&\dots&a_{2n}^{(2)}\\
+   0&0&a_{33}^{(2)}&\dots&a_{3n}^{(2)}\\
+   \vdots&\vdots&\vdots&&\vdots\\
+   0&0&a_{m3}^{(2)}&\dots&a_{mn}^{(2)}
+   \end{pmatrix}\\
+   重复以上过程，构造P_{1},P_{2},\dots,P_{k},则
+   A^{(k-1)}=P_{k-1}P_{k-2}\dots P_{1}A^{(0)}\\
+   =
+   \begin{pmatrix}
+   a_{11}^{(1)}&a_{12}^{(1)}&\dots&a_{1,k-1}^{(1)}&a_{1k}^{(1)}&a_{1,k+1}^{(1)}&\dots&a_{1n}^{(1)}\\
+   0&a_{22}^{(2)}&\dots&a_{2,k-1}^{(2)}&a_{2k}^{(2)}&a_{2,k+1}^{(2)}&\dots&a_{2n}^{(2)}\\
+   &&\ddots&\vdots&\vdots&\vdots&&\vdots\\
+   0&0&0&a_{k-1,k-1}^{(k-1)}&a_{k-1,k}^{(k-1)}&a_{k-1,k+1}^{(k-1)}&\dots&a_{k-1,n}^{(k-1)}\\
+   0&0&0&0&a_{kk}^{(k-1)}&a_{k,k+1}^{(k-1)}&\dots&a_{kn}^{(k-1)}\\
+   \vdots&\vdots&\vdots&&\vdots\\
+   0&0&0&0&a_{mk}^{(k-1)}&a_{m,k+1}^{(k-1)}&\dots&a_{mn}^{(k-1)}
+   \end{pmatrix}\\
+   第k步：\\
+   记a_{k}^{(k-1)}=(a_{1k}^{(1)},a_{2k}^{(2)},\dots,a_{k-1,k}^{(k-1)},a_{kk}^{(k-1)},\dots,a_{mk}^{(k-1)})^{T}=(a_{1k}^{(1)},a_{2k}^{(2)},\dots,a_{k-1,k}^{(k-1)},\widetilde a_{k}^{(k-1)})^{T}\\
+   构造\\
+   \widetilde p_{k}\widetilde a_{k}^{(k-1)}=||\widetilde a_{k}^{(k-1)}||_{2}\vec e_{1}\\
+   令\\
+   P_{k}=
+   \begin{pmatrix}
+   I_{k-1}&0\\
+   0&\widetilde P_{k}
+   \end{pmatrix}\\
+   用P-{k}左乘A^{(k-1)}得\\
+   A^{(k)}=P_{k}P_{k-1}\dots P_{1}A^{(0)}\\
+   =
+   \begin{pmatrix}
+   a_{11}^{(1)}&a_{12}^{(1)}&\dots&a_{1,k-1}^{(1)}&a_{1k}^{(1)}&a_{1,k+1}^{(1)}&a_{1,k+2}^{(1)}&\dots&a_{1n}^{(1)}\\
+   &a_{22}^{(2)}&\dots&a_{2,k-1}^{(2)}&a_{2k}^{(2)}&a_{2,k+1}^{(2)}&a_{2,k+2}^{(2)}&\dots&a_{2n}^{(2)}\\
+   &&\ddots&\vdots&\vdots&\vdots&\vdots&&\vdots\\
+   &&&a_{k-1,k-1}^{(k-1)}&a_{k-1,k}^{(k-1)}&a_{k-1,k+1}^{(k-1)}&a_{k-1,k+2}^{(k-1)}&\dots&a_{k-1,n}^{(k-1)}&\\
+   &&&&a_{kk}^{(k)}&a_{k,k+1}^{(k)}&a_{k,k+2}^{(k)}&\dots&a_{kn}^{(k)}\\
+   &&&&&a_{k+1,k+1}^{(k)}&a_{k+1,k+2}^{(k)}&\dots&a_{k+1,n}^{(k)}\\
+   &&&&&\vdots&\vdots&&\vdots\\
+   &&&&&a_{m,k+1}^{(k)}&a_{m,k+2}^{(k)}&\dots&a_{m,n}^{(k)}\\
+   \end{pmatrix}\\</script><p>继续上述变换过程，直至$s=min\{m-1,n\}$步，最后得到</p>
+<script type="math/tex; mode=display">
+A^{s}=P_{s}P_{s-1}\dots P_{1}A=R</script><p>由于上述的过程中每个$P_{i}$都是正交矩阵，所以$P=P_{s}P_{s-1}\dots P_{1}$也是正交矩阵，所以式（7）可以写为</p>
+<script type="math/tex; mode=display">
+PA=R</script><ul>
+<li>当m=n时，R是N阶上三角矩阵，这时式（8）可以写为</li>
+</ul>
+<script type="math/tex; mode=display">
+A=QR</script><p>​        其中$Q=P^{T}$为n阶正交矩阵，R为可逆的上三角矩阵</p>
+<ul>
+<li>当m&gt;n时，R是$m\times n$阶的上梯形矩阵，此时<script type="math/tex; mode=display">
+PA=R=
+\begin{pmatrix}
+R_{1}\\
+0
 \end{pmatrix}</script></li>
 </ul>
-</li>
-</ol>
-<ol>
-<li>回代的过程<script type="math/tex; mode=display">
-\left\{
-\begin{array}
-x_n=\frac{b_n^{n-1}}{a_{nn}^{(n-1)}}\\
-x_k=\frac{ {b_k}^{(k-1)-\sum_{j=k+1}^n(a_{kj}^{(k-1)}x_j)} } {a_{kk}^{(k-1)} },\quad k=n-1,n-2,\dots,2,1.
-\end{array}
-\right.</script></li>
-</ol>
-<h2 id="算法的分析"><a href="#算法的分析" class="headerlink" title="算法的分析"></a>算法的分析</h2><ul>
-<li><p>[ ] 在消元的过程中，计算$l_{ik}\triangleq \frac {a_{ik}^{(k-1)}} {a_{kk}^{(k-1)}},\quad i=k+1,k+2,\dots,n$时共有n-k个除法，而计算$a_{ij}^{(k)}=a_{ij}^{(k-1)}-l_{ik}^{(k-1)}a_{kj}^{(k-1)} ,\quad i=k+1,k+2,\dots,n;j=k=1,k+2,\dots,n$时有$(n-k)^2$个乘法，计算$b_{i}^{(k)}=b_{i}^{(k-1)}-l_{ik}^{(k-1)}b_{k}^{(k-1)} ,\quad i=k+1,k+2,\dots,n$时也有n-k个乘法，消元共进行了n-1步，即$k=1,2,\dots,n-1$.</p>
-</li>
-<li><p>[ ] ==所以在消元过程中乘除法的运算量为==</p>
-<script type="math/tex; mode=display">
-N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
-</ul>
-<ul>
-<li><p>[ ] ==回代过程中乘除法的运算量为==</p>
-<script type="math/tex; mode=display">
-   N_2=\sum_{k=1}^{n-1}(n-k)+n=n^2/2+n/2.</script><ul>
-<li><p>[ ] ==所以高斯消元法解n阶矩阵的总乘除法运算量为==</p>
-<p>$N=N_1+N_2=n^3/3+n^2-n/3$</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="高斯消元法的程序实现"><a href="#高斯消元法的程序实现" class="headerlink" title="高斯消元法的程序实现"></a>高斯消元法的程序实现</h2><h6 id="我们可以封装一个Matrix类如下"><a href="#我们可以封装一个Matrix类如下" class="headerlink" title="我们可以封装一个Matrix类如下"></a>我们可以封装一个Matrix类如下</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Matrix</span><br><span class="line">&#123;</span><br><span class="line">    public int row = 0;</span><br><span class="line">    public int column = 0;           </span><br><span class="line">    private float[,] matrix;</span><br><span class="line">    public Matrix(int row, int column)</span><br><span class="line">    &#123;</span><br><span class="line">        this.row = row;</span><br><span class="line">        this.column = column;</span><br><span class="line">        matrix = new float[row, column];</span><br><span class="line">        for (int i = 0; i &lt; row; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 0; j &lt; column; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                string mid = Console.ReadLine();</span><br><span class="line">                var rows = mid.Split(&apos; &apos;);</span><br><span class="line">                foreach (var item in rows)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[i, j++] = float.Parse(item);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void DisPlay()</span><br><span class="line">    &#123;                                         </span><br><span class="line">            for (int i = 0; i &lt; this.row; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int j = 0; j &lt; this.column; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.Write(matrix[i, j] + &quot; &quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                Console.WriteLine(&quot;\r&quot;);</span><br><span class="line">            &#125;                </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Simplize()</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i = 0; i &lt; this.row ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (matrix[i, i] != 0)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int k = i + 1; k &lt; row ; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[k, i] = matrix[k, i] / matrix[i, i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;//这里将消元的中间量存在被消元的位置，因为运算后，这些位置的值为零</span><br><span class="line">            for (int j = i + 1; j &lt; row; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                for (int k = i + 1; k &lt; column; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    matrix[j, k] = matrix[j, k] - matrix[j, i] * matrix[i, k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当我们输入</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
-1&2&1&0\\
-2&2&3&3\\
--1&-3&0&2
-\end{pmatrix}</script><p>时，并调用Simplize和DisPlay方法，将得到结果如下</p>
-<p><img src="http://src.zhumingcj.cn/blog/20190628/vVp4oxA9X7eB.png?imageslim" alt="mark"></p>
-<p>事实上，这是一个矩阵的LU分解，LU分解在矩阵的研究中有着重要的地位，是十分常用的一个分解方法。</p>
-<h2 id="高斯消元法的缺点"><a href="#高斯消元法的缺点" class="headerlink" title="高斯消元法的缺点"></a>高斯消元法的缺点</h2><ul>
-<li>高斯消元法的运算量较大</li>
-<li>高斯消元法的顺利进行要求矩阵满足某些要求</li>
-</ul>
+<p>  其中$R_{1}$为可逆的上三角矩阵</p>
+<p>至此，我们实现了矩阵A基于吉文斯变换的QR分解。</p>
 
       
     </div>
@@ -447,13 +515,13 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="">Gaussian elimination method</a></p>
+        <p><span>本文标题:</span><a href="">QR decomposition</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
-        <p><span>发布时间:</span>2019-06-27, 20:06:11</p>
-        <p><span>最后更新:</span>2019-08-02, 22:49:54</p>
+        <p><span>发布时间:</span>2019-08-08, 16:22:38</p>
+        <p><span>最后更新:</span>2019-08-09, 22:38:28</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="" title="Gaussian elimination method">http://zhumingcj.github.io/2019/06/27/Gaussian elimination method/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/06/27/Gaussian elimination method/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="" title="QR decomposition">http://zhumingcj.github.io/2019/08/08/qr-decomposition/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/08/08/qr-decomposition/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -465,16 +533,10 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="../../../07/01/singleton-pattern/">
-                    Singleton Pattern
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="../Decoractor-Pattern/">
-                    Decoractor Pattern
+                <a href="../../../07/23/simple-classification/">
+                    Simple Classification
                 </a>
             </div>
         
@@ -486,7 +548,7 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#求解矩阵的高斯消元法"><span class="toc-number">1.</span> <span class="toc-text">求解矩阵的高斯消元法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#消元过程"><span class="toc-number">1.1.</span> <span class="toc-text">消元过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法的分析"><span class="toc-number">1.2.</span> <span class="toc-text">算法的分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高斯消元法的程序实现"><span class="toc-number">1.3.</span> <span class="toc-text">高斯消元法的程序实现</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#我们可以封装一个Matrix类如下"><span class="toc-number">1.3.0.0.0.1.</span> <span class="toc-text">我们可以封装一个Matrix类如下</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高斯消元法的缺点"><span class="toc-number">1.4.</span> <span class="toc-text">高斯消元法的缺点</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QR分解-1"><span class="toc-number">1.</span> <span class="toc-text">QR分解(1)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#QR分解的导出"><span class="toc-number">1.1.</span> <span class="toc-text">QR分解的导出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#吉文斯变换法"><span class="toc-number">1.1.1.</span> <span class="toc-text">吉文斯变换法</span></a></li></ol></li></ol></li></ol>
         
     </div>
     <style>
@@ -522,7 +584,7 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Gaussian elimination method　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"QR decomposition　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -541,8 +603,8 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://zhumingcj.github.io/2019/06/27/Gaussian elimination method/';
-            this.page.identifier = '2019/06/27/Gaussian elimination method/';
+            this.page.url = 'http://zhumingcj.github.io/2019/08/08/qr-decomposition/';
+            this.page.identifier = '2019/08/08/qr-decomposition/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -582,8 +644,8 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
 
     // Add comment count
     <script id="dsq-count-scr" src="//zhumingcj.disqus.com/count.js" async></script>
-    <span class="disqus-comment-count" data-disqus-identifier="2019/06/27/Gaussian elimination method/"></span>
-    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/06/27/Gaussian elimination method/"></span>
+    <span class="disqus-comment-count" data-disqus-identifier="2019/08/08/qr-decomposition/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/08/08/qr-decomposition/"></span>
     <script>
         $(".disqus-comment-count").hide();
         var $disqusCount = $(".disqus-comment-count");
@@ -602,21 +664,19 @@ N_1=\sum_{k=1}^{n-1}((n-k)^2+2(n-k))=n^3/3+n^2/2-5n/6.</script></li>
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="../../../07/01/singleton-pattern/" title="上一篇: Singleton Pattern">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="../Decoractor-Pattern/" title="下一篇: Decoractor Pattern">
+            <a href="../../../07/23/simple-classification/" title="下一篇: Simple Classification">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../08/08/qr-decomposition/">QR decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/23/simple-classification/">Simple Classification</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/08/improved-square-method/">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/my-first-blog/">my first blog</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="">QR decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/23/simple-classification/">Simple Classification</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/08/improved-square-method/">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
 
 
 
