@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="ZhuMing">
+
+
+
+<meta name="description" content="QR分解(1)QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。">
+<meta name="keywords" content="Matrix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QR decomposition">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/08/08/qr-decomposition_1/index.html">
+<meta property="og:site_name" content="ZhuMing&#39;blog">
+<meta property="og:description" content="QR分解(1)QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://src.zhumingcj.cn/blog/20190811/c9Sf45LyEfIU.png?imageslim">
+<meta property="og:image" content="http://src.zhumingcj.cn/blog/20190811/TDg3gezX4Q25.png?imageslim">
+<meta property="og:updated_time" content="2019-08-11T03:26:09.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QR decomposition">
+<meta name="twitter:description" content="QR分解(1)QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。">
+<meta name="twitter:image" content="http://src.zhumingcj.cn/blog/20190811/c9Sf45LyEfIU.png?imageslim">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="ZhuMing&#39;blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../../../css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>QR decomposition | ZhuMing&#39;blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+</head></html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">ZhuMing</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">LearningGround</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="../../../../index.html">主页</a></li>
+                        
+                            <li><a href="../../../../archives/">所有文章</a></li>
+                        
+                            <li><a href="../../../../tags/">标签云</a></li>
+                        
+                            <li><a href="../../../../about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:2075433321@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/zhumingcj" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
+                            
+                                <a class="fa QQ" href="tencent://message/?uin=2075433321" title="QQ"></a>
+                            
+                                <a class="fa 微信" href="weixin://zmjzsqka123" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/html/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/machine-learining/">Machine Learining</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/machine-learning/">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/machine-learnning/">Machine Learnning</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/matrix/">Matrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/numerical-analysis/">Numerical Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/文本编辑/">文本编辑</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/杂文/">杂文</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/网络协议/">网络协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/设计模式/">设计模式</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">乐于分享，喜欢环境音乐，爱看动漫，偶尔写写技术博客的小程一枚...</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">ZhuMing</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">ZhuMing</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">LearningGround</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="../../../../index.html">主页</a></li>
+                
+                    <li><a href="../../../../archives/">所有文章</a></li>
+                
+                    <li><a href="../../../../tags/">标签云</a></li>
+                
+                    <li><a href="../../../../about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:2075433321@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zhumingcj" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/45f8fa07316dcf855c93cca6e9fae2cf" title="知乎"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="tencent://message/?uin=2075433321" title="QQ"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="weixin://zmjzsqka123" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-qr-decomposition_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="" class="article-date">
+      <time datetime="2019-08-08T08:22:38.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+
+ 
+    <a href="#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/08/08/qr-decomposition_1/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      QR decomposition
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="../../../../categories/numerical-analysis/">Numerical Analysis</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/matrix/">Matrix</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="QR分解-1"><a href="#QR分解-1" class="headerlink" title="QR分解(1)"></a>QR分解(1)</h1><p>QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。</p>
+<a id="more"></a>
+<h2 id="QR分解的导出"><a href="#QR分解的导出" class="headerlink" title="QR分解的导出"></a>QR分解的导出</h2><p>QR分解可以通过两种基本的正交变换来导出——吉文斯变换和豪斯霍尔德变换，下面将详细地给出两种正交变换推导QR分解的过程。</p>
+<h3 id="吉文斯变换法"><a href="#吉文斯变换法" class="headerlink" title="吉文斯变换法"></a>吉文斯变换法</h3><ol>
+<li><p>吉文斯变换的定义</p>
+<script type="math/tex; mode=display">
+对某个\theta，记s=sin\theta,c=cos\theta,设1\leq i \lt j \leq n\\
+P(i,j,\theta)=
+\begin{pmatrix}
+1&\\
+&\ddots\\
+&&1\\
+&&&c&&&&s\\
+&&&&1\\
+&&&&&\ddots\\
+&&&&&&1\\
+&&&-s&&&&c\\
+&&&&&&&&1\\
+&&&&&&&&&\ddots\\
+&&&&&&&&&&1
+\end{pmatrix}_{n\times  n}</script></li>
+<li><p>吉文斯变换的特性</p>
+<ul>
+<li><p>通过计算我们可以得到$P(i,j,\theta)\times P(i,j,\theta)^{T}=I$，因此吉文斯变换矩阵是一个正交矩阵。</p>
+</li>
+<li><p>当吉文斯矩阵左乘一个方阵x时（$P(i,j,\theta)x$），只会改变x的第i个和第j个分量。</p>
+<script type="math/tex; mode=display">
+事实上，设x=(x_{1},x_{2},\dots,x_{n})^{T},y=(y_{1},y_{2},\dots,y_{n})^{T}\\
+则根据y=P_{i,j}x可得\\
+y_{i}=cx_{i}+sx_{j},\quad y_{j}=-sx_{i}+cx_{j}</script></li>
+<li><p>直观的看，吉文斯变换是一个平面旋转矩阵。由上一条性质，我们知道吉文斯矩阵只改变x的i,j分量，这种改变的几何意义是：它会把x在i,j平面的投影顺时针旋转$\theta$度，以二维的吉文斯矩阵为例：</p>
+<script type="math/tex; mode=display">
+P_{(1,2)}=
+\begin{pmatrix}
+cos\theta&sin\theta\\
+-sin\theta&cos\theta
+\end{pmatrix}_{2\times2}
+\quad\\
+当我们取\theta为\frac{\pi}{2}时，我们得到\\
+P=
+\begin{pmatrix}
+0&1\\
+-1&0
+\end{pmatrix}
+用P左乘于x=(1,2)^{T}得到x'=(2,-1)\\我们可以看到x在P的作用下顺时针旋转了90^{\circ}</script></li>
+<li><p>吉文斯矩阵可以将给定向量的某个分量化为零，由第二个特性，我们可以得到以下结论：</p>
+<script type="math/tex; mode=display">
+当x_{i}^{2}+x_{j}^{2}\neq0时，欲使x_{j}'=0,只需要选取\\
+c=\frac{x_{i}}{\sqrt{x_{i}^{2}+x_{j}^{2}}},s=\frac{x_{j}}{\sqrt{x_{i}^{2}+x_{j}^{2}}}</script></li>
+</ul>
+</li>
+</ol>
+<pre><code> 也可以直观的理解为将给定向量在i,j平面的分量旋转至与i坐标轴重合，显然这种旋转存在且旋转角度就是上式所给出的。
+</code></pre><ol>
+<li><p>基于吉文斯变换的QR分解</p>
+<p>思路：由于QR分解的形式是分解为一个上梯形矩阵和一个正交矩阵，因此可以考虑用若干个吉文斯矩阵的乘积将给定矩阵化为上三角矩阵。</p>
+</li>
+</ol>
+<p>   引理：设x是任意给定的非零向量，则存在有限个吉文斯矩阵的乘积P，使得$Px=||x||_{2}\vec e_{1}$，其中$\vec e_{i}=(1,0,\dots,0)$</p>
+<p>   证明：</p>
+<p>   根据吉文斯矩阵的最后一条特性，依次构造</p>
+<script type="math/tex; mode=display">
+   P_{12}:c=\frac{x_{1}}{\sqrt{x_{1}^{2}+x_{2}^{2}}},\quad s=\frac{x_{2}}{\sqrt{x_{1}^{2}+x_{2}^{2}}}\\
+   \quad\\
+   P_{12}x=(\sqrt{x_{1}^{2}+x_{2}^{2}},0,x_{3},\dots,x_{n})^{T};\\
+   \quad\\
+   P_{13}:c=\frac{\sqrt{x_{1}^{2}+x_{2}^{2}}}{\sqrt{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}}},\quad s=\frac{x_{3}}{\sqrt{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}}}\\
+   \quad\\
+   P_{12}x=(\sqrt{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}},0,0,x_{4},\dots,x_{n})^{T};\\
+   \quad\\
+   P_{1n}:c=\frac{\sqrt{x_{1}^{2}+x_{2}^{2}+\dots+x_{n-1}^{2}}}{\sqrt{x_{1}^{2}+x_{2}^{2}+\dots+x_{n}^{2}}},\quad s=\frac{x_{n}}{\sqrt{x_{1}^{2}+x_{2}^{2}+\dots+x_{n}^{2}}}\\
+   \quad\\
+   P_{12}x=(\sqrt{x_{1}^{2}+x_{2}^{2}+\dots+x_{n}^{2}},0,\dots,0)^{T}=||x||\vec e_{1};\\
+   证毕</script><p>   根据引理我们可进行基于吉文斯变换的QR分解：</p>
+<p>   设A是一个$m\times n$的矩阵且它的列向量线性无关，则利用吉文斯变换可以把A逐步化为上梯形矩阵。</p>
+<script type="math/tex; mode=display">
+   设\\
+   \quad\\
+   A=
+   \begin{pmatrix}
+   a_{11}&a_{12}&\dots&a_{1n}\\
+   a_{21}&a_{22}&\dots&a_{2n}\\
+   \vdots&\vdots&&\vdots\\
+   a_{m1}&a_{m2}&\dots&a_{mn}
+   \end{pmatrix}=
+   (a_{1},a_{2},\dots,a_{n})\\
+   \quad\\
+   并记\\
+   A^{(0)}=(a_{1}^{(0)},a_{2}^{(0)},\dots,a_{n}^{(0)})=A\\
+   变换过程如下：\\
+   第一步：\\
+   根据引理可以构造m-1个m阶吉文斯矩阵的乘积P_{1},使得\\
+   P_{1}a_{1}^{(0)}=||a_{1}^{(0)}||_{2}\vec e_{1}\\
+   \quad\\
+   记a_{11}=||a_{1}^{(0)}||_{2},用P_{1}左乘A^{0}得\Rightarrow\\
+   \quad\\
+   A^{(1)}=P_{1}A^{(0)}=
+   \begin{pmatrix}
+   a_{11}^{(1)}&a_{12}^{(1)}&\dots&a_{1n}^{(1)}\\
+   0&a_{22}^{(1)}&\dots&a_{2n}^{(1)}\\
+   \vdots&\vdots&&\vdots\\
+   0&a_{m2}^{(1)}&\dots&a_{mn}^{(1)}
+   \end{pmatrix}\\
+   第二步：\\
+   记a_{2}^{(1)}=(a_{12}^{(1)},a_{22}^{(1)},\dots,a_{m2}^{(1)})^{T}=(a_{12}^{(1)},\widetilde a_{2}^{(1)})\\
+   同理可以构造m-2个m-1阶吉文斯矩阵的乘积\widetilde P_{2}，使得\\
+   \widetilde P_{2}\widetilde a_{2}^{(1)}=||\widetilde a_{2}^{(1)}||_{2}\vec e_{1}\\
+   令\\
+   P_{2}=
+   \begin{pmatrix}
+   1&0\\
+   0&\widetilde P_{2}\\
+   \end{pmatrix},\\
+   用P_{2}左乘A^{(1)}得\\
+   A^{(2)}=P_{2}A^{(1)}=
+   \begin{pmatrix}
+   a_{11}^{(1)}&a_{12}^{(1)}&a_{13}^{(1)}&\dots&a_{1n}^{(1)}\\
+   0&a_{22}^{(2)}&a_{23}^{(2)}&\dots&a_{2n}^{(2)}\\
+   0&0&a_{33}^{(2)}&\dots&a_{3n}^{(2)}\\
+   \vdots&\vdots&\vdots&&\vdots\\
+   0&0&a_{m3}^{(2)}&\dots&a_{mn}^{(2)}
+   \end{pmatrix}\\
+   重复以上过程，构造P_{1},P_{2},\dots,P_{k},则
+   A^{(k-1)}=P_{k-1}P_{k-2}\dots P_{1}A^{(0)}\\
+   =
+   \begin{pmatrix}
+   a_{11}^{(1)}&a_{12}^{(1)}&\dots&a_{1,k-1}^{(1)}&a_{1k}^{(1)}&a_{1,k+1}^{(1)}&\dots&a_{1n}^{(1)}\\
+   0&a_{22}^{(2)}&\dots&a_{2,k-1}^{(2)}&a_{2k}^{(2)}&a_{2,k+1}^{(2)}&\dots&a_{2n}^{(2)}\\
+   &&\ddots&\vdots&\vdots&\vdots&&\vdots\\
+   0&0&0&a_{k-1,k-1}^{(k-1)}&a_{k-1,k}^{(k-1)}&a_{k-1,k+1}^{(k-1)}&\dots&a_{k-1,n}^{(k-1)}\\
+   0&0&0&0&a_{kk}^{(k-1)}&a_{k,k+1}^{(k-1)}&\dots&a_{kn}^{(k-1)}\\
+   \vdots&\vdots&\vdots&&\vdots\\
+   0&0&0&0&a_{mk}^{(k-1)}&a_{m,k+1}^{(k-1)}&\dots&a_{mn}^{(k-1)}
+   \end{pmatrix}\\
+   第k步：\\
+   记a_{k}^{(k-1)}=(a_{1k}^{(1)},a_{2k}^{(2)},\dots,a_{k-1,k}^{(k-1)},a_{kk}^{(k-1)},\dots,a_{mk}^{(k-1)})^{T}=(a_{1k}^{(1)},a_{2k}^{(2)},\dots,a_{k-1,k}^{(k-1)},\widetilde a_{k}^{(k-1)})^{T}\\
+   构造\\
+   \widetilde p_{k}\widetilde a_{k}^{(k-1)}=||\widetilde a_{k}^{(k-1)}||_{2}\vec e_{1}\\
+   令\\
+   P_{k}=
+   \begin{pmatrix}
+   I_{k-1}&0\\
+   0&\widetilde P_{k}
+   \end{pmatrix}\\
+   用P-{k}左乘A^{(k-1)}得\\
+   A^{(k)}=P_{k}P_{k-1}\dots P_{1}A^{(0)}\\
+   =
+   \begin{pmatrix}
+   a_{11}^{(1)}&a_{12}^{(1)}&\dots&a_{1,k-1}^{(1)}&a_{1k}^{(1)}&a_{1,k+1}^{(1)}&a_{1,k+2}^{(1)}&\dots&a_{1n}^{(1)}\\
+   &a_{22}^{(2)}&\dots&a_{2,k-1}^{(2)}&a_{2k}^{(2)}&a_{2,k+1}^{(2)}&a_{2,k+2}^{(2)}&\dots&a_{2n}^{(2)}\\
+   &&\ddots&\vdots&\vdots&\vdots&\vdots&&\vdots\\
+   &&&a_{k-1,k-1}^{(k-1)}&a_{k-1,k}^{(k-1)}&a_{k-1,k+1}^{(k-1)}&a_{k-1,k+2}^{(k-1)}&\dots&a_{k-1,n}^{(k-1)}&\\
+   &&&&a_{kk}^{(k)}&a_{k,k+1}^{(k)}&a_{k,k+2}^{(k)}&\dots&a_{kn}^{(k)}\\
+   &&&&&a_{k+1,k+1}^{(k)}&a_{k+1,k+2}^{(k)}&\dots&a_{k+1,n}^{(k)}\\
+   &&&&&\vdots&\vdots&&\vdots\\
+   &&&&&a_{m,k+1}^{(k)}&a_{m,k+2}^{(k)}&\dots&a_{m,n}^{(k)}\\
+   \end{pmatrix}\\</script><p>继续上述变换过程，直至$s=min\{m-1,n\}$步，最后得到</p>
+<script type="math/tex; mode=display">
+A^{s}=P_{s}P_{s-1}\dots P_{1}A=R</script><p>由于上述的过程中每个$P_{i}$都是正交矩阵，所以$P=P_{s}P_{s-1}\dots P_{1}$也是正交矩阵，所以式（7）可以写为</p>
+<script type="math/tex; mode=display">
+PA=R</script><ul>
+<li>当m=n时，R是N阶上三角矩阵，这时式（8）可以写为</li>
+</ul>
+<script type="math/tex; mode=display">
+A=QR</script><p>​        其中$Q=P^{T}$为n阶正交矩阵，R为可逆的上三角矩阵</p>
+<ul>
+<li>当m&gt;n时，R是$m\times n$阶的上梯形矩阵，此时<script type="math/tex; mode=display">
+PA=R=
+\begin{pmatrix}
+R_{1}\\
+0
+\end{pmatrix}</script></li>
+</ul>
+<p>  其中$R_{1}$为可逆的上三角矩阵</p>
+<p>至此，我们实现了矩阵A基于吉文斯变换的QR分解。</p>
+<h3 id="吉文斯变换法QR分解的程序"><a href="#吉文斯变换法QR分解的程序" class="headerlink" title="吉文斯变换法QR分解的程序"></a>吉文斯变换法QR分解的程序</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">QR_decomposition</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">//用于验证的demo，自行修改</span></span><br><span class="line">            Matrix m = <span class="keyword">new</span> Matrix(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">            Matrix[] result_QR = m.QR_Decomposition();</span><br><span class="line">            result_QR[<span class="number">0</span>].DisPlay();</span><br><span class="line">            Console.WriteLine();</span><br><span class="line">            result_QR[<span class="number">1</span>].DisPlay();</span><br><span class="line">            Matrix n = result_QR[<span class="number">0</span>] * result_QR[<span class="number">1</span>];</span><br><span class="line">            Console.WriteLine();</span><br><span class="line">            n.DisPlay();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对象封装</span></span><br><span class="line">        <span class="keyword">class</span> <span class="title">Matrix</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//数据和矩阵形状的信息</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">int</span> row = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">int</span> column = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">float</span>[,] matrix;</span><br><span class="line">            <span class="comment">//不同的构造方法，输入初始化和自动初始化</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="title">Matrix</span>(<span class="params"><span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">int</span> option</span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">                <span class="keyword">this</span>.row = row;</span><br><span class="line">                <span class="keyword">this</span>.column = column;</span><br><span class="line">                matrix = <span class="keyword">new</span> <span class="keyword">float</span>[row, column];</span><br><span class="line">                <span class="keyword">if</span> (option == <span class="number">1</span> &amp;&amp; row == column)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; row; j++)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">if</span> (i == j)</span><br><span class="line">                            &#123;</span><br><span class="line">                                matrix[i, i] = <span class="number">1</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                            &#123;</span><br><span class="line">                                matrix[i, j] = <span class="number">0</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="title">Matrix</span>(<span class="params"><span class="keyword">int</span> row, <span class="keyword">int</span> column</span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">                <span class="keyword">this</span>.row = row;</span><br><span class="line">                <span class="keyword">this</span>.column = column;</span><br><span class="line">                Console.WriteLine(<span class="string">$"Please enter a matrix with <span class="subst">&#123;<span class="keyword">this</span>.row&#125;</span>rows,<span class="subst">&#123;<span class="keyword">this</span>.column&#125;</span>colums"</span>);</span><br><span class="line">                matrix = <span class="keyword">new</span> <span class="keyword">float</span>[row, column];</span><br><span class="line">                <span class="keyword">try</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; column; j++)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">string</span> mid = Console.ReadLine();</span><br><span class="line">                            <span class="keyword">var</span> rows = mid.Split(<span class="string">' '</span>);</span><br><span class="line">                            <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> rows)</span><br><span class="line">                            &#123;</span><br><span class="line">                                matrix[i, j++] = <span class="keyword">float</span>.Parse(item);</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    Console.WriteLine(<span class="string">"\r\n"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">catch</span> (Exception e)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(<span class="string">$"something wrong!\n<span class="subst">&#123;e.Message&#125;</span>"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//打印矩阵</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DisPlay</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.row; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.column; j++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Console.Write(<span class="keyword">string</span>.Format(<span class="string">"&#123;0:F3&#125;"</span>, matrix[i, j]) + <span class="string">"   "</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    Console.WriteLine(<span class="string">"\r"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//构造吉文斯矩阵的函数</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Matrix <span class="title">RotateMatrix</span>(<span class="params"><span class="keyword">int</span> order, <span class="keyword">float</span> para1, <span class="keyword">float</span> para2, <span class="keyword">int</span> index1, <span class="keyword">int</span> index2</span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">                Matrix Rotate_matrix = <span class="keyword">new</span> Matrix(order, order, <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">float</span> cos = (<span class="keyword">float</span>)(para1 / (Math.Sqrt(Math.Pow(para1, <span class="number">2</span>) + Math.Pow(para2, <span class="number">2</span>))));</span><br><span class="line">                <span class="keyword">float</span> sin = (<span class="keyword">float</span>)(para2 / (Math.Sqrt(Math.Pow(para1, <span class="number">2</span>) + Math.Pow(para2, <span class="number">2</span>))));</span><br><span class="line">                Rotate_matrix.matrix[index1, index1] = cos;</span><br><span class="line">                Rotate_matrix.matrix[index2, index2] = cos;</span><br><span class="line">                Rotate_matrix.matrix[index1, index2] = sin;</span><br><span class="line">                Rotate_matrix.matrix[index2, index1] = -sin;</span><br><span class="line">                <span class="keyword">return</span> Rotate_matrix;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//矩阵转置</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Transpose</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">                <span class="keyword">float</span>[,] temp=<span class="keyword">new</span> <span class="keyword">float</span>[row,column];</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="keyword">this</span>. row; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;<span class="keyword">this</span>. column; j++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        temp[i, j] = matrix[j, i];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                matrix = temp;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//矩阵乘法的复写</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">static</span> Matrix <span class="keyword">operator</span> *(Matrix p1, Matrix p2)</span><br><span class="line">            &#123;</span><br><span class="line">                Matrix result = <span class="keyword">new</span> Matrix(p1.row, p2.column, <span class="number">0</span>);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; p1.row; i++)</span><br><span class="line">                &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; p2.column; j++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">float</span> temp = <span class="number">0</span>;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; p1.column; k++)</span><br><span class="line">                        &#123;</span><br><span class="line">                            temp += p1.matrix[i, k] * p2.matrix[k, j];</span><br><span class="line"></span><br><span class="line">                        &#125;</span><br><span class="line">                        result.matrix[i, j] = temp;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//QR分解的主要过程</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Matrix[] <span class="title">QR_Decomposition</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">				<span class="comment">//申明两个矩阵用于存放结果Q矩阵和R矩阵</span></span><br><span class="line">                Matrix result_Q = <span class="keyword">new</span> Matrix(<span class="keyword">this</span>.column, <span class="keyword">this</span>.column, <span class="number">1</span>);</span><br><span class="line">                Matrix result_R = <span class="keyword">new</span> Matrix(<span class="keyword">this</span>.row, <span class="keyword">this</span>.column, <span class="number">0</span>);</span><br><span class="line">                result_R.matrix = <span class="keyword">this</span>.matrix;</span><br><span class="line">                <span class="comment">//按照算法先列后行进行扫描</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; column; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; row; j++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//遇到元素是零的情况，跳过此次循环</span></span><br><span class="line">                        <span class="keyword">if</span> (result_R.matrix[j, i] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">                        Matrix rotate_matrix = RotateMatrix(column, result_R.matrix[i, i], result_R.matrix[j, i], i, j);</span><br><span class="line">                        result_Q = rotate_matrix * result_Q;</span><br><span class="line">                        result_R = rotate_matrix * result_R;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                result_Q.Transpose();</span><br><span class="line">                Matrix[] result = &#123; result_Q, result_R &#125;;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="程序的验证"><a href="#程序的验证" class="headerlink" title="程序的验证"></a>程序的验证</h4><p>对于上面的程序，我们用两个例子来进行验证：</p>
+<ul>
+<li><p>输入矩阵</p>
+<script type="math/tex; mode=display">
+A=
+\begin{pmatrix}
+3&5&5\\
+0&3&4\\
+4&0&5
+\end{pmatrix}</script><p>我们将得到输出如下</p>
+<p><img src="http://src.zhumingcj.cn/blog/20190811/c9Sf45LyEfIU.png?imageslim" alt="mark"></p>
+<p>经过验证程序输出的QR分解是正确的，并且通过计算QR矩阵的乘积，我们得到了原来输入的矩阵，这足以证明程序的正确性</p>
+</li>
+<li><p>再次输入矩阵</p>
+<script type="math/tex; mode=display">
+B=
+\begin{pmatrix}
+3 &14 &9\\
+6 &43 &3\\
+6 &22 &15\\
+\end{pmatrix}</script><p>输出结果如下</p>
+<p><img src="http://src.zhumingcj.cn/blog/20190811/TDg3gezX4Q25.png?imageslim" alt="mark"></p>
+<p>经过检验，结果依然是正确的。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="">QR decomposition</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
+        <p><span>发布时间:</span>2019-08-08, 16:22:38</p>
+        <p><span>最后更新:</span>2019-08-11, 11:26:09</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="" title="QR decomposition">http://zhumingcj.github.io/2019/08/08/qr-decomposition_1/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/08/08/qr-decomposition_1/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="../../11/qr-decomposition-2/">
+                    QR_Decomposition_2
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="../../../07/23/simple-classification/">
+                    Simple Classification
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QR分解-1"><span class="toc-number">1.</span> <span class="toc-text">QR分解(1)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#QR分解的导出"><span class="toc-number">1.1.</span> <span class="toc-text">QR分解的导出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#吉文斯变换法"><span class="toc-number">1.1.1.</span> <span class="toc-text">吉文斯变换法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#吉文斯变换法QR分解的程序"><span class="toc-number">1.1.2.</span> <span class="toc-text">吉文斯变换法QR分解的程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#程序的验证"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">程序的验证</span></a></li></ol></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"QR decomposition　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://zhumingcj.github.io/2019/08/08/qr-decomposition_1/';
+            this.page.identifier = '2019/08/08/qr-decomposition_1/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//zhumingcj.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
+
+</section>
+
+
+    // Add comment count
+    <script id="dsq-count-scr" src="//zhumingcj.disqus.com/count.js" async></script>
+    <span class="disqus-comment-count" data-disqus-identifier="2019/08/08/qr-decomposition_1/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/08/08/qr-decomposition_1/"></span>
+    <script>
+        $(".disqus-comment-count").hide();
+        var $disqusCount = $(".disqus-comment-count");
+        $disqusCount.bind("DOMNodeInserted", function(e) {
+            $(".count-comment").text(
+                $(this).text().replace(/[^0-9]/ig,"")
+            )
+            DISQUSWIDGETS.getCount({reset: true});
+        })
+    </script>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="../../11/qr-decomposition-2/" title="上一篇: QR_Decomposition_2">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="../../../07/23/simple-classification/" title="下一篇: Simple Classification">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../11/qr-decomposition-2/">QR_Decomposition_2</a></li><li class="post-list-item"><a class="post-list-link" href="">QR decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/23/simple-classification/">Simple Classification</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/08/improved-square-method/">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 ZhuMing
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

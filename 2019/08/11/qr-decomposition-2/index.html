@@ -15,20 +15,20 @@
 
 
 
-<meta name="description" content="设计模式之观察者模式">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="QR分解（2）QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。（QR分解续篇）">
+<meta name="keywords" content="Matrix">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式-观察者模式">
-<meta property="og:url" content="http://zhumingcj.github.io/2019/06/27/Observer Pattern/index.html">
+<meta property="og:title" content="QR_Decomposition_2">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/08/11/qr-decomposition-2/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="设计模式之观察者模式">
+<meta property="og:description" content="QR分解（2）QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。（QR分解续篇）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://src.zhumingcj.cn/blog/20190627/Pwc2H0fM3pGs.png?imageslim">
-<meta property="og:updated_time" content="2019-08-02T14:55:41.807Z">
+<meta property="og:image" content="http://src.zhumingcj.cn/blog/20190812/7GlB4asAswuB.png?imageslim">
+<meta property="og:updated_time" content="2019-08-13T13:36:32.545Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式-观察者模式">
-<meta name="twitter:description" content="设计模式之观察者模式">
-<meta name="twitter:image" content="http://src.zhumingcj.cn/blog/20190627/Pwc2H0fM3pGs.png?imageslim">
+<meta name="twitter:title" content="QR_Decomposition_2">
+<meta name="twitter:description" content="QR分解（2）QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。（QR分解续篇）">
+<meta name="twitter:image" content="http://src.zhumingcj.cn/blog/20190812/7GlB4asAswuB.png?imageslim">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>设计模式-观察者模式 | ZhuMing&#39;blog</title>
+<title>QR_Decomposition_2 | ZhuMing&#39;blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -281,11 +281,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Observer Pattern" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-qr-decomposition-2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-      <time datetime="2019-06-26T16:52:38.000Z" itemprop="datePublished">2019-06-27</time>
+      <time datetime="2019-08-11T05:06:47.000Z" itemprop="datePublished">2019-08-11</time>
 </a>
 
  
@@ -294,7 +294,7 @@
         <span class="count-comment"></span>
         
         
-            <span class="disqus-comment-count" data-disqus-identifier="2019/06/27/Observer Pattern/"></span>
+            <span class="disqus-comment-count" data-disqus-identifier="2019/08/11/qr-decomposition-2/"></span>
         
     </a>
 
@@ -309,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式-观察者模式
+      QR_Decomposition_2
     </h1>
   
 
@@ -318,13 +318,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="../../../../categories/c/">C#</a>
+    <a class="article-category-link" href="../../../../categories/numerical-analysis/">Numerical Analysis</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/设计模式/">设计模式</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/matrix/">Matrix</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -334,25 +334,139 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="设计模式之观察者模式"><a href="#设计模式之观察者模式" class="headerlink" title="设计模式之观察者模式"></a>设计模式之观察者模式</h1><a id="more"></a>
-<h2 id="什么是观察者模式"><a href="#什么是观察者模式" class="headerlink" title="什么是观察者模式"></a><strong>什么是观察者模式</strong></h2><p>形象的来说，观察者模式包含一个被观察者（subject）以及若干观察者（observer），observer观察subject，当subject发出一个动作时，observer观察到后作出相应反应。在程序中则是某个类（subject）达到某种触发条件后向其他类发送通知（通常是执行某些方法的信息），然后这些类执行相应的方法。</p>
-<h2 id="观察者模式的作用"><a href="#观察者模式的作用" class="headerlink" title="观察者模式的作用"></a><strong>观察者模式的作用</strong></h2><ol>
-<li>用于程序的解耦。观察者模式通过依赖于抽象的接口来减少类与类之间的直接依赖。</li>
-<li>可以作为一种通知的机制，将更新通知给其它的对象。</li>
-</ol>
-<h2 id="观察者模式的缺点"><a href="#观察者模式的缺点" class="headerlink" title="观察者模式的缺点"></a><strong>观察者模式的缺点</strong></h2><ul>
-<li>当一个被观察者有很多的直接或间接的观察者时，要通知到所有的观察者需要耗费很多的时间。</li>
-<li>当被观察者之间循环依赖时（比如：A通知B改变C，C的改变引起A的改变，继而又触发了A通知B），程序会进入循环调用，导致系统崩溃。</li>
+        <h1 id="QR分解（2）"><a href="#QR分解（2）" class="headerlink" title="QR分解（2）"></a>QR分解（2）</h1><p>QR分解是线性代数中一种常用的矩阵分解，即把矩阵分解为一个正规正交矩阵和一个上梯形矩阵——QR分解是求一般矩阵全部特征值的最有效并广泛应用的方法，同时也是许多迭代算法的基础。（QR分解续篇）</p>
+<a id="more"></a>
+<h2 id="豪斯霍尔的变换法"><a href="#豪斯霍尔的变换法" class="headerlink" title="豪斯霍尔的变换法"></a>豪斯霍尔的变换法</h2><ol>
+<li><p>豪斯霍尔德变换定义</p>
+<script type="math/tex; mode=display">
+设u\in R^{n}且||u||_{2}=1，矩阵H=I-2uu^{T}称为豪斯霍尔德矩阵</script></li>
+<li><p>豪斯霍尔德矩阵的性质</p>
+<ul>
+<li><p>H矩阵是一个正交矩阵</p>
+<script type="math/tex; mode=display">
+证：\\
+HH^{T}=(I-2uu^{T})(I-2uu^{T})\\
+=I-4uu^{T}+4uu^{T}uu^{T}\\
+=I-4uu^{T}+4u(u^{T}u)u^{T}\\
+=I-4uu^{T}+4uu^{T}
+=I</script></li>
+<li><p>直观的来看，豪斯霍尔德变换是一个镜像变换，如图</p>
+<p><img src="http://src.zhumingcj.cn/blog/20190812/7GlB4asAswuB.png?imageslim" alt="mark"></p>
+<p>豪斯霍尔德矩阵的作用是把向量x映射到以π为镜面的像，其中平面π的法向量为u</p>
+</li>
 </ul>
-<h2 id="观察者模式的实现要点"><a href="#观察者模式的实现要点" class="headerlink" title="观察者模式的实现要点"></a><strong>观察者模式的实现要点</strong></h2><ol>
-<li>要创建一个接口用以约束所有被观察者，提供消息传递的通道</li>
-<li>被观察者需要有一个存放消息的容器，一般是接口的一个列表；同时被观察者要具有订阅观察者和取消订阅的方法，用以动态的增加减少观察者的数量。</li>
-<li>实现消息的传递——通过调用接口列表中的各个方法。</li>
+</li>
 </ol>
-<p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"> class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Cat cat = new Cat();</span><br><span class="line">            cat.Add(new Dog());</span><br><span class="line">            cat.Add(new Duck());</span><br><span class="line">            cat.Add(new mouse());           </span><br><span class="line">            cat.Add(new people());</span><br><span class="line">            cat.Miao();</span><br><span class="line">            Console.Read();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">interface Ioberver</span><br><span class="line">&#123;</span><br><span class="line">        void Action();</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">class Chicken:Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Woo();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Woo()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;&#123;0&#125; Woo&quot;, this.GetType().Name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">class Dog : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Wang();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Wang()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 汪汪汪&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">class Duck : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Gaga();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Gaga()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 嘎嘎嘎&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> class mouse : Ioberver</span><br><span class="line">    &#123;</span><br><span class="line">        public void Action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.Zhi();</span><br><span class="line">        &#125;</span><br><span class="line">        public void Zhi()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;&#123;this.GetType().Name&#125; 吱吱吱&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Cat</span><br><span class="line">&#123;</span><br><span class="line">        public void Miao()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;&#123;0&#125; miao&quot;,this.GetType().Name);</span><br><span class="line">            if(this._ObserverList!=null &amp;&amp; this._ObserverList.Count &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                foreach (var observer in _ObserverList)</span><br><span class="line">                &#123;</span><br><span class="line">                    observer.Action();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public List&lt;Ioberver&gt; _ObserverList = new List&lt;Ioberver&gt;();</span><br><span class="line">        public void Add(Ioberver observer)</span><br><span class="line">        &#123;</span><br><span class="line">            this._ObserverList.Add(observer);</span><br><span class="line">        &#125;</span><br><span class="line">        public void Remove(Ioberver observer)</span><br><span class="line">        &#123;</span><br><span class="line">            this._ObserverList.Remove(observer);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<p><a href="http://src.zhumingcj.cn/blog/20190627/Pwc2H0fM3pGs.png?imageslim" target="_blank" rel="noopener"><img src="http://src.zhumingcj.cn/blog/20190627/Pwc2H0fM3pGs.png?imageslim" alt="mark"></a></p>
+<h2 id="基于豪斯霍尔德变换的QR分解"><a href="#基于豪斯霍尔德变换的QR分解" class="headerlink" title="基于豪斯霍尔德变换的QR分解"></a>基于豪斯霍尔德变换的QR分解</h2><p>引理：</p>
+<script type="math/tex; mode=display">
+设\ x\in R^{n}是任意的给定非零向量，v\in R^{n}是任意给定的单位向\\量，则存在初等反射矩阵H=I-2uu^{T},使得Hx=\sigma v，其中\sigma为常数</script><p>证明：</p>
+<script type="math/tex; mode=display">
+\because v为单位向量\\
+\therefore x^{T}H^{T}Hx=\sigma^{2}v^{T}v=\sigma^{2}=||x||_{2}^{2}\Rightarrow\\
+\sigma=\pm\sqrt{||x||_{2}}\\
+又\because Hx=(I-2uu^{T})x=x-2uu^{T}x=x-2(u^{T}x)u=\sigma v\\
+\therefore u的方向与x-\sigma v方向相同\\
+\because u是单位向量\\
+\therefore u=\frac{x-\sigma x}{||x-\sigma x||_{2}}\\
+\therefore u存在且唯一，从而H存在</script><p><code>注：其中计算σ时，为避免舍入误差，应取</code><strong>$\sigma=-sgn(x_{1})||x||_{2}$</strong></p>
+<p>实际上根据豪斯霍尔德变换的几何意义，我们可以把x看做原向量，v 看成变换后镜像向量的一个单位向量，则u向量方向一定为原向量（x）减去原向量（想）模长倍的镜像向量（v）。单位化后即为所要求的u。</p>
+<p>QR分解的过程：</p>
+<script type="math/tex; mode=display">
+设要分解的矩阵为：\\
+\quad\\
+A=
+\begin{pmatrix}
+a_{11}&a_{12}&\dots&a_{1n}\\
+a_{21}&a_{22}&\dots&a_{2n}\\
+\vdots&\vdots&&\vdots\\
+a_{m1}&a_{m2}&\dots&a_{mn}
+\end{pmatrix}=
+(a_{1},a_{2},\dots,a_{n})\\
+\quad\\
+记为\\
+A^{(0)}=(a_{1}^{(0)},a_{2}^{(0)},\dots,a_{n}^{(0)})=A\\
+\quad\\
+第一步：\\
+为把矩阵A的第一列化为(\sigma,0,\dots,0)^{T},取x=a_{1}^{(0)},v=e_{1}=(1,0,\dots,0)^{T}\\
+根据式（4），取\\
+u_{1}=\frac{a_{1}^{(0)}-\sigma_{1} e_{1}}{||a_{1}^{(0)}-\sigma _{1}e_{1}||_{2}}=\frac{w_{1}}{||w_{1}||_{2}}\\
+其中\sigma_{1}=-sgn(a_{1}^{(0)})||a_{1}^{(0)}||_{2},\ w_{1}=a_{1}^{(0)}-\sigma_{1}e_{1}\\
+而\\
+||w_{1}||_{2}=||a_{1}^{(0)}-\sigma_{1}e_{1}||_{2}=\sqrt{2(\sigma_{1}^{2}-\sigma_{1}a_{11}^{(0)}})\\
+2u_{1}u_{1}^{T}=\frac{2w_{1}w_{1}^{T}}{||w_{1}||_{2}^{2}}=\frac{w_{1}w_{1}^{T}}{\sigma_{1}(\sigma_{1}-a_{11}^{(0)})}=\frac{w_{1}w_{1}^{T}}{\alpha_{1}},\alpha_{1}=\sigma_{1}(\sigma_{1}-a_{11}^{(0)})\\
+令H_{1}=I-2u_{1}u_{1}^{T}=I-\alpha^{-1}w_{1}w_{1}^{T},用H_{1}左乘A^{(0)}得\\
+A^{(1)}=H_{1}A^{(0)}=(H_{1}a_{1}^{(0)},H_{1}a_{2}^{(0)},\dots,H_{1}a_{n}^{(0)})\\
+=(\sigma_{1} e_{1},a_{2}^{(1)},a_{3}^{(1)},\dots,a_{n}^{(1)})\\
+=
+\begin{pmatrix}
+\sigma_{1}&a_{12}^{(1)}&a_{13}^{(1)}&\dots&a_{1n}^{(1)}\\
+0&a_{22}^{(1)}&a_{23}^{(1)}&\dots&a_{2n}^{(1)}\\
+\vdots&\vdots&\vdots&&\vdots\\
+0&a_{m2}^{(1)}&a_{m3}^{(1)}&\dots&a_{mm}^{(1)}
+\end{pmatrix}\\
+\quad\\
+其中\\
+a_{j}^{(1)}=H_{1}a_{j}^{(0)}=a_{j}^{(0)}-\beta_{1j}(a_{1}^{(0)}-\sigma_{1}e_{1})\\
+=
+\begin{pmatrix}
+a_{1j}^{(0)}-\beta_{1j}(a_{11}^{(0)}-\sigma_{1})\\
+a_{2j}^{(0)}-\beta_{1j}a_{21}^{(0)}\\
+\vdots\\
+a_{mj}^{(0)}-\beta_{1j}a_{mj}^{(0)}
+\end{pmatrix}\\
+由此可得\\
+\left\{
+\begin{array}{}
+a_{1j}^{(1)}=a_{1j}^{(0)}-\beta_{1j}(a_{11}^{(0)}-\sigma_{1}),\quad j=2,3,\dots,n\\
+a_{ij}^{(1)}=a_{ij}^{(0)}-\beta_{1j}a_{i1}^{(0)},\quad i=2,3,\dots,m;j=2,3,\dots,n
+\end{array}
+\right.\\
+其中\\
+\beta_{ij}=\alpha_{1}^{-1}((a_{11}^{(0)}-\sigma_{1})a_{1j}^{(0)}+\sum_{i=2}^{m}a_{i1}^{(0)}a_{ij}^{(0)}),\quad j=2,3,\dots,n\\
+\quad\\
+第二步:\\
+记a_{2}^{(1)}=(a_{12}^{(1)},a_{22}^{(1)},\dots,a_{m2}^{(1)})^{T}=(a_{12}^{(1)},\widetilde a_{2}^{(1)T})^{T}\\
+重复第一步取\\
+u_{2}=\frac{\widetilde a_{2}^{(1)}-\sigma_{2}e_{1}^{(1)}}{||\widetilde a_{2}^{(1)}-\sigma_{2}e_{1}^{(1)}||_{2}}=\frac{w_{2}}{||w_{2}||_{2}}\\
+\sigma_{2}=-sgn(a_{22}^{(1)})||\widetilde a_{2}^{(1)}||_{2};w_{2}=\widetilde a_{2}^{(1)}-\sigma_{2}e_{1}^{(1)}\\
+构造\\
+\widetilde {H_{2}}=I-2u_{2}u_{2}^{T}=I-\alpha^{-1}w_{2}w_{2}^{T}
+令\\
+H_{2}=
+\begin{pmatrix}
+1&0\\
+0&\widetilde H_{2}
+\end{pmatrix}\\
+用H_{2}左乘A_{(2)}得\\
+A^{(2)}=H_{2}A^{(1)}=(\sigma_{1}e_{1},a_{12}^{(1)}e_{1}+\sigma_{2}e_{2},a_{3}^{(2)},\dots,a_{n}^{(2)})\\
+=\begin{pmatrix}
+\sigma_{1}&a_{12}^{(1)}&a_{13}^{(1)}&a_{14}^{(1)}&\dots&a_{1n}^{(1)}\\
+0&\sigma_{2}&a_{23}^{(2)}&a_{24}^{(2)}&\dots&a_{2n}^{(2)}\\
+0&0&a_{33}^{(2)}&a_{34}^{(2)}&\dots&a_{3n}^{(2)}\\
+\vdots&\vdots&\vdots&\vdots&&\vdots\\
+0&0&a_{m3}^{(2)}&a_{m4}^{(2)}&\dots&a_{mn}^{(2)}
+\end{pmatrix}\\
+继续重复这个过程直至s=min{m-1,n}步，最后得到\\
+A^{(s)}=H_{s}H_{s-1}\dots H_{1}A=R\\
+记\\
+H=H_{s}H_{s-1}\dots H_{1}A\\
+则\\
+HA=R \Rightarrow A=QR</script><ul>
+<li><p>当m=n时,R是n阶可逆上三角矩阵</p>
+</li>
+<li><p>当m&gt;n时，R是$m \times  n$阶上梯形矩阵</p>
+</li>
+</ul>
+<p>$\bigstar$ 矩阵的QR分解具有唯一性</p>
+<script type="math/tex; mode=display">
+证明\\
+设存在两种分解 \quad A=QR=\widetilde Q \widetilde R\\
+\because A^{T}A=R^{T}QQR=R^{T}R\\
+A^{T}A=\widetilde R^{T} \widetilde Q \widetilde Q \widetilde R=\widetilde R^{T} \widetilde R\\
+又\because A^{T}A是对称正定的，且矩阵的楚列斯基分解是唯一的\\
+\therefore R=\widetilde R,\quad Q=\widetilde Q</script><p>$\bigstar$ QR分解常用于求解病态线性方程组Ax=b，即化为</p>
+<script type="math/tex; mode=display">
+y=Q^{T}b,\quad Rx=y</script><p>通过这种方法求解线性方程是非常稳定的，得到的结果往往比三角分解好很多。</p>
 
       
     </div>
@@ -361,13 +475,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="">设计模式-观察者模式</a></p>
+        <p><span>本文标题:</span><a href="">QR_Decomposition_2</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
-        <p><span>发布时间:</span>2019-06-27, 00:52:38</p>
-        <p><span>最后更新:</span>2019-08-02, 22:55:41</p>
+        <p><span>发布时间:</span>2019-08-11, 13:06:47</p>
+        <p><span>最后更新:</span>2019-08-13, 21:36:32</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="" title="设计模式-观察者模式">http://zhumingcj.github.io/2019/06/27/Observer Pattern/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/06/27/Observer Pattern/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="" title="QR_Decomposition_2">http://zhumingcj.github.io/2019/08/11/qr-decomposition-2/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/08/11/qr-decomposition-2/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -379,16 +493,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="../Decoractor-Pattern/">
-                    Decoractor Pattern
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="../../21/Tips for Typora/">
-                    ShortCut Key for Typora
+                <a href="../../08/qr-decomposition_1/">
+                    QR decomposition
                 </a>
             </div>
         
@@ -400,7 +508,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计模式之观察者模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式之观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是观察者模式"><span class="toc-number">1.1.</span> <span class="toc-text">什么是观察者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的作用"><span class="toc-number">1.2.</span> <span class="toc-text">观察者模式的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的缺点"><span class="toc-number">1.3.</span> <span class="toc-text">观察者模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式的实现要点"><span class="toc-number">1.4.</span> <span class="toc-text">观察者模式的实现要点</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QR分解（2）"><span class="toc-number">1.</span> <span class="toc-text">QR分解（2）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#豪斯霍尔的变换法"><span class="toc-number">1.1.</span> <span class="toc-text">豪斯霍尔的变换法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于豪斯霍尔德变换的QR分解"><span class="toc-number">1.2.</span> <span class="toc-text">基于豪斯霍尔德变换的QR分解</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -436,7 +544,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"设计模式-观察者模式　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"QR_Decomposition_2　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -455,8 +563,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://zhumingcj.github.io/2019/06/27/Observer Pattern/';
-            this.page.identifier = '2019/06/27/Observer Pattern/';
+            this.page.url = 'http://zhumingcj.github.io/2019/08/11/qr-decomposition-2/';
+            this.page.identifier = '2019/08/11/qr-decomposition-2/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -496,8 +604,8 @@
 
     // Add comment count
     <script id="dsq-count-scr" src="//zhumingcj.disqus.com/count.js" async></script>
-    <span class="disqus-comment-count" data-disqus-identifier="2019/06/27/Observer Pattern/"></span>
-    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/06/27/Observer Pattern/"></span>
+    <span class="disqus-comment-count" data-disqus-identifier="2019/08/11/qr-decomposition-2/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/08/11/qr-decomposition-2/"></span>
     <script>
         $(".disqus-comment-count").hide();
         var $disqusCount = $(".disqus-comment-count");
@@ -516,21 +624,19 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="../Decoractor-Pattern/" title="上一篇: Decoractor Pattern">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="../../21/Tips for Typora/" title="下一篇: ShortCut Key for Typora">
+            <a href="../../08/qr-decomposition_1/" title="下一篇: QR decomposition">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../08/11/qr-decomposition-2/">QR_Decomposition_2</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/08/qr-decomposition_1/">QR decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/23/simple-classification/">Simple Classification</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/08/improved-square-method/">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../21/my-first-blog/">my first blog</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="">QR_Decomposition_2</a></li><li class="post-list-item"><a class="post-list-link" href="../../08/qr-decomposition_1/">QR decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/23/simple-classification/">Simple Classification</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/08/improved-square-method/">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
 
 
 
