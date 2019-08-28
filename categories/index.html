@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="title: 分类date: 2019-06-21 22:52:49type: “categories”">
+<meta name="description" content="title: 分类date: 2019-06-21 22:52:49type: “categories”          document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img =">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ZhuMing&#39;blog">
 <meta property="og:url" content="http://zhumingcj.github.io/categories/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="title: 分类date: 2019-06-21 22:52:49type: “categories”">
+<meta property="og:description" content="title: 分类date: 2019-06-21 22:52:49type: “categories”          document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img =">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-06-21T15:19:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZhuMing&#39;blog">
-<meta name="twitter:description" content="title: 分类date: 2019-06-21 22:52:49type: “categories”">
+<meta name="twitter:description" content="title: 分类date: 2019-06-21 22:52:49type: “categories”          document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img =">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -316,7 +316,25 @@
 
           
         <p>title: 分类<br>date: 2019-06-21 22:52:49<br>type: “categories”</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
       
     </div>
     

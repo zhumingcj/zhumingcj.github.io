@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="404 not found: 该页面无法显示">
+<meta name="description" content="404 not found: 该页面无法显示         document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img = document.createElement(&apos;img&apos;);">
 <meta property="og:type" content="website">
 <meta property="og:title" content="404 Not Found:该页面无法显示">
 <meta property="og:url" content="http://zhumingcj.github.io/404.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="404 not found: 该页面无法显示">
+<meta property="og:description" content="404 not found: 该页面无法显示         document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img = document.createElement(&apos;img&apos;);">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-07-09T07:05:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="404 Not Found:该页面无法显示">
-<meta name="twitter:description" content="404 not found: 该页面无法显示">
+<meta name="twitter:description" content="404 not found: 该页面无法显示         document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img = document.createElement(&apos;img&apos;);">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -333,7 +333,25 @@
 
 
           
-        <h1 id="404-not-found-该页面无法显示"><a href="#404-not-found-该页面无法显示" class="headerlink" title="404 not found: 该页面无法显示"></a>404 not found: 该页面无法显示</h1>
+        <h1 id="404-not-found-该页面无法显示"><a href="#404-not-found-该页面无法显示" class="headerlink" title="404 not found: 该页面无法显示"></a>404 not found: 该页面无法显示</h1><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
       
     </div>
     
