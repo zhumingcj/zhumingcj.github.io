@@ -15,20 +15,18 @@
 
 
 
-<meta name="description" content="改进平方根法和追赶法虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。 追赶法则是求解严格对角占优矩阵效率最高的算法之一。">
-<meta name="keywords" content="Numerical Analysis">
+<meta name="description" content="网络爬虫入门教程（3）这篇博客将继续介绍爬虫程序中模拟登陆的解决方法和信息提取的方法。          document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img = document">
+<meta name="keywords" content="爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Improved Square Method">
-<meta property="og:url" content="http://zhumingcj.github.io/2019/07/08/improved-square-method/index.html">
+<meta property="og:title" content="Web_Spider_3">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/09/02/web-spider-3/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;blog">
-<meta property="og:description" content="改进平方根法和追赶法虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。 追赶法则是求解严格对角占优矩阵效率最高的算法之一。">
+<meta property="og:description" content="网络爬虫入门教程（3）这篇博客将继续介绍爬虫程序中模拟登陆的解决方法和信息提取的方法。          document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img = document">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://src.zhumingcj.cn/blog/20190709/vK2m6n98uhN6.png?imageslim">
-<meta property="og:updated_time" content="2019-08-02T14:51:56.000Z">
+<meta property="og:updated_time" content="2019-09-02T04:19:18.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Improved Square Method">
-<meta name="twitter:description" content="改进平方根法和追赶法虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。 追赶法则是求解严格对角占优矩阵效率最高的算法之一。">
-<meta name="twitter:image" content="http://src.zhumingcj.cn/blog/20190709/vK2m6n98uhN6.png?imageslim">
+<meta name="twitter:title" content="Web_Spider_3">
+<meta name="twitter:description" content="网络爬虫入门教程（3）这篇博客将继续介绍爬虫程序中模拟登陆的解决方法和信息提取的方法。          document.querySelectorAll(&apos;.github-emoji&apos;)           .forEach(el =&amp;gt; {             if (!el.dataset.src) { return; }             const img = document">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Improved Square Method | ZhuMing&#39;blog</title>
+<title>Web_Spider_3 | ZhuMing&#39;blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -281,11 +279,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-improved-square-method" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-web-spider-3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-      <time datetime="2019-07-08T13:56:00.000Z" itemprop="datePublished">2019-07-08</time>
+      <time datetime="2019-09-02T04:15:11.000Z" itemprop="datePublished">2019-09-02</time>
 </a>
 
  
@@ -294,7 +292,7 @@
         <span class="count-comment"></span>
         
         
-            <span class="disqus-comment-count" data-disqus-identifier="2019/07/08/improved-square-method/"></span>
+            <span class="disqus-comment-count" data-disqus-identifier="2019/09/02/web-spider-3/"></span>
         
     </a>
 
@@ -309,7 +307,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Improved Square Method
+      Web_Spider_3
     </h1>
   
 
@@ -318,13 +316,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="../../../../categories/math/">Math</a>
+    <a class="article-category-link" href="../../../../categories/网络/">网络</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/numerical-analysis/">Numerical Analysis</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/爬虫/">爬虫</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -334,128 +332,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="改进平方根法和追赶法"><a href="#改进平方根法和追赶法" class="headerlink" title="改进平方根法和追赶法"></a>改进平方根法和追赶法</h1><p>虽然平方根法的时间复杂度远远低于高斯消元法和lU分解，但是n个开方运算会耗费很多的时间，所以为了避免开放运算，需要对平方根法进行改进。</p>
-<p>追赶法则是求解严格对角占优矩阵效率最高的算法之一。</p>
-<a id="more"></a>
-<h2 id="改进平方根法公式推导"><a href="#改进平方根法公式推导" class="headerlink" title="改进平方根法公式推导"></a>改进平方根法公式推导</h2><p>为了避免开方运算，我们使用$A=LDL^{T}$导出分解公式</p>
-<script type="math/tex; mode=display">
-由\\
-A=LU=LDD^{-1}U=LDL^{T}\\
-可知L^{T}=D^{-1}U,因此\\
-l_{i,j}=\frac{u_{ij}}{d_{i}}=\frac{u_{ij}}{u_{ii}},\quad i=1,2,\dots,n-1;j=i+1,i+2,\dots,n\\
-由杜立特尔分解可知\\
-u_{ij}=a_{ij}-\sum_{k=1}^{i-1}l_{ik}u_{kj},\quad i=1,2,\dots,n;j=i,i+1,\dots,n\\
-\Rightarrow l_{ij}=\frac{a_{ij}-\sum_{k=1}^{i-1}l_{ik}u_{kj}}{u_{ii}},\quad i=1,2,\dots,n-1;j=i+1,i+2,\dots,n</script><p>用$A=LDL^{T}$分解求解方程组Ax=b就是改进平方根法，下面导出计算公式</p>
-<script type="math/tex; mode=display">
-Ax=b \Rightarrow LDL^{T}\Rightarrow 
-\left\{
-\begin{array}\
-Ly=b\\
-Dz=y\\
-L^{T}x=z
-\end{array}
-\right.\\
-由Ly=b可得\\
-y_{1}=b_{1}\\
-y_{i}=b_{i}-\sum_{k=1}^{i-1}l_{ik}y_{k},\quad i=2,3,\dots,n\\
-由Dz=y可得\\
-z_{i}=\frac{y_{i}}{u_{ii}},\quad i=1,2,\dots,n\\
-由L^{T}x=z可得\\
-\left\{
-\begin{array}\
-x_{n}=z_{n}\\
-x_{i}=z_{i}-\sum_{i+1}^{n}l_{ki}x_{k},\quad i=n-1,n-2,\dots,1
-\end{array}
-\right.\\
-将z_{i}和l_{ki}=\frac{u_{ik}}{u_{ii}}代入x_{i}的表达式，可得\\
-\left\{
-\begin{array}\
-x_{n}=\frac{y_{n}}{u_{nn}}\\
-x_{i}=\frac{y_{i}-\sum_{k=i+1}^{n}u_{ik}x_{k}}{u_{ii}},\quad i=n-1,n-2,\dots,2,1
-\end{array}
-\right.</script><h2 id="改进平方根法的算法分析"><a href="#改进平方根法的算法分析" class="headerlink" title="改进平方根法的算法分析"></a>改进平方根法的算法分析</h2><p>采用改进平方根法求解Ax=b共用了乘除法$\frac{1}{6}n^{3}+\frac{3}{2}n^{2}-\frac{2}{3}n$个，它比平方根法多了$\frac{1}{2}n^{2}-\frac{1}{2}n$个乘除法，但是少了n个开方运算，而相比于高斯消元法和杜立特尔分解几乎少了一半的乘除法，因此改进平方根法为求解对称正定方程组最有效的方法之一。实际上改进平方根法的分解公式和lU分解的分解公式是相同的，但是LU分解还要计算U矩阵，因此效率比较低，而改进平方根法则利用正定对称矩阵的特点，使得只需要计算L矩阵，大大减少了计算量，提高了效率。</p>
-<h2 id="追赶法的分解公式"><a href="#追赶法的分解公式" class="headerlink" title="追赶法的分解公式"></a>追赶法的分解公式</h2><p>在样条插值、常微分方程边值问题和热传导方程的有限差分法等问题中，常遇到求解三对角方程组Ax=b,即</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
-b_{1}&c_{1}&\\
-a_{2}&b_{2}&c_{2}\\
-&\ddots&\ddots&\ddots\\
-&&a_{n-1}&b_{n-1}&c_{n-1}\\
-&&&a_{n}&b_{n}
-\end{pmatrix}
-\begin{pmatrix}
-x_{1}\\
-x_{2}\\
-\vdots\\
-x_{n-1}\\
-x_{n}
-\end{pmatrix}
-=
-\begin{pmatrix}
-d_{1}\\
-d_{2}\\
-\vdots\\
-d_{n-1}\\
-d_{n}
-\end{pmatrix}</script><p>通常A是严格对角占优矩阵，严格对角占优矩阵存在唯一 的杜立特分解，形式如下</p>
-<script type="math/tex; mode=display">
-A=LU=
-\begin{pmatrix}
-1\\
-l_{2}&1\\
-&\ddots&\ddots\\
-&&l_{n-1}&1\\
-&&&l_{n}&1
-\end{pmatrix}
-\begin{pmatrix}
-u_{1}&c_{1}\\
-&u_{2}&c_{2}\\
-&&\ddots&\ddots\\
-&&&u_{n-1}&c_{n-1}\\
-&&&&u_{n}
-\end{pmatrix}</script><p>根据矩阵乘法，我们可以导出分解公式如下</p>
-<script type="math/tex; mode=display">
-\left\{
-\begin{array}\
-u_{1}=b_{1}\\
-l_{i}=\frac{a_{i}}{u_{i-1}},\quad i=2,3,\dots,n\\
-u_{i}=b_{i}-l_{i}c_{i-1},\quad i=2,3,\dots,n
-\end{array}
-\right.</script><h2 id="追赶法求解Ax-d的计算公式"><a href="#追赶法求解Ax-d的计算公式" class="headerlink" title="追赶法求解Ax=d的计算公式"></a>追赶法求解Ax=d的计算公式</h2><script type="math/tex; mode=display">
-Ax=d \Rightarrow LUx=d\Rightarrow \\
-\left\{
-\begin{array}\
-Ly=d\\
-Ux=y
-\end{array}
-\right.
-\quad\\
-由Ly=d可得\\
-\left\{
-\begin{array}\
-y_{1}=d_{1}\\
-y_{i}=d_{i}-l_{i}y_{i-1},\quad i=2,3,\dots,n
-\end{array}
-\right.
-\quad\\
-由Ux=y可得\\
-\left\{
-\begin{array}\
-x_{n}=\frac{y_{n}}{u_{n}}\\
-x_{i}=\frac{y_{i}-c_{i}x_{i+1}}{u_{i}},\quad i=n-1,n-2,\dots,1
-\end{array}
-\right.</script><h2 id="追赶法的一个分解示例"><a href="#追赶法的一个分解示例" class="headerlink" title="追赶法的一个分解示例"></a>追赶法的一个分解示例</h2><script type="math/tex; mode=display">
-A=
-\begin{pmatrix}
-1&2&0&0&0\\
-2&3&1&0&0\\
-0&-3&4&2&0\\
-0&0&4&7&1\\
-0&0&0&-5&6
-\end{pmatrix}\\
-\quad\\</script><p>分解结果如下</p>
-<p><img src="http://src.zhumingcj.cn/blog/20190709/vK2m6n98uhN6.png?imageslim" alt="mark"></p>
-<h2 id="追赶法的算法分析"><a href="#追赶法的算法分析" class="headerlink" title="追赶法的算法分析"></a>追赶法的算法分析</h2><p>用追赶法来解线性方程的乘除法运算次数仅为5n-4,比高斯消元法的运算次数少得多。并且由于方程组的系数矩阵是严格对角占优的，因此能保证追赶法顺利进行，并且计算过程稳定。</p>
+        <h1 id="网络爬虫入门教程（3）"><a href="#网络爬虫入门教程（3）" class="headerlink" title="网络爬虫入门教程（3）"></a>网络爬虫入门教程（3）</h1><p>这篇博客将继续介绍爬虫程序中模拟登陆的解决方法和信息提取的方法。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -482,13 +359,13 @@ A=
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="">Improved Square Method</a></p>
+        <p><span>本文标题:</span><a href="">Web_Spider_3</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
-        <p><span>发布时间:</span>2019-07-08, 21:56:00</p>
-        <p><span>最后更新:</span>2019-08-02, 22:51:56</p>
+        <p><span>发布时间:</span>2019-09-02, 12:15:11</p>
+        <p><span>最后更新:</span>2019-09-02, 12:19:18</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="" title="Improved Square Method">http://zhumingcj.github.io/2019/07/08/improved-square-method/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/07/08/improved-square-method/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="" title="Web_Spider_3">http://zhumingcj.github.io/2019/09/02/web-spider-3/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/09/02/web-spider-3/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -500,16 +377,10 @@ A=
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="../../09/kmp-algorithm/">
-                    KMP Algorithm
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="../../06/square-root-method-and-improved-square-root-method/">
-                    Square Root Method
+                <a href="../../../08/28/web-spider-2/">
+                    Web Spider_2
                 </a>
             </div>
         
@@ -521,7 +392,7 @@ A=
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#改进平方根法和追赶法"><span class="toc-number">1.</span> <span class="toc-text">改进平方根法和追赶法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#改进平方根法公式推导"><span class="toc-number">1.1.</span> <span class="toc-text">改进平方根法公式推导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进平方根法的算法分析"><span class="toc-number">1.2.</span> <span class="toc-text">改进平方根法的算法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追赶法的分解公式"><span class="toc-number">1.3.</span> <span class="toc-text">追赶法的分解公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追赶法求解Ax-d的计算公式"><span class="toc-number">1.4.</span> <span class="toc-text">追赶法求解Ax=d的计算公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追赶法的一个分解示例"><span class="toc-number">1.5.</span> <span class="toc-text">追赶法的一个分解示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追赶法的算法分析"><span class="toc-number">1.6.</span> <span class="toc-text">追赶法的算法分析</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#网络爬虫入门教程（3）"><span class="toc-number">1.</span> <span class="toc-text">网络爬虫入门教程（3）</span></a></li></ol>
         
     </div>
     <style>
@@ -557,7 +428,7 @@ A=
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Improved Square Method　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Web_Spider_3　| ZhuMing'blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -576,8 +447,8 @@ A=
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://zhumingcj.github.io/2019/07/08/improved-square-method/';
-            this.page.identifier = '2019/07/08/improved-square-method/';
+            this.page.url = 'http://zhumingcj.github.io/2019/09/02/web-spider-3/';
+            this.page.identifier = '2019/09/02/web-spider-3/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -617,8 +488,8 @@ A=
 
     // Add comment count
     <script id="dsq-count-scr" src="//zhumingcj.disqus.com/count.js" async></script>
-    <span class="disqus-comment-count" data-disqus-identifier="2019/07/08/improved-square-method/"></span>
-    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/07/08/improved-square-method/"></span>
+    <span class="disqus-comment-count" data-disqus-identifier="2019/09/02/web-spider-3/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://zhumingcj.github.io/2019/09/02/web-spider-3/"></span>
     <script>
         $(".disqus-comment-count").hide();
         var $disqusCount = $(".disqus-comment-count");
@@ -637,21 +508,19 @@ A=
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="../../09/kmp-algorithm/" title="上一篇: KMP Algorithm">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="../../06/square-root-method-and-improved-square-root-method/" title="下一篇: Square Root Method">
+            <a href="../../../08/28/web-spider-2/" title="下一篇: Web Spider_2">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../09/02/web-spider-3/">Web_Spider_3</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/28/web-spider-2/">Web Spider_2</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/28/web-spider-1/">Web Spider_1</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/17/solution-to-vs2017-installation-problem/">Solution to VS2017 Installation Problem</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/11/qr-decomposition-2/">QR_Decomposition_2</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/08/qr-decomposition_1/">QR decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../23/simple-classification/">Simple Classification</a></li><li class="post-list-item"><a class="post-list-link" href="../../20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="">Web_Spider_3</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/28/web-spider-2/">Web Spider_2</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/28/web-spider-1/">Web Spider_1</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/17/solution-to-vs2017-installation-problem/">Solution to VS2017 Installation Problem</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/11/qr-decomposition-2/">QR_Decomposition_2</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/08/qr-decomposition_1/">QR decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/23/simple-classification/">Simple Classification</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/08/improved-square-method/">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
 
 
 
