@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>http://zhumingcj.github.io/2019/09/28/Usage%20of%20pointer/</loc>
+        <lastmod>2019-09-28T17:10:51.926Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/2019/07/19/linear-regression/</loc>
+        <lastmod>2019-09-28T12:18:05.273Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/2019/07/23/simple-classification/</loc>
+        <lastmod>2019-09-28T12:17:35.834Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/2019/09/02/web-spider-3/</loc>
         <lastmod>2019-09-12T01:44:56.912Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -144,24 +168,8 @@
     </url>
 
     <url>
-        <loc>http://zhumingcj.github.io/2019/07/23/simple-classification/</loc>
-        <lastmod>2019-07-24T15:26:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://zhumingcj.github.io/2019/07/20/changed-linear-regression/</loc>
         <lastmod>2019-07-22T16:35:24.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/2019/07/19/linear-regression/</loc>
-        <lastmod>2019-07-20T14:58:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>http://zhumingcj.github.io/tags/%E6%8C%87%E9%92%88/</loc>
+        <lastmod>2019-09-28T17:10:51.926Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/tags/machine-learning/</loc>
+        <lastmod>2019-09-28T12:18:05.273Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/tags/%E7%88%AC%E8%99%AB/</loc>
         <lastmod>2019-09-12T01:44:56.912Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -61,27 +75,6 @@
     <url>
         <loc>http://zhumingcj.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</loc>
         <lastmod>2019-08-02T14:51:04.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/machine-learining/</loc>
-        <lastmod>2019-07-24T15:26:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/machine-learning/</loc>
-        <lastmod>2019-07-22T16:35:24.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/tags/machine-learnning/</loc>
-        <lastmod>2019-07-20T14:58:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
