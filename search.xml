@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>Principle of Floating Number</title>
+      <link href="/2019/09/29/principle-of-floating-number/"/>
+      <url>/2019/09/29/principle-of-floating-number/</url>
+      
+        <content type="html"><![CDATA[<h1 id="浮点数的原理"><a href="#浮点数的原理" class="headerlink" title="浮点数的原理"></a>浮点数的原理</h1><p>在编程中，我们经常会与float打交道，总是会遇到一些难以预测的问题，而且这些问题往往没有有效的解决方法。我们想要弄清楚其中的奥秘，就一定要理解float的实现原理；通过float的原理来看问题，一切问题都会迎刃而解。</p><a id="more"></a><h3 id="float的组织形式（规格化浮点数）"><a href="#float的组织形式（规格化浮点数）" class="headerlink" title="float的组织形式（规格化浮点数）"></a>float的组织形式（规格化浮点数）</h3><p>一个浮点数由三部分组成——符号、尾数、指数，下面给出一个例子</p><script type="math/tex; mode=display">\pm 3.1415926\Rightarrow \underset{符号}{\pm}\underset{尾数}{0.314159}\times\underset{指数}{10^{1}}\\标准形式：fl(x)=\tilde x=\pm \{\frac {x_{1}}{\beta}+\frac {x_{2}}{\beta^{2}}+\dots+\frac {x_{t}}{\beta^{t}} \}\times \beta^{l}</script><p>$注：标准形式中，\beta代表进制的基数；t表示机器的字长；指数部分幂l的范围l\in[L,U] $</p><p>根据标准形式我们可以知道浮点数的表示范围</p><script type="math/tex; mode=display">|fl(x)_{min}|=\beta^{L-t}\\|fl(x)_{max}|=(1-\beta^{t})\beta^{U}\\浮点数集F(\beta,t,L,U)能表示的数有1+2(\beta-1)(\beta^{t-1})(U-L+1)个</script><p>因为字长t是受限于机器的，所以浮点数的精度是有限的，用浮点数存储一个有t+1位有效数字的数会发生精度的丢失：</p><script type="math/tex; mode=display">x=0.x_{1}x_{2}x_{3}\dots x_{t}x_{t+1}\times\beta^{l}\Rightarrow\tilde x=0.x_{1}x_{2}x_{3}\dots\tilde x_{t}</script><p>此时最大绝对误差为$\frac {1}{2}\beta^{-t+l}$，相应的最大相对误差为$\frac{\frac {1}{2}\beta^{-t+l}}{\beta^{l-1}}=\frac 12\beta^{-(t-1)}$,可见相对误差限只与计算机的字长有关。</p><h3 id="舍入误差的产生"><a href="#舍入误差的产生" class="headerlink" title="舍入误差的产生"></a>舍入误差的产生</h3><ul><li><p>数据的精度超过数据类型的精度，比如用float存储15位有效数字的数据，显然会丢失精度。</p></li><li><p>大数与小数相加（以浮点数集F(10,4,10,10)为例进行说明）。大数与小数相加时首先会对阶，使得小数的阶与大数的阶一样，然后尾数进行运算。以$0.3121\times 10^{3}$和$0.2342\times 10^{-1}$为例，对阶时——$0.2342\times 10^{-1}=0.00002342\times 10^{3}=0.0000\times 10^{3}$，小数丢失了全部的精度。其实这是必然的，由于字长是有限的，所以有效数字位数是有限的，大数和小数分别存储时都能准确表示，但相加时，相当于增加了有效数字的位数，一旦两者的和的有效数字位数大于字长，必然要丢失精度，大数吞小数的出现只是因为规定了向大数对阶（丢失小数肯定比丢失大数好啊，不能捡了芝麻，丢了西瓜）。所以多个数加和时我们应该先加和小的数，尽量避免大数吃小数。</p></li><li><p>由于计算机采用二进制，进制转换存在误差。我们可以考虑将十进制数11.31转换为10位二进制数，整数部分11=$(1011)_{2}$，小数部分通过乘2取整的方法进行转换，0.31<em>3=0.62,则小数第一位$b_{1}$是0，0.62\</em>2=1.24，则第二位$b_{2}$为1，因此类推：</p><script type="math/tex; mode=display">2\times 0.24=0.48\quad b_{3}=0\\2\times 0.48=0.96\quad b_{4}=0\\2\times 0.96=1.92\quad b_{5}=1\\2\times 0.92=1.84\quad b_{6}=1\\2\times 0.84=1.68\quad b_{7}=1\\</script><p>由于小数第七位为1，向上舍入进1，则11.31=$(1011.010100)_{2}=1.011010100\times2^{3}=11.3125$，绝对误差为0.0025，相对误差为$\frac{0.0025}{11.31}=2.2\times10^{-4}$，这也就是为什么我们经常会遇到：定义float num=2.1,打印num时会得到这样的东西  =&gt; 2.0999999046。进制转换时产生的误差是采用浮点数存储不可避免的问题，但是这个误差一般很小，只要小于我们限定的误差，我们并不需要care。</p></li><li><p>在上面我们给出了计算机的精度为$\frac 12\beta^{-(t-1)}$，在数的加减乘除运算中产生的误差的绝对值不会大于计算机的精度，此处不予证明。</p></li></ul><h3 id="float与double"><a href="#float与double" class="headerlink" title="float与double"></a>float与double</h3><p>标准的IEEE单精度浮点数（float)用32bit即4个字节存储</p><script type="math/tex; mode=display">b_{1}b_{2}\dots b_{9}b_{10}\dots b_{31}b_{32}</script><p>其中第一个bit$b_{1}$为符号位，$b_{2}-b_{9}$存储指数的信息，其余为规范化的尾数(对于二进制，规范形式为1.#####，#取值为0或1)。要注意的是$E=b_{2}b_{3}\dots b_{8}b_{9}$,但是E本身并不是指数，因为$0\leq E \leq 255$,但是我们需要指数为负的情况，所以事实上指数k=E-127。则$-127\leq  k \leq 128$。因此一个浮点数表示的二进制数x为</p><script type="math/tex; mode=display">x=(-1)^{b_{1}}\times (1.m)_{2}\times 2^{k}</script><p>同样的，双精度double为62bit，即8个字节的比特序列，第一位同样是符号位，第二位到第十二位存储指数信息，其余为规范化尾数，此时$-1023\leq  k \leq 1024$。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Numerical Analysis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 浮点数原理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>指针的使用</title>
       <link href="/2019/09/28/Usage%20of%20pointer/"/>
       <url>/2019/09/28/Usage%20of%20pointer/</url>
