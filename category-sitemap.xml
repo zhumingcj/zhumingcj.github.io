@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>http://zhumingcj.github.io/categories/%E6%9D%82%E6%96%87/</loc>
+        <lastmod>2019-10-16T16:57:16.007Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/categories/numerical-analysis/</loc>
         <lastmod>2019-10-03T04:17:01.798Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -38,13 +45,6 @@
     <url>
         <loc>http://zhumingcj.github.io/categories/%E7%BD%91%E7%BB%9C/</loc>
         <lastmod>2019-09-12T01:44:56.912Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/categories/%E6%9D%82%E6%96%87/</loc>
-        <lastmod>2019-08-17T00:23:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
