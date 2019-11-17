@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>http://zhumingcj.github.io/2019/11/17/divide-and-conquer/</loc>
+        <lastmod>2019-11-17T04:51:58.483Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/2019/07/09/rotation%E3%80%81grad-and-divergence/</loc>
+        <lastmod>2019-10-26T08:08:55.059Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://zhumingcj.github.io/2019/07/08/improved-square-method/</loc>
+        <lastmod>2019-10-26T08:06:39.140Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://zhumingcj.github.io/2019/10/17/graphic-of-typora/</loc>
         <lastmod>2019-10-16T16:57:16.007Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -128,14 +152,6 @@
     </url>
 
     <url>
-        <loc>http://zhumingcj.github.io/2019/07/09/rotation%E3%80%81grad-and-divergence/</loc>
-        <lastmod>2019-08-02T14:57:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://zhumingcj.github.io/2019/06/27/Observer%20Pattern/</loc>
         <lastmod>2019-08-02T14:55:42.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -146,14 +162,6 @@
     <url>
         <loc>http://zhumingcj.github.io/2019/07/09/kmp-algorithm/</loc>
         <lastmod>2019-08-02T14:54:28.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://zhumingcj.github.io/2019/07/08/improved-square-method/</loc>
-        <lastmod>2019-08-02T14:51:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

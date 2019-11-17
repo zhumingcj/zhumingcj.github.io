@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://zhumingcj.github.io/2019/11/17/divide-and-conquer/</loc>
+    <lastmod>2019-11-17</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/09/rotation%E3%80%81grad-and-divergence/</loc>
+    <lastmod>2019-10-26</lastmod>
+  </url>  <url>
+    <loc>http://zhumingcj.github.io/2019/07/08/improved-square-method/</loc>
+    <lastmod>2019-10-26</lastmod>
+  </url>  <url>
     <loc>http://zhumingcj.github.io/2019/10/17/graphic-of-typora/</loc>
     <lastmod>2019-10-16</lastmod>
   </url>  <url>
@@ -46,16 +55,10 @@
     <loc>http://zhumingcj.github.io/2019/07/01/singleton-pattern/</loc>
     <lastmod>2019-08-02</lastmod>
   </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/09/rotation%E3%80%81grad-and-divergence/</loc>
-    <lastmod>2019-08-02</lastmod>
-  </url>  <url>
     <loc>http://zhumingcj.github.io/2019/06/27/Observer%20Pattern/</loc>
     <lastmod>2019-08-02</lastmod>
   </url>  <url>
     <loc>http://zhumingcj.github.io/2019/07/09/kmp-algorithm/</loc>
-    <lastmod>2019-08-02</lastmod>
-  </url>  <url>
-    <loc>http://zhumingcj.github.io/2019/07/08/improved-square-method/</loc>
     <lastmod>2019-08-02</lastmod>
   </url>  <url>
     <loc>http://zhumingcj.github.io/2019/07/18/important-concepts-for-html/</loc>
