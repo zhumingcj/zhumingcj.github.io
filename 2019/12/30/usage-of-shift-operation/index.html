@@ -14,20 +14,22 @@
 <meta name="author" content="ZhuMing">
 
 
-    
-    
 
-
-<meta name="description" content="��¼ѧϰ�ĵ��ε�">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZhuMing&#39;s blog">
-<meta property="og:url" content="http://zhumingcj.github.io/index.html">
+<meta name="description" content="位运算的用法除了逻辑运算，位运算也是编程中常用的运算，但是很多人对于位运算知之甚少。一个原因是因为位运算的用法很零碎，并且有的用法涉及计算机底层的原理所以理解起来比较困难。但是位运算是效率很高的一种运算，特别是在编写单片机的程序时，活用位运算可以节约内存资源和单片机有限的算力。 位运算的定义 按位与（&amp;amp;） 与字面意思一样，就是将两个二进制数（计算机内存储都是二进制）对应的每一位做与运算 如">
+<meta name="keywords" content="移位操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Usage of shift operation">
+<meta property="og:url" content="http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/index.html">
 <meta property="og:site_name" content="ZhuMing&#39;s blog">
-<meta property="og:description" content="��¼ѧϰ�ĵ��ε�">
+<meta property="og:description" content="位运算的用法除了逻辑运算，位运算也是编程中常用的运算，但是很多人对于位运算知之甚少。一个原因是因为位运算的用法很零碎，并且有的用法涉及计算机底层的原理所以理解起来比较困难。但是位运算是效率很高的一种运算，特别是在编写单片机的程序时，活用位运算可以节约内存资源和单片机有限的算力。 位运算的定义 按位与（&amp;amp;） 与字面意思一样，就是将两个二进制数（计算机内存储都是二进制）对应的每一位做与运算 如">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/fathRS1JEcRj.png?imageslim">
+<meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/KOdKgEGWkAte.png?imageslim">
+<meta property="og:updated_time" content="2019-12-30T08:30:57.720Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhuMing&#39;s blog">
-<meta name="twitter:description" content="��¼ѧϰ�ĵ��ε�">
+<meta name="twitter:title" content="Usage of shift operation">
+<meta name="twitter:description" content="位运算的用法除了逻辑运算，位运算也是编程中常用的运算，但是很多人对于位运算知之甚少。一个原因是因为位运算的用法很零碎，并且有的用法涉及计算机底层的原理所以理解起来比较困难。但是位运算是效率很高的一种运算，特别是在编写单片机的程序时，活用位运算可以节约内存资源和单片机有限的算力。 位运算的定义 按位与（&amp;amp;） 与字面意思一样，就是将两个二进制数（计算机内存储都是二进制）对应的每一位做与运算 如">
+<meta name="twitter:image" content="http://src.zhumingcj.cn/blog/20191230/fathRS1JEcRj.png?imageslim">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -52,16 +54,14 @@
     <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
 
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="../../../../css/style.css">
 
-
-    <style> .article { opacity: 0;} </style>
 
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>ZhuMing&#39;s blog</title>
+<title>Usage of shift operation | ZhuMing&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -70,8 +70,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -171,13 +171,13 @@
                     <nav class="header-menu">
                         <ul>
                         
-                            <li><a href="index.html">主页</a></li>
+                            <li><a href="../../../../index.html">主页</a></li>
                         
-                            <li><a href="/archives/">所有文章</a></li>
+                            <li><a href="../../../../archives/">所有文章</a></li>
                         
-                            <li><a href="/tags/">标签云</a></li>
+                            <li><a href="../../../../tags/">标签云</a></li>
                         
-                            <li><a href="/about/">关于我</a></li>
+                            <li><a href="../../../../about/">关于我</a></li>
                         
                         </ul>
                     </nav>
@@ -201,7 +201,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/html/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/machine-learning/">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/matrix/">Matrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/指针/">指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/文本编辑/">文本编辑</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/梯度、旋度和散度/">梯度、旋度和散度</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/浮点数原理/">浮点数原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/移位操作/">移位操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/网络协议/">网络协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/软件安装问题/">软件安装问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/递归分治/">递归分治</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/html/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/machine-learning/">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/matrix/">Matrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/指针/">指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/文本编辑/">文本编辑</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/梯度、旋度和散度/">梯度、旋度和散度</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/浮点数原理/">浮点数原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/移位操作/">移位操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/网络协议/">网络协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/软件安装问题/">软件安装问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/递归分治/">递归分治</a></li></ul>
                     </div>
                 </section>
                 
@@ -252,13 +252,13 @@
             <nav class="header-menu">
                 <ul>
                 
-                    <li><a href="index.html">主页</a></li>
+                    <li><a href="../../../../index.html">主页</a></li>
                 
-                    <li><a href="/archives/">所有文章</a></li>
+                    <li><a href="../../../../archives/">所有文章</a></li>
                 
-                    <li><a href="/tags/">标签云</a></li>
+                    <li><a href="../../../../tags/">标签云</a></li>
                 
-                    <li><a href="/about/">关于我</a></li>
+                    <li><a href="../../../../about/">关于我</a></li>
                 
                 <div class="clearfix"></div>
                 </ul>
@@ -282,12 +282,10 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-usage-of-shift-operation" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-usage-of-shift-operation" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="2019/12/30/usage-of-shift-operation/" class="article-date">
+      <a href="" class="article-date">
       <time datetime="2019-12-30T08:30:57.000Z" itemprop="datePublished">2019-12-30</time>
 </a>
 
@@ -302,12 +300,27 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/12/30/usage-of-shift-operation/">Usage of shift operation</a>
+    <h1 class="article-title" itemprop="name">
+      Usage of shift operation
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="../../../../categories/计算机基础/">计算机基础</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/移位操作/">移位操作</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -486,654 +499,136 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/计算机基础/">计算机基础</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/移位操作/">移位操作</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-divide-and-conquer" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/11/17/divide-and-conquer/" class="article-date">
-      <time datetime="2019-11-17T04:51:58.000Z" itemprop="datePublished">2019-11-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/11/17/divide-and-conquer/">Divide-and-Conquer</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="递归分治算法（1）"><a href="#递归分治算法（1）" class="headerlink" title="递归分治算法（1）"></a>递归分治算法（1）</h1><p>孙子兵法有云：“十则围之，五则攻之，倍则分之，敌则能战之，不若则能避之”，这句话的意思是说，十倍的兵力就合围；五倍的兵力就强攻；两倍的兵力就分散敌人，逐个击破；能打就打，不能打就跑——在不同的兵力下，有不同的应对策略。将兵法应用于编程：当计算能力足够的情况下，我们可以采取暴力的方法求解问题，但是当计算能力不足的时候，我们应该将问题分割，逐个求解，这也就是分治的思想。但是“Divide and rule, a sound motto,. Unite and lead, a better one”，翻译过来就是：分而治之是至理名言，和而御之却更显明智。分治算法的难点并不在于分而在于和，分的策略可能有很多种，但是如果分完后不能合起来那就是失败的。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/算法/">算法</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/递归分治/">递归分治</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/11/17/divide-and-conquer/#more">阅读全文 >></a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="">Usage of shift operation</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
+        <p><span>发布时间:</span>2019-12-30, 16:30:57</p>
+        <p><span>最后更新:</span>2019-12-30, 16:30:57</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="" title="Usage of shift operation">http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-graphic-of-typora" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/10/17/graphic-of-typora/" class="article-date">
-      <time datetime="2019-10-16T16:57:15.000Z" itemprop="datePublished">2019-10-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/10/17/graphic-of-typora/">Graphic of Typora</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="流程图示例"><a href="#流程图示例" class="headerlink" title="流程图示例"></a>流程图示例</h1><p>在很多时候，图表能帮助我们更好地传达我们想表述的意思，也更加的直观，因此我们有必要学会各种绘图的技巧。这篇博客将介绍如何使用Typora绘制各种图（流程图、序列图、甘特图）。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/杂文/">杂文</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/文本编辑/">文本编辑</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/10/17/graphic-of-typora/#more">阅读全文 >></a>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-three-ways-of-coding" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/10/03/three-ways-of-coding/" class="article-date">
-      <time datetime="2019-10-02T19:10:04.000Z" itemprop="datePublished">2019-10-03</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/10/03/three-ways-of-coding/">three ways of coding</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="三种编码方式：原码、反码、补码"><a href="#三种编码方式：原码、反码、补码" class="headerlink" title="三种编码方式：原码、反码、补码"></a>三种编码方式：原码、反码、补码</h1><p>学过大学计算机基础的人可能对原码、反码、补码有所了解，但是对于三种编码的意义一脸懵逼或是一知半解，本文希望能透彻的讲清楚三者的意义及联系。清楚地理解原码、反码、补码的概念对于编写嵌入式开发的程序有着巨大的帮助。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/计算机基础/">计算机基础</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/编码/">编码</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/10/03/three-ways-of-coding/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-principle-of-floating-number" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/09/29/principle-of-floating-number/" class="article-date">
-      <time datetime="2019-09-28T17:27:06.000Z" itemprop="datePublished">2019-09-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/09/29/principle-of-floating-number/">Principle of Floating Number</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="浮点数的原理"><a href="#浮点数的原理" class="headerlink" title="浮点数的原理"></a>浮点数的原理</h1><p>在编程中，我们经常会与float打交道，总是会遇到一些难以预测的问题，而且这些问题往往没有有效的解决方法。我们想要弄清楚其中的奥秘，就一定要理解float的实现原理；通过float的原理来看问题，一切问题都会迎刃而解。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/numerical-analysis/">Numerical Analysis</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/浮点数原理/">浮点数原理</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/09/29/principle-of-floating-number/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Usage of pointer" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/09/28/Usage of pointer/" class="article-date">
-      <time datetime="2019-09-28T12:13:28.000Z" itemprop="datePublished">2019-09-28</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="../../../11/17/divide-and-conquer/">
+                    Divide-and-Conquer
+                </a>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/09/28/Usage of pointer/">指针的使用</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="指针的用法"><a href="#指针的用法" class="headerlink" title="指针的用法"></a>指针的用法</h1><p>指针在C语言中的地位就好比反射之于java/C#，起着十分重要的作用。指针能让萌新落泪，让大神起飞，让C语言屹立不倒。正是指针的存在让C语言变得十分灵活但同样也带来了一些令程序员头疼的问题。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/c语言/">C语言</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/指针/">指针</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/09/28/Usage of pointer/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-web-spider-3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/09/02/web-spider-3/" class="article-date">
-      <time datetime="2019-09-02T04:15:11.000Z" itemprop="datePublished">2019-09-02</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/09/02/web-spider-3/">Web_Spider_3</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="网络爬虫入门教程（3）"><a href="#网络爬虫入门教程（3）" class="headerlink" title="网络爬虫入门教程（3）"></a>网络爬虫入门教程（3）</h1><p>这篇博客将继续介绍爬虫程序中模拟登陆的解决方法、post方式和信息提取的方法。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/网络/">网络</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/爬虫/">爬虫</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/09/02/web-spider-3/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-web-spider-2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/08/28/web-spider-2/" class="article-date">
-      <time datetime="2019-08-28T09:25:36.000Z" itemprop="datePublished">2019-08-28</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/08/28/web-spider-2/">Web Spider_2</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="网络爬虫入门教程（2）"><a href="#网络爬虫入门教程（2）" class="headerlink" title="网络爬虫入门教程（2）"></a>网络爬虫入门教程（2）</h1><p>接着上一篇博客，这篇博客会具体讲述网络爬虫代码的构建。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/网络/">网络</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/爬虫/">爬虫</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/08/28/web-spider-2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-web-spider-1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/08/28/web-spider-1/" class="article-date">
-      <time datetime="2019-08-28T02:44:35.000Z" itemprop="datePublished">2019-08-28</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/08/28/web-spider-1/">Web Spider_1</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="网络爬虫入门教程（1）"><a href="#网络爬虫入门教程（1）" class="headerlink" title="网络爬虫入门教程（1）"></a>网络爬虫入门教程（1）</h1><p>刚入门网络爬虫，期望通过三篇博客来总结一下入门级爬虫程序的写法，希望能给那些想要入爬虫这个坑的人提供一些帮助。为了结构化的介绍爬虫，将分为：http协议、网络爬虫代码构建、内容提取三篇博客进行全面的讲解。</p>
-<p><code>注：写爬虫要遵守相关法规，不能侵犯他人著作权！！！（简单的来说免费的网站都能爬，付费的很难爬也不能以此盈利，否则有前车之鉴，千万赔偿劝退）</code></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/网络/">网络</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/爬虫/">爬虫</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/08/28/web-spider-1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-solution-to-vs2017-installation-problem" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2019/08/17/solution-to-vs2017-installation-problem/" class="article-date">
-      <time datetime="2019-08-17T00:13:48.000Z" itemprop="datePublished">2019-08-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2019/08/17/solution-to-vs2017-installation-problem/">Solution to VS2017 Installation Problem</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="VS2017安装中注册表问题的解决"><a href="#VS2017安装中注册表问题的解决" class="headerlink" title="VS2017安装中注册表问题的解决"></a>VS2017安装中注册表问题的解决</h1><p>今天在安装VS2017时碰到了一个棘手的问题导致所有的组件都无法使用，经过半天的捣鼓最终解决了以下的问题。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="categories/杂文/">杂文</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/软件安装问题/">软件安装问题</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="2019/08/17/solution-to-vs2017-installation-problem/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><a class="extend next" rel="next" href="page/2/">Next &raquo;</a>
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#位运算的用法"><span class="toc-number">1.</span> <span class="toc-text">位运算的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的定义"><span class="toc-number">1.0.1.</span> <span class="toc-text">位运算的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的一些性质"><span class="toc-number">1.0.2.</span> <span class="toc-text">位运算的一些性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的用法-1"><span class="toc-number">1.0.3.</span> <span class="toc-text">位运算的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#快速乘除2的幂"><span class="toc-number">1.0.3.0.1.</span> <span class="toc-text">快速乘除2的幂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#判断一个数的奇偶性"><span class="toc-number">1.0.3.0.2.</span> <span class="toc-text">判断一个数的奇偶性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#判断两个数是否相同"><span class="toc-number">1.0.3.0.3.</span> <span class="toc-text">判断两个数是否相同</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#取反第n位"><span class="toc-number">1.0.3.0.4.</span> <span class="toc-text">取反第n位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#置零第n位"><span class="toc-number">1.0.3.0.5.</span> <span class="toc-text">置零第n位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#置1第n位"><span class="toc-number">1.0.3.0.6.</span> <span class="toc-text">置1第n位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#交换两个数"><span class="toc-number">1.0.3.0.7.</span> <span class="toc-text">交换两个数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#取相反数"><span class="toc-number">1.0.3.0.8.</span> <span class="toc-text">取相反数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#保留第n位，清零其他位"><span class="toc-number">1.0.3.0.9.</span> <span class="toc-text">保留第n位，清零其他位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#求十进制数的二进制"><span class="toc-number">1.0.3.0.10.</span> <span class="toc-text">求十进制数的二进制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#翻转最低位的1"><span class="toc-number">1.0.3.0.11.</span> <span class="toc-text">翻转最低位的1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#循环左移2-循环右移k位（suppose-sizeof-int-32"><span class="toc-number">1.0.3.0.12.</span> <span class="toc-text">循环左移2/循环右移k位（suppose    sizeof(int)=32)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二进制加法器"><span class="toc-number">1.0.3.0.13.</span> <span class="toc-text">二进制加法器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#求平均数"><span class="toc-number">1.0.3.0.14.</span> <span class="toc-text">求平均数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">1.0.4.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Usage of shift operation　| ZhuMing's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+		<section id="comments" style="margin: 2em; padding: 2em; background: rgba(255, 255, 255, 0.5)">
+    <div id="vcomment" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@1.2.0-beta1/dist/Valine.min.js"></script>
+    <script>
+      new Valine({
+        el: '#vcomment',
+        notify: 'true',
+        verify: 'true',
+        app_id: "0i6QKfkhQg9wUTw0etXjfuKx-MdYXbMMI",
+        app_key: "GtCyPyXj8RM7sQnHvrGT57Vy",
+        placeholder: "Comments are welcomed!",
+        avatar: "mp"
+      });
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="../../../11/17/divide-and-conquer/" title="下一篇: Divide-and-Conquer">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="">Usage of shift operation</a></li><li class="post-list-item"><a class="post-list-link" href="../../../11/17/divide-and-conquer/">Divide-and-Conquer</a></li><li class="post-list-item"><a class="post-list-link" href="../../../10/17/graphic-of-typora/">Graphic of Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../10/03/three-ways-of-coding/">three ways of coding</a></li><li class="post-list-item"><a class="post-list-link" href="../../../09/29/principle-of-floating-number/">Principle of Floating Number</a></li><li class="post-list-item"><a class="post-list-link" href="../../../09/28/Usage of pointer/">指针的使用</a></li><li class="post-list-item"><a class="post-list-link" href="../../../09/02/web-spider-3/">Web_Spider_3</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/28/web-spider-2/">Web Spider_2</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/28/web-spider-1/">Web Spider_1</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/17/solution-to-vs2017-installation-problem/">Solution to VS2017 Installation Problem</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/11/qr-decomposition-2/">QR_Decomposition_2</a></li><li class="post-list-item"><a class="post-list-link" href="../../../08/08/qr-decomposition_1/">QR decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/23/simple-classification/">Simple Classification</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/20/changed-linear-regression/">Changed Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/19/linear-regression/">Linear Regression</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/18/important-concepts-for-html/">Important Concepts for Html</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/rotation、grad-and-divergence/">Rotation、Grad and Divergence</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/09/kmp-algorithm/">KMP Algorithm</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/08/improved-square-method/">Improved Square Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/06/square-root-method-and-improved-square-root-method/">Square Root Method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/05/HTML Basic Skills/">Web Basic Skills</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/04/https-protocol/">https protocol</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/03/usage-of-trigonometric-decomposition/">Usage of Trigonometric Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/02/triangular-decomposition/">Triangular Decomposition</a></li><li class="post-list-item"><a class="post-list-link" href="../../../07/01/singleton-pattern/">Singleton Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Gaussian elimination method/">Gaussian elimination method</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Decoractor-Pattern/">Decoractor Pattern</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/27/Observer Pattern/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/Tips for Typora/">ShortCut Key for Typora</a></li><li class="post-list-item"><a class="post-list-link" href="../../../06/21/my-first-blog/">my first blog</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -1192,10 +687,6 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
         })
     </script>
 
-
-    
-
-     
 
 
 
