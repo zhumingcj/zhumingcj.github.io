@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/fathRS1JEcRj.png?imageslim">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/KOdKgEGWkAte.png?imageslim">
-<meta property="og:updated_time" content="2019-12-30T08:32:12.606Z">
+<meta property="og:updated_time" content="2019-12-30T08:39:40.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Usage of shift operation">
 <meta name="twitter:description" content="位运算的用法除了逻辑运算，位运算也是编程中常用的运算，但是很多人对于位运算知之甚少。一个原因是因为位运算的用法很零碎，并且有的用法涉及计算机底层的原理所以理解起来比较困难。但是位运算是效率很高的一种运算，特别是在编写单片机的程序时，活用位运算可以节约内存资源和单片机有限的算力。">
@@ -382,7 +382,7 @@
 </li>
 </ol>
 <h3 id="位运算的用法-1"><a href="#位运算的用法-1" class="headerlink" title="位运算的用法"></a>位运算的用法</h3><ul>
-<li><h5 id="快速乘除2的幂"><a href="#快速乘除2的幂" class="headerlink" title="快速乘除2的幂"></a>快速乘除2的幂</h5><p>由于移位运算的的特点，我们可以发现左移1位的效果就是乘以二，下面给出简单的证明</p>
+<li><h4 id="快速乘除2的幂"><a href="#快速乘除2的幂" class="headerlink" title="快速乘除2的幂"></a>快速乘除2的幂</h4><p>由于移位运算的的特点，我们可以发现左移1位的效果就是乘以二，下面给出简单的证明</p>
 <script type="math/tex; mode=display">
 suppose\quad  (x)_{2}=a_{1}a{2}\dots a_{n}=1*a_{n}+2*a_{n-1}+\dots +2^{n-1}a_{1}\\
 x<<1=a_{1}a{2}\dots a_{n}0=2*a_{n}+4*a_{n-1}+\dots +2^{n}a_{1}\\
@@ -391,30 +391,30 @@ x<<1=a_{1}a{2}\dots a_{n}0=2*a_{n}+4*a_{n-1}+\dots +2^{n}a_{1}\\
 </li>
 </ul>
 <ul>
-<li><h5 id="判断一个数的奇偶性"><a href="#判断一个数的奇偶性" class="headerlink" title="判断一个数的奇偶性"></a>判断一个数的奇偶性</h5><p>由于二进制数的特点，奇偶性在二进制数中体现在最后一位是否为1，因此我们可以通过位运算来判断</p>
+<li><h4 id="判断一个数的奇偶性"><a href="#判断一个数的奇偶性" class="headerlink" title="判断一个数的奇偶性"></a>判断一个数的奇偶性</h4><p>由于二进制数的特点，奇偶性在二进制数中体现在最后一位是否为1，因此我们可以通过位运算来判断</p>
 <script type="math/tex; mode=display">
 x\&(1)= 1 \Rightarrow x为奇数\\
 x\&(1)= 0 \Rightarrow x为偶数</script></li>
-<li><h5 id="判断两个数是否相同"><a href="#判断两个数是否相同" class="headerlink" title="判断两个数是否相同"></a>判断两个数是否相同</h5><p>由异或运算的定义，a^b==0则a与b 相同，反则不同</p>
+<li><h4 id="判断两个数是否相同"><a href="#判断两个数是否相同" class="headerlink" title="判断两个数是否相同"></a>判断两个数是否相同</h4><p>由异或运算的定义，a^b==0则a与b 相同，反则不同</p>
 </li>
 </ul>
 <ul>
-<li><h5 id="取反第n位"><a href="#取反第n位" class="headerlink" title="取反第n位"></a>取反第n位</h5><p>由位运算的性质，我们可以知道一定要用异或操作，并且我们需要构造一个数，它的第n位为1，其余位为0，那么某个数与它异或后只会取反第n位，所以</p>
-<p>​                                                                取反x的第n位 = x^(1&lt;&lt;n-1)</p>
+<li><h4 id="取反第n位"><a href="#取反第n位" class="headerlink" title="取反第n位"></a>取反第n位</h4><p>由位运算的性质，我们可以知道一定要用异或操作，并且我们需要构造一个数，它的第n位为1，其余位为0，那么某个数与它异或后只会取反第n位，所以</p>
+<p>​                                                            取反x的第n位 = x^(1&lt;&lt;n-1)</p>
 </li>
 </ul>
 <ul>
-<li><h5 id="置零第n位"><a href="#置零第n位" class="headerlink" title="置零第n位"></a>置零第n位</h5><p>由位运算的性质，我们可以知道一定要用与操作，并且我们要构造一个数，它的第n位是0，其余位是1，那么某个数与它与之后只会置零第n位，所以</p>
+<li><h4 id="置零第n位"><a href="#置零第n位" class="headerlink" title="置零第n位"></a>置零第n位</h4><p>由位运算的性质，我们可以知道一定要用与操作，并且我们要构造一个数，它的第n位是0，其余位是1，那么某个数与它与之后只会置零第n位，所以</p>
 <p>​                                                            置零x的第n位 = x&amp;(（~0）^（1&lt;&lt;n-1）)</p>
 <p>一般的，置零x的第$a_{1},a_{2}\dots,a_{n}$位 = x&amp;$((~0)$^$((1&lt;&lt;a_{1})+(1&lt;&lt;a_{2})+\dots +(a&lt;&lt;a_{n})))$</p>
 </li>
-<li><h5 id="置1第n位"><a href="#置1第n位" class="headerlink" title="置1第n位"></a>置1第n位</h5><p>与置零类似，这次我们需要用到或操作，并且我们要构造一个数，它的第n位是1，其余位是0，那么某个数与它与之后只会把第n位置1，所以</p>
+<li><h4 id="置1第n位"><a href="#置1第n位" class="headerlink" title="置1第n位"></a>置1第n位</h4><p>与置零类似，这次我们需要用到或操作，并且我们要构造一个数，它的第n位是1，其余位是0，那么某个数与它与之后只会把第n位置1，所以</p>
 <p>​                                                            置1 x的第n位 = x|(1&lt;&lt;(n-1))</p>
 <p>一般的，置1 x的第$a_{1},a_{2}\dots,a_{n}$位 = x|$((1&lt;&lt;a_{1})+(1&lt;&lt;a_{2})+\dots +(a&lt;&lt;a_{n}))$</p>
 </li>
 </ul>
 <ul>
-<li><h5 id="交换两个数"><a href="#交换两个数" class="headerlink" title="交换两个数"></a>交换两个数</h5><p>​                                                            a=a^b</p>
+<li><h4 id="交换两个数"><a href="#交换两个数" class="headerlink" title="交换两个数"></a>交换两个数</h4><p>​                                                            a=a^b</p>
 <p>​                                                            b=a^b</p>
 <p>​                                                            a=a^b</p>
 <p>第一次取异或后，a保存了a与b每一位的情况，相同的为0，不同的为1；第二次异或时，根据位运算的性质，结果保留了b中与a相同的位，不同的取反，所以b的值变成了a，第三次情况与第二次相同，最后a与b实现了交换。</p>
@@ -435,19 +435,19 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
 <p>  ​                                                            a=a-b    </p>
 <p>  自行体会，不做解释（懒）</p>
 <ul>
-<li><h5 id="取相反数"><a href="#取相反数" class="headerlink" title="取相反数"></a>取相反数</h5><p>由原码和补码的关系我们可以知道</p>
+<li><h4 id="取相反数"><a href="#取相反数" class="headerlink" title="取相反数"></a>取相反数</h4><p>由原码和补码的关系我们可以知道</p>
 <p>​                                                            -a=~a+1</p>
 </li>
 </ul>
 <ul>
-<li><h5 id="保留第n位，清零其他位"><a href="#保留第n位，清零其他位" class="headerlink" title="保留第n位，清零其他位"></a>保留第n位，清零其他位</h5><p>根据性质，我应该用“&amp;”运算，并且需要构造一个数，它的第n位是1，它的其余位是0</p>
+<li><h4 id="保留第n位，清零其他位"><a href="#保留第n位，清零其他位" class="headerlink" title="保留第n位，清零其他位"></a>保留第n位，清零其他位</h4><p>根据性质，我应该用“&amp;”运算，并且需要构造一个数，它的第n位是1，它的其余位是0</p>
 <p>​                                                            x = x&amp;(x&lt;&lt;n-1)</p>
 </li>
-<li><h5 id="求十进制数的二进制"><a href="#求十进制数的二进制" class="headerlink" title="求十进制数的二进制"></a>求十进制数的二进制</h5><p>因为计算机内存储的都是二进制，所以我们只要将它打印出来就行，通过x&amp;1可以判断x的最后一位是1还是零，只要我们写个循环，每次右移1然后判断最后一位是什么，把结果存入栈，最后从栈中输出就得到了十进制数的二进制形式，或者从高位开始遍历就直接输出。</p>
+<li><h4 id="求十进制数的二进制"><a href="#求十进制数的二进制" class="headerlink" title="求十进制数的二进制"></a>求十进制数的二进制</h4><p>因为计算机内存储的都是二进制，所以我们只要将它打印出来就行，通过x&amp;1可以判断x的最后一位是1还是零，只要我们写个循环，每次右移1然后判断最后一位是什么，把结果存入栈，最后从栈中输出就得到了十进制数的二进制形式，或者从高位开始遍历就直接输出。</p>
 </li>
 </ul>
 <ul>
-<li><h5 id="翻转最低位的1"><a href="#翻转最低位的1" class="headerlink" title="翻转最低位的1"></a>翻转最低位的1</h5><p>要翻转最低位的1，前提是我们能找到最低位的1。那么我们该如何“找”到最低位的1呢？就这么找肯定是不行的，我们可以给一个“微小的扰动”——$\pm1$，。由于二进制每一位只能是1或1，所以当我们计算x-1时，x就会向最低位的1借位，从某种意义上我们就找到了最低位的1。我们举个例子看看减一会发生什么</p>
+<li><h4 id="翻转最低位的1"><a href="#翻转最低位的1" class="headerlink" title="翻转最低位的1"></a>翻转最低位的1</h4><p>要翻转最低位的1，前提是我们能找到最低位的1。那么我们该如何“找”到最低位的1呢？就这么找肯定是不行的，我们可以给一个“微小的扰动”——$\pm1$，。由于二进制每一位只能是1或1，所以当我们计算x-1时，x就会向最低位的1借位，从某种意义上我们就找到了最低位的1。我们举个例子看看减一会发生什么</p>
 <p>​                                                            x=10011000    x-1=10010111</p>
 <p>可以发现x-1与x最低位1前面的位相同，而最低位1以及后面的位发生反转，根据性质可得计算方法</p>
 <p>​                                                            x = x&amp;(x-1)</p>
@@ -455,18 +455,18 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
 </li>
 </ul>
 <ul>
-<li><h5 id="循环左移2-循环右移k位（suppose-sizeof-int-32"><a href="#循环左移2-循环右移k位（suppose-sizeof-int-32" class="headerlink" title="循环左移2/循环右移k位（suppose    sizeof(int)=32)"></a>循环左移<sup><a href="#fn_2" id="reffn_2">2</a></sup>/循环右移k位（suppose    sizeof(int)=32)</h5><p>直接给出循环左移的计算式：</p>
+<li><h4 id="循环左移2-循环右移k位（suppose-sizeof-int-32"><a href="#循环左移2-循环右移k位（suppose-sizeof-int-32" class="headerlink" title="循环左移2/循环右移k位（suppose    sizeof(int)=32)"></a>循环左移<sup><a href="#fn_2" id="reffn_2">2</a></sup>/循环右移k位（suppose    sizeof(int)=32)</h4><p>直接给出循环左移的计算式：</p>
 <p>​                                                            x=(x&lt;<k)|(x>&gt;32-k)</k)|(x></p>
 <p>其实也很好理解，循环左移一定是要左移的，但是超出部分要放到末尾就相当于右移，最后要把两个结果拼接起来就用“或”运算。</p>
 </li>
 </ul>
 <ul>
-<li><h5 id="二进制加法器"><a href="#二进制加法器" class="headerlink" title="二进制加法器"></a>二进制加法器</h5><p>虽然二进制的加法看似简单，但是如果我们自己来实现也得费一点力，因为我们不仅要将每一位相加还得处理进位的问题。但是如果我们把这两个过程分开考虑，问题就迎刃而解。下面是实现加法器的代码：</p>
+<li><h4 id="二进制加法器"><a href="#二进制加法器" class="headerlink" title="二进制加法器"></a>二进制加法器</h4><p>虽然二进制的加法看似简单，但是如果我们自己来实现也得费一点力，因为我们不仅要将每一位相加还得处理进位的问题。但是如果我们把这两个过程分开考虑，问题就迎刃而解。下面是实现加法器的代码：</p>
 <figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>{</span><br><span class="line">    <span class="comment">//进位为0，运算结束</span></span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>){</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">//计算两数之和，忽略进位</span></span><br><span class="line">    <span class="comment">//两二进制数相加，对应为不同结果为1否则为0，符合异或</span></span><br><span class="line">    <span class="keyword">int</span> sum=a^b;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//计算进位</span></span><br><span class="line">    <span class="comment">//两二进制数对应位相同产生进位，符合与运算</span></span><br><span class="line">    <span class="comment">//进位应当是高一位置1，故左移一位</span></span><br><span class="line">    <span class="keyword">int</span> carry=(a&amp;b)&lt;&lt;<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment">//递归调用，进位与直接和相加可能产生新的进位</span></span><br><span class="line">    <span class="keyword">return</span> add(sum,carry);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 </li>
 </ul>
 <ul>
-<li><h5 id="求平均数"><a href="#求平均数" class="headerlink" title="求平均数"></a>求平均数</h5><p>如果理解了二进制加法器，那么我们也可以找到一种求两个数平均数的方法（取整后的平均数），下面先给出计算的方法：</p>
+<li><h4 id="求平均数"><a href="#求平均数" class="headerlink" title="求平均数"></a>求平均数</h4><p>如果理解了二进制加法器，那么我们也可以找到一种求两个数平均数的方法（取整后的平均数），下面先给出计算的方法：</p>
 <p>​                                                            avg = (a&amp;b) + ((a^b)&gt;&gt;1)</p>
 <p>其中的加法可以直接使用上面的二进制加法器，原来和二进制加法器一样，分两部分计算：a+b产生的进位一定是个偶数，所以其均值应为((a&amp;b)&lt;&lt;1)&gt;&gt;1 = a&amp;b；a+b忽略进位的和为a\^b，平均值为(a^b)&gt;&gt;1(这一步运算会发生取整),最后结果就是上面的式子。<!--1)--></p>
 </li>
@@ -507,7 +507,7 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
         <p><span>本文标题:</span><a href="">Usage of shift operation</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
         <p><span>发布时间:</span>2019-12-30, 16:30:57</p>
-        <p><span>最后更新:</span>2019-12-30, 16:32:12</p>
+        <p><span>最后更新:</span>2019-12-30, 16:39:40</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="" title="Usage of shift operation">http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -537,7 +537,7 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#位运算的用法"><span class="toc-number">1.</span> <span class="toc-text">位运算的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的定义"><span class="toc-number">1.0.1.</span> <span class="toc-text">位运算的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的一些性质"><span class="toc-number">1.0.2.</span> <span class="toc-text">位运算的一些性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的用法-1"><span class="toc-number">1.0.3.</span> <span class="toc-text">位运算的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#快速乘除2的幂"><span class="toc-number">1.0.3.0.1.</span> <span class="toc-text">快速乘除2的幂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#判断一个数的奇偶性"><span class="toc-number">1.0.3.0.2.</span> <span class="toc-text">判断一个数的奇偶性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#判断两个数是否相同"><span class="toc-number">1.0.3.0.3.</span> <span class="toc-text">判断两个数是否相同</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#取反第n位"><span class="toc-number">1.0.3.0.4.</span> <span class="toc-text">取反第n位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#置零第n位"><span class="toc-number">1.0.3.0.5.</span> <span class="toc-text">置零第n位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#置1第n位"><span class="toc-number">1.0.3.0.6.</span> <span class="toc-text">置1第n位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#交换两个数"><span class="toc-number">1.0.3.0.7.</span> <span class="toc-text">交换两个数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#取相反数"><span class="toc-number">1.0.3.0.8.</span> <span class="toc-text">取相反数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#保留第n位，清零其他位"><span class="toc-number">1.0.3.0.9.</span> <span class="toc-text">保留第n位，清零其他位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#求十进制数的二进制"><span class="toc-number">1.0.3.0.10.</span> <span class="toc-text">求十进制数的二进制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#翻转最低位的1"><span class="toc-number">1.0.3.0.11.</span> <span class="toc-text">翻转最低位的1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#循环左移2-循环右移k位（suppose-sizeof-int-32"><span class="toc-number">1.0.3.0.12.</span> <span class="toc-text">循环左移2/循环右移k位（suppose    sizeof(int)=32)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二进制加法器"><span class="toc-number">1.0.3.0.13.</span> <span class="toc-text">二进制加法器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#求平均数"><span class="toc-number">1.0.3.0.14.</span> <span class="toc-text">求平均数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">1.0.4.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#位运算的用法"><span class="toc-number">1.</span> <span class="toc-text">位运算的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的定义"><span class="toc-number">1.0.1.</span> <span class="toc-text">位运算的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的一些性质"><span class="toc-number">1.0.2.</span> <span class="toc-text">位运算的一些性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算的用法-1"><span class="toc-number">1.0.3.</span> <span class="toc-text">位运算的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#快速乘除2的幂"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">快速乘除2的幂</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#判断一个数的奇偶性"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">判断一个数的奇偶性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#判断两个数是否相同"><span class="toc-number">1.0.3.3.</span> <span class="toc-text">判断两个数是否相同</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取反第n位"><span class="toc-number">1.0.3.4.</span> <span class="toc-text">取反第n位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#置零第n位"><span class="toc-number">1.0.3.5.</span> <span class="toc-text">置零第n位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#置1第n位"><span class="toc-number">1.0.3.6.</span> <span class="toc-text">置1第n位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交换两个数"><span class="toc-number">1.0.3.7.</span> <span class="toc-text">交换两个数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取相反数"><span class="toc-number">1.0.3.8.</span> <span class="toc-text">取相反数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#保留第n位，清零其他位"><span class="toc-number">1.0.3.9.</span> <span class="toc-text">保留第n位，清零其他位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#求十进制数的二进制"><span class="toc-number">1.0.3.10.</span> <span class="toc-text">求十进制数的二进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#翻转最低位的1"><span class="toc-number">1.0.3.11.</span> <span class="toc-text">翻转最低位的1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#循环左移2-循环右移k位（suppose-sizeof-int-32"><span class="toc-number">1.0.3.12.</span> <span class="toc-text">循环左移2/循环右移k位（suppose    sizeof(int)=32)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二进制加法器"><span class="toc-number">1.0.3.13.</span> <span class="toc-text">二进制加法器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#求平均数"><span class="toc-number">1.0.3.14.</span> <span class="toc-text">求平均数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">1.0.4.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol></li></ol>
         
     </div>
     <style>
@@ -727,21 +727,6 @@ MathJax.Hub.Queue(function() {
 
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
