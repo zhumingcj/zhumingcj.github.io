@@ -33,11 +33,11 @@
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/lvwm2nc17zA8.png?imageslim">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/q4BkMXsDOwjp.png?imageslim">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/jMvomgJ3zGyc.png?imageslim">
-<meta property="og:image" content="c:/Users/Dell/AppData/Roaming/Typora/typora-user-images/image-20191230164816362.png">
+<meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/5sBrGBM7mWiY.png?imageslim">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/kurYlr2i9VCK.png?imageslim">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/I1i9VeQkIh1o.png?imageslim">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/7FzyOPvQRwuR.png?imageslim">
-<meta property="og:updated_time" content="2019-12-30T08:48:58.280Z">
+<meta property="og:updated_time" content="2019-12-30T08:52:54.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Usage of shift operation">
 <meta name="twitter:description" content="位运算的用法除了逻辑运算，位运算也是编程中常用的运算，但是很多人对于位运算知之甚少。一个原因是因为位运算的用法很零碎，并且有的用法涉及计算机底层的原理所以理解起来比较困难。但是位运算是效率很高的一种运算，特别是在编写单片机的程序时，活用位运算可以节约内存资源和单片机有限的算力。">
@@ -456,7 +456,7 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
 </ul>
 <ul>
 <li><h4 id="翻转最低位的1"><a href="#翻转最低位的1" class="headerlink" title="翻转最低位的1"></a>翻转最低位的1</h4><p>要翻转最低位的1，前提是我们能找到最低位的1。那么我们该如何“找”到最低位的1呢？就这么找肯定是不行的，我们可以给一个“微小的扰动”——$\pm1$，。由于二进制每一位只能是1或1，所以当我们计算x-1时，x就会向最低位的1借位，从某种意义上我们就找到了最低位的1。我们举个例子看看减一会发生什么</p>
-<p>​                                                            <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20191230164816362.png" alt="image-20191230164816362"></p>
+<p>​                                                            <img src="http://src.zhumingcj.cn/blog/20191230/5sBrGBM7mWiY.png?imageslim" alt="mark"></p>
 <p>可以发现x-1与x最低位1前面的位相同，而最低位1以及后面的位发生反转，根据性质可得计算方法</p>
 <p>​                                                        <img src="http://src.zhumingcj.cn/blog/20191230/kurYlr2i9VCK.png?imageslim" alt="mark"></p>
 <p>稍作引申，我们可以得到统计某个二进制数1位的数量，我只要不断重复上述操作，每次讲数量++，直到x变为0就得到了1的数量</p>
@@ -515,7 +515,7 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
         <p><span>本文标题:</span><a href="">Usage of shift operation</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
         <p><span>发布时间:</span>2019-12-30, 16:30:57</p>
-        <p><span>最后更新:</span>2019-12-30, 16:48:58</p>
+        <p><span>最后更新:</span>2019-12-30, 16:52:54</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="" title="Usage of shift operation">http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
