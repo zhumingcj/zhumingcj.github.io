@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/fathRS1JEcRj.png?imageslim">
 <meta property="og:image" content="http://src.zhumingcj.cn/blog/20191230/KOdKgEGWkAte.png?imageslim">
-<meta property="og:updated_time" content="2019-12-30T08:39:40.319Z">
+<meta property="og:updated_time" content="2019-12-30T08:41:35.271Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Usage of shift operation">
 <meta name="twitter:description" content="位运算的用法除了逻辑运算，位运算也是编程中常用的运算，但是很多人对于位运算知之甚少。一个原因是因为位运算的用法很零碎，并且有的用法涉及计算机底层的原理所以理解起来比较困难。但是位运算是效率很高的一种运算，特别是在编写单片机的程序时，活用位运算可以节约内存资源和单片机有限的算力。">
@@ -400,7 +400,7 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
 </ul>
 <ul>
 <li><h4 id="取反第n位"><a href="#取反第n位" class="headerlink" title="取反第n位"></a>取反第n位</h4><p>由位运算的性质，我们可以知道一定要用异或操作，并且我们需要构造一个数，它的第n位为1，其余位为0，那么某个数与它异或后只会取反第n位，所以</p>
-<p>​                                                            取反x的第n位 = x^(1&lt;&lt;n-1)</p>
+<p>​                                                            </p><center>取反x的第n位 = x^(1&lt;<n-1)< center=""></n-1)<></center><p></p>
 </li>
 </ul>
 <ul>
@@ -507,7 +507,7 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
         <p><span>本文标题:</span><a href="">Usage of shift operation</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">ZhuMing</a></p>
         <p><span>发布时间:</span>2019-12-30, 16:30:57</p>
-        <p><span>最后更新:</span>2019-12-30, 16:39:40</p>
+        <p><span>最后更新:</span>2019-12-30, 16:41:35</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="" title="Usage of shift operation">http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zhumingcj.github.io/2019/12/30/usage-of-shift-operation/　　作者: ZhuMing" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -727,6 +727,21 @@ MathJax.Hub.Queue(function() {
 
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
