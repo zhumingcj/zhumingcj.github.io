@@ -313,176 +313,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="位运算的用法"><a href="#位运算的用法" class="headerlink" title="位运算的用法"></a>位运算的用法</h1><p>除了逻辑运算，位运算也是编程中常用的运算，但是很多人对于位运算知之甚少。一个原因是因为位运算的用法很零碎，并且有的用法涉及计算机底层的原理所以理解起来比较困难。但是位运算是效率很高的一种运算，特别是在编写单片机的程序时，活用位运算可以节约内存资源和单片机有限的算力。</p>
-<h3 id="位运算的定义"><a href="#位运算的定义" class="headerlink" title="位运算的定义"></a>位运算的定义</h3><ol>
-<li><p>按位与（&amp;）</p>
-<p>与字面意思一样，就是将两个二进制数（计算机内存储都是二进制）对应的每一位做与运算</p>
-<p>如：01001101 &amp; 11010011 = 01000001</p>
-</li>
-<li><p>按位或（|）</p>
-<p>与字面意思一样，就是将两个二进制数对应的每一位做或运算</p>
-<p>如：00110101 | 01010010 = 01110111</p>
-</li>
-<li><p>按位异或（^）</p>
-<p>与字面意思一样，就是将两个二进制数对应的每一位做异或<sup><a href="#fn_1" id="reffn_1">1</a></sup>运算</p>
-<p>如：01001110 ^ 00111100 = 01110010</p>
-</li>
-<li><p>取反（~）</p>
-<p>取反运算是将原来是0的变为1，原来是1的变为0</p>
-<p>如：~010100111 = 101011000</p>
-</li>
-<li><p>左移（&lt;&lt;）</p>
-<p>左移运算是将原来的数整体向左移动指定位数</p>
-<p>如：11000111 &lt;&lt; 1 = 10001110</p>
-</li>
-<li><p>右移（&gt;&gt;）</p>
-<p>左移运算是将原来的数整体向右移动指定位数</p>
-<p>如：10101011 &gt;&gt; 1 = 01010101</p>
-</li>
-</ol>
-<p><code>Tips:“&amp;”是偏向于0的，因此常用于置零操作；“|”是偏向于1的，因此常用于置1操作；“^”常用于检测异同；“&lt;&lt;"和“&gt;&gt;”常用于乘除。</code></p>
-<h3 id="位运算的一些性质"><a href="#位运算的一些性质" class="headerlink" title="位运算的一些性质"></a>位运算的一些性质</h3><ol>
-<li><p>与“1”的不变性</p>
-<p>1&amp;1=1    0&amp;1=0</p>
-<p>从上面的两个式子我们可以看出某一位“与”上1，其结果只取决于这一位，即保留了原来的性质</p>
-</li>
-<li><p>或“0”的不变性</p>
-<p>1|0=1    0|0=0</p>
-<p>从上面的两个式子我们可以看出某一位“或”上1，其结果只取决于这一位，即保留了原来的性质</p>
-</li>
-<li><p>与“0” = 清零</p>
-<p>1&amp;0=0    0&amp;0=0</p>
-<p>显而易见某一位“与”上0一定为0</p>
-</li>
-<li><p>或“1” = 置1</p>
-<p>1|1=1    0|1=1</p>
-<p>显而易见某一位“或”上0一定为0</p>
-</li>
-<li><p>异或“1”的取反性</p>
-<p>0^1=1    1^1=0</p>
-<p>从上面的两个式子我们可以看出某一位“异或”上1，其结果与原来相反</p>
-</li>
-<li><p>异或“0”的不变性</p>
-<p>0^0=0    1^0=1</p>
-<p>从上面的两个式子我们可以看出某一位“异或”上0，其结果与原来相同</p>
-</li>
-</ol>
-<h3 id="位运算的用法-1"><a href="#位运算的用法-1" class="headerlink" title="位运算的用法"></a>位运算的用法</h3><ul>
-<li><h5 id="快速乘除2的幂"><a href="#快速乘除2的幂" class="headerlink" title="快速乘除2的幂"></a>快速乘除2的幂</h5><p>由于移位运算的的特点，我们可以发现左移1位的效果就是乘以二，下面给出简单的证明</p>
-<script type="math/tex; mode=display">
-suppose\quad  (x)_{2}=a_{1}a{2}\dots a_{n}=1*a_{n}+2*a_{n-1}+\dots +2^{n-1}a_{1}\\
-x<<1=a_{1}a{2}\dots a_{n}0=2*a_{n}+4*a_{n-1}+\dots +2^{n}a_{1}\\
-\therefore x<<1=2*x</script><p>同理右移1位就是除二，但是这里是整除，因为右移会丢弃最后一位，即奇数会丢失1然后除以二；偶数则是直接除以二。</p>
-<p>移位操作并不局限于乘除2的幂，对于乘法运算，完全可以通过2的幂来组合，如3*x=x&lt;&lt;1+x，不过这样还需要先求乘数的二进制数，反而没有直接计算来的方便。</p>
-</li>
-</ul>
-<ul>
-<li><h5 id="判断一个数的奇偶性"><a href="#判断一个数的奇偶性" class="headerlink" title="判断一个数的奇偶性"></a>判断一个数的奇偶性</h5><p>由于二进制数的特点，奇偶性在二进制数中体现在最后一位是否为1，因此我们可以通过位运算来判断</p>
-<script type="math/tex; mode=display">
-x\&(1)= 1 \Rightarrow x为奇数\\
-x\&(1)= 0 \Rightarrow x为偶数</script></li>
-<li><h5 id="判断两个数是否相同"><a href="#判断两个数是否相同" class="headerlink" title="判断两个数是否相同"></a>判断两个数是否相同</h5><p>由异或运算的定义，a^b==0则a与b 相同，反则不同</p>
-</li>
-</ul>
-<ul>
-<li><h5 id="取反第n位"><a href="#取反第n位" class="headerlink" title="取反第n位"></a>取反第n位</h5><p>由位运算的性质，我们可以知道一定要用异或操作，并且我们需要构造一个数，它的第n位为1，其余位为0，那么某个数与它异或后只会取反第n位，所以</p>
-<p>​                                                                取反x的第n位 = x^(1&lt;&lt;n-1)</p>
-</li>
-</ul>
-<ul>
-<li><h5 id="置零第n位"><a href="#置零第n位" class="headerlink" title="置零第n位"></a>置零第n位</h5><p>由位运算的性质，我们可以知道一定要用与操作，并且我们要构造一个数，它的第n位是0，其余位是1，那么某个数与它与之后只会置零第n位，所以</p>
-<p>​                                                            置零x的第n位 = x&amp;(（~0）^（1&lt;&lt;n-1）)</p>
-<p>一般的，置零x的第$a_{1},a_{2}\dots,a_{n}$位 = x&amp;$((~0)$^$((1&lt;&lt;a_{1})+(1&lt;&lt;a_{2})+\dots +(a&lt;&lt;a_{n})))$</p>
-</li>
-<li><h5 id="置1第n位"><a href="#置1第n位" class="headerlink" title="置1第n位"></a>置1第n位</h5><p>与置零类似，这次我们需要用到或操作，并且我们要构造一个数，它的第n位是1，其余位是0，那么某个数与它与之后只会把第n位置1，所以</p>
-<p>​                                                            置1 x的第n位 = x|(1&lt;&lt;(n-1))</p>
-<p>一般的，置1 x的第$a_{1},a_{2}\dots,a_{n}$位 = x|$((1&lt;&lt;a_{1})+(1&lt;&lt;a_{2})+\dots +(a&lt;&lt;a_{n}))$</p>
-</li>
-</ul>
-<ul>
-<li><h5 id="交换两个数"><a href="#交换两个数" class="headerlink" title="交换两个数"></a>交换两个数</h5><p>​                                                            a=a^b</p>
-<p>​                                                            b=a^b</p>
-<p>​                                                            a=a^b</p>
-<p>第一次取异或后，a保存了a与b每一位的情况，相同的为0，不同的为1；第二次异或时，根据位运算的性质，结果保留了b中与a相同的位，不同的取反，所以b的值变成了a，第三次情况与第二次相同，最后a与b实现了交换。</p>
-<p>​                                                            <strong>装备必备：a\^=b\^=a^=b</strong></p>
-<p>词表达式一步到位，根据右结合的规则不难理解，但是需要指出的是这种方法反而比传统的交换（借助第三变量）效率更低，我们可以通过下面的测试看到其中的原因。</p>
-<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">34</span>, b = <span class="number">165</span>;</span><br><span class="line">	a = a ^ b;</span><br><span class="line">	b = b ^ a;</span><br><span class="line">	a = a ^ b;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d"</span>, a, b);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>我调试上面的代码并查看反汇编可以看到异或交换进行了六次读写三次异或</p>
-<p><img src="http://src.zhumingcj.cn/blog/20191230/fathRS1JEcRj.png?imageslim" alt="mark"></p>
-</li>
-</ul>
-<p>  但是传统的代码如下，通过反汇编窗口我们发现传统方法只用了六次读写，当然要更快一些。</p>
-  <figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">34</span>, b = <span class="number">165</span>;</span><br><span class="line">	<span class="keyword">int</span> temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d"</span>, a, b);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>  <img src="http://src.zhumingcj.cn/blog/20191230/KOdKgEGWkAte.png?imageslim" alt="mark"></p>
-<p>  当然情况也会因为平台有所差别，上述测试均在VS2017上进行，本人也试过DEV，结果异或交换只要三次读写三次异或，而传统交换需要六次读写，所以，总的来说传统方法还是效率更高，至少也会比异或交换差。</p>
-<p>  此处顺便提一下另一种不借助第三个变量交换两个值的方法：</p>
-<p>  ​                                                            a=a+b</p>
-<p>  ​                                                            b=a-b</p>
-<p>  ​                                                            a=a-b    </p>
-<p>  自行体会，不做解释（懒）</p>
-<ul>
-<li><h5 id="取相反数"><a href="#取相反数" class="headerlink" title="取相反数"></a>取相反数</h5><p>由原码和补码的关系我们可以知道</p>
-<p>​                                                            -a=~a+1</p>
-</li>
-</ul>
-<ul>
-<li><h5 id="保留第n位，清零其他位"><a href="#保留第n位，清零其他位" class="headerlink" title="保留第n位，清零其他位"></a>保留第n位，清零其他位</h5><p>根据性质，我应该用“&amp;”运算，并且需要构造一个数，它的第n位是1，它的其余位是0</p>
-<p>​                                                            x = x&amp;(x&lt;&lt;n-1)</p>
-</li>
-<li><h5 id="求十进制数的二进制"><a href="#求十进制数的二进制" class="headerlink" title="求十进制数的二进制"></a>求十进制数的二进制</h5><p>因为计算机内存储的都是二进制，所以我们只要将它打印出来就行，通过x&amp;1可以判断x的最后一位是1还是零，只要我们写个循环，每次右移1然后判断最后一位是什么，把结果存入栈，最后从栈中输出就得到了十进制数的二进制形式，或者从高位开始遍历就直接输出。</p>
-</li>
-</ul>
-<ul>
-<li><h5 id="翻转最低位的1"><a href="#翻转最低位的1" class="headerlink" title="翻转最低位的1"></a>翻转最低位的1</h5><p>要翻转最低位的1，前提是我们能找到最低位的1。那么我们该如何“找”到最低位的1呢？就这么找肯定是不行的，我们可以给一个“微小的扰动”——$\pm1$，。由于二进制每一位只能是1或1，所以当我们计算x-1时，x就会向最低位的1借位，从某种意义上我们就找到了最低位的1。我们举个例子看看减一会发生什么</p>
-<p>​                                                            x=10011000    x-1=10010111</p>
-<p>可以发现x-1与x最低位1前面的位相同，而最低位1以及后面的位发生反转，根据性质可得计算方法</p>
-<p>​                                                            x = x&amp;(x-1)</p>
-<p>稍作引申，我们可以得到统计某个二进制数1位的数量，我只要不断重复上述操作，每次讲数量++，直到x变为0就得到了1的数量</p>
-</li>
-</ul>
-<ul>
-<li><h5 id="循环左移2-循环右移k位（suppose-sizeof-int-32"><a href="#循环左移2-循环右移k位（suppose-sizeof-int-32" class="headerlink" title="循环左移2/循环右移k位（suppose    sizeof(int)=32)"></a>循环左移<sup><a href="#fn_2" id="reffn_2">2</a></sup>/循环右移k位（suppose    sizeof(int)=32)</h5><p>直接给出循环左移的计算式：</p>
-<p>​                                                            x=(x&lt;<k)|(x>&gt;32-k)</k)|(x></p>
-<p>其实也很好理解，循环左移一定是要左移的，但是超出部分要放到末尾就相当于右移，最后要把两个结果拼接起来就用“或”运算。</p>
-</li>
-</ul>
-<ul>
-<li><h5 id="二进制加法器"><a href="#二进制加法器" class="headerlink" title="二进制加法器"></a>二进制加法器</h5><p>虽然二进制的加法看似简单，但是如果我们自己来实现也得费一点力，因为我们不仅要将每一位相加还得处理进位的问题。但是如果我们把这两个过程分开考虑，问题就迎刃而解。下面是实现加法器的代码：</p>
-<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>{</span><br><span class="line">    <span class="comment">//进位为0，运算结束</span></span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>){</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">//计算两数之和，忽略进位</span></span><br><span class="line">    <span class="comment">//两二进制数相加，对应为不同结果为1否则为0，符合异或</span></span><br><span class="line">    <span class="keyword">int</span> sum=a^b;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//计算进位</span></span><br><span class="line">    <span class="comment">//两二进制数对应位相同产生进位，符合与运算</span></span><br><span class="line">    <span class="comment">//进位应当是高一位置1，故左移一位</span></span><br><span class="line">    <span class="keyword">int</span> carry=(a&amp;b)&lt;&lt;<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment">//递归调用，进位与直接和相加可能产生新的进位</span></span><br><span class="line">    <span class="keyword">return</span> add(sum,carry);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-</li>
-</ul>
-<ul>
-<li><h5 id="求平均数"><a href="#求平均数" class="headerlink" title="求平均数"></a>求平均数</h5><p>如果理解了二进制加法器，那么我们也可以找到一种求两个数平均数的方法（取整后的平均数），下面先给出计算的方法：</p>
-<p>​                                                            avg = (a&amp;b) + ((a^b)&gt;&gt;1)</p>
-<p>其中的加法可以直接使用上面的二进制加法器，原来和二进制加法器一样，分两部分计算：a+b产生的进位一定是个偶数，所以其均值应为((a&amp;b)&lt;&lt;1)&gt;&gt;1 = a&amp;b；a+b忽略进位的和为a\^b，平均值为(a^b)&gt;&gt;1(这一步运算会发生取整),最后结果就是上面的式子。<!--1)--></p>
-</li>
-</ul>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>位运算的使用是有限制的，可以进行位运算的只能是无符号的整型，即char、short、int、long,对于有符号的整型虽然理论上也支持位运算，但是其结果可能因为机器不同而结果不同（主要是由于不同机器对符号位的处理可能有不同规定）。</p>
-<blockquote id="fn_1">
-<sup>1</sup>. 异或运算结果为：相同为0，不同为1。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
-</blockquote>
-<blockquote id="fn_2">
-<sup>2</sup>. 循环左移的意思是，限定的长度下，每一位向左移，超出的补到末尾，举个例子就是游戏中人物超出屏幕会从另一边出来。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> ↩</a>
-</blockquote>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+              <h1 id="位运算的用法"><a href="#位运算的用法" class="headerlink" title="位运算的用法"></a>位运算的用法</h1><p>除了逻辑运算，位运算也是编程中常用的运算，但是很多人对于位运算知之甚少。一个原因是因为位运算的用法很零碎，并且有的用法涉及计算机底层的原理所以理解起来比较困难。但是位运算是效率很高的一种运算，特别是在编写单片机的程序时，活用位运算可以节约内存资源和单片机有限的算力。</p>
+          
       
     </div>
     
@@ -499,6 +331,10 @@ x\&(1)= 0 \Rightarrow x为偶数</script></li>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/移位操作/">移位操作</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="2019/12/30/usage-of-shift-operation/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
